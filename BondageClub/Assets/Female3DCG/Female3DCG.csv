@@ -34,7 +34,7 @@ Cloth,ShoulderlessTop,Shoulderless Top
 Cloth,Dress3,Long Dress
 Cloth,ComfyTop,Sleep Top
 Suit,,Upper Suit
-Suit,Catsuit,Catsuit
+Suit,CatSuit,Catsuit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -51,7 +51,7 @@ ClothLower,LatexSkirt2,Long Latex Skirt
 ClothLower,ClothSkirt1,Patterned Skirt
 ClothLower,Jeans2,Ripped Jeans
 SuitLower,,Suit Lower
-SuitLower,Catsuit,Catsuit
+SuitLower,CatSuit,Catsuit
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
