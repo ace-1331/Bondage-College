@@ -111,6 +111,7 @@ function MainHallRun() {
 		DrawButton(25, 145, 90, 90, "", "White", "Icons/Horse.png", TextGet("Stable"));
 
 		// Cafe
+		DrawButton(145, 265, 90, 90, "", "White", "Icons/Collar.png", TextGet("SubmissiveClub"));
 		DrawButton(25, 265, 90, 90, "", "White", "Icons/Refreshsments.png", TextGet("Cafe"));
 	}
 
@@ -241,6 +242,7 @@ function MainHallClick() {
 		if ((MouseX >=  265) && (MouseX <  355) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Nursery");
 
 		// Cafe
+		if ((MouseX >=   145) && (MouseX <  235) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("SubmissiveClub");
 		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Cafe");
 	}
 
