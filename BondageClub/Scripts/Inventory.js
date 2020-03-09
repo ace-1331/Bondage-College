@@ -78,6 +78,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "NoItemHands") return (InventoryGet(C, "ItemHands") != null) ? "MustFreeHandsFirst" : "";
 	if (Prerequisite == "LegsOpen") return (C.Pose.indexOf("LegsClosed") >= 0) ? "LegsCannotOpen" : "";
 	if (Prerequisite == "NotKneeling") return (C.Pose.indexOf("Kneel") >= 0) ? "MustStandUpFirst" : "";
+	if (Prerequisite == "CanKneel") return (C.Effect.indexOf("BlockKneel") >= 0) ? "MustBeAbleToKneel" : "";
 	if (Prerequisite == "NotMounted") return (C.Effect.indexOf("Mounted") >= 0) ? "CannotBeUsedWhenMounted" : "";
 	if (Prerequisite == "NotHorse") return (C.Pose.indexOf("Horse") >= 0) ? "CannotBeUsedWhenMounted" : "";
 	if (Prerequisite == "NotSuspended") return (C.Pose.indexOf("Suspension") >= 0) ? "RemoveSuspensionForItem" : "";
@@ -93,6 +94,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "CannotBeSuited") return ((InventoryGet(C, "ItemVulva") != null) && (InventoryGet(C, "ItemVulva").Asset.Name == "WandBelt")) ? "CannotHaveWand" : "";
 	if (Prerequisite == "CannotBeHogtiedWithAlphaHood") return ((InventoryGet(C, "ItemHead") != null) && (InventoryGet(C, "ItemHead").Asset.Prerequisite != null) && (InventoryGet(C, "ItemHead").Asset.Prerequisite.indexOf("NotHogtied") >= 0)) ? "CannotBeHogtiedWithAlphaHood" : "";
 	if (Prerequisite == "StraitDressOpen") return (C.Pose.indexOf("StraitDressOpen") >= 0) ? "StraitDressOpen" : "";
+	if (Prerequisite == "AllFours") return (C.Pose.indexOf("AllFours") >= 0) ? "StraitDressOpen" : "";
 
 	// Checks for torso access based on clothes
 	var Cloth = InventoryGet(C, "Cloth");
@@ -286,10 +288,8 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 function InventoryExpressionTrigger(C, Item) {
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger() != null))
 		for (var E = 0; E < Item.Asset.DynamicExpressionTrigger().length; E++)
-			if ((InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group) == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property.Expression == null)) {
-				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Name);
-				TimerInventoryRemoveSet(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Timer);
-			}
+			if ((InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group) == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property.Expression == null))
+				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Name, Item.Asset.DynamicExpressionTrigger()[E].Timer);
 }
 
 // Returns the item that locks another item
@@ -415,7 +415,7 @@ function InventoryConfiscateRemote() {
 function InventoryIsWorn(C, AssetName, AssetGroup){
 	if ((C != null) && (C.Appearance != null) && Array.isArray(C.Appearance))
 		for (var A = 0; A < C.Appearance.length; A++)
-			if ((C.Appearance[A].Name == AssetName) && (C.Appearance[A].Group.Name == AssetGroup))
+			if ((C.Appearance[A].Asset.Name == AssetName) && (C.Appearance[A].Asset.Group.Name == AssetGroup))
 				return true;
 	return false;
 }
