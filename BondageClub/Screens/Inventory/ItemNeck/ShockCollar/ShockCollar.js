@@ -22,12 +22,12 @@ function InventoryItemNeckShockCollarDraw() {
 // Catches the item extension clicks
 function InventoryItemNeckShockCollarClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1325, 800, 1389-1325, 864-800) && (CurrentScreen == "ChatRoom")) {
+	if (CommonIsClickAt(1325, 800, 64, 64) && (CurrentScreen == "ChatRoom")) {
 		DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
 		DialogLeave();
 	}
 	if (CommonIsClickAt(1200, 700, 250, 65) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckShockCollarSetIntensity(-1);
-	if (CommonIsClickAt(1550, 700, 1800-1550, 65) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckShockCollarSetIntensity(1);
+	if (CommonIsClickAt(1550, 700, 250, 65) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckShockCollarSetIntensity(1);
 }
 
 // Sets the shock collar intensity

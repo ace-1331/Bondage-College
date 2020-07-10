@@ -39,10 +39,10 @@ function InventoryItemDevicesTeddyBearDraw() {
 function InventoryItemDevicesTeddyBearClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1000, 450, 225, 225) && (DialogFocusItem.Property.Type != null)) InventoryItemDevicesTeddyBearSetType(null);
-	if (CommonIsClickAt(1375, 450, 1600-1375, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Fox"))) InventoryItemDevicesTeddyBearSetType("Fox");
+	if (CommonIsClickAt(1375, 450, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Fox"))) InventoryItemDevicesTeddyBearSetType("Fox");
 	if (CommonIsClickAt(1750, 450, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Kitty"))) InventoryItemDevicesTeddyBearSetType("Kitty");
 	if (CommonIsClickAt(1000, 750, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Pup"))) InventoryItemDevicesTeddyBearSetType("Pup");
-	if (CommonIsClickAt(1375, 750, 1600-1375, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Bunny"))) InventoryItemDevicesTeddyBearSetType("Bunny");
+	if (CommonIsClickAt(1375, 750, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Bunny"))) InventoryItemDevicesTeddyBearSetType("Bunny");
 	if (CommonIsClickAt(1750, 750, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Pony"))) InventoryItemDevicesTeddyBearSetType("Pony");
 }
 

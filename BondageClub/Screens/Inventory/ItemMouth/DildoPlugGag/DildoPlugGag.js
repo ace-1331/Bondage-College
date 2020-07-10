@@ -26,8 +26,8 @@ function InventoryItemMouthDildoPlugGagDraw() {
 // Catches the item extension clicks
 function InventoryItemMouthDildoPlugGagClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1175, 550, 1400-1175, 225) && (DialogFocusItem.Property.Type != null)) InventoryItemMouthDildoPlugGagSetType(null);
-	if (CommonIsClickAt(1600, 550, 1825-1600, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Plug"))) InventoryItemMouthDildoPlugGagSetType("Plug");
+	if (CommonIsClickAt(1175, 550, 225, 225) && (DialogFocusItem.Property.Type != null)) InventoryItemMouthDildoPlugGagSetType(null);
+	if (CommonIsClickAt(1600, 550, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Plug"))) InventoryItemMouthDildoPlugGagSetType("Plug");
 }
 
 // Sets the gag type (Plug, Open)

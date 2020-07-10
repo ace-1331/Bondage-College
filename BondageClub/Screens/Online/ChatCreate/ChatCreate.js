@@ -83,12 +83,12 @@ function ChatCreateClick() {
 	}
 
 	// If the user wants to create a room
-	if (CommonIsClickAt(600, 800, 900-600, 865-800)) {
+	if (CommonIsClickAt(600, 800, 900-600, 65)) {
 		ChatCreateRoom();
 	}
 
 	// When the user cancels
-	if (CommonIsClickAt(1100, 800, 1400-1100, 865-800)) {
+	if (CommonIsClickAt(1100, 800, 1400-1100, 65)) {
 		ChatCreateExit();
 	}
 }

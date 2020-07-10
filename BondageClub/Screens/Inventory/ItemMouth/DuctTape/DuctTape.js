@@ -36,10 +36,10 @@ function InventoryItemMouthDuctTapeDraw() {
 function InventoryItemMouthDuctTapeClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1000, 450, 225, 225) && (DialogFocusItem.Property.Type != null)) InventoryItemMouthDuctTapeSetType(null);
-	if (CommonIsClickAt(1375, 450, 1600-1375, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Crossed"))) InventoryItemMouthDuctTapeSetType("Crossed");
+	if (CommonIsClickAt(1375, 450, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Crossed"))) InventoryItemMouthDuctTapeSetType("Crossed");
 	if (CommonIsClickAt(1750, 450, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Full"))) InventoryItemMouthDuctTapeSetType("Full");
-	if (CommonIsClickAt(1150, 750, 1375-1150, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Double"))) InventoryItemMouthDuctTapeSetType("Double");
-	if (CommonIsClickAt(1600, 750, 1825-1600, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Cover"))) InventoryItemMouthDuctTapeSetType("Cover");
+	if (CommonIsClickAt(1150, 750, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Double"))) InventoryItemMouthDuctTapeSetType("Double");
+	if (CommonIsClickAt(1600, 750, 225, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Cover"))) InventoryItemMouthDuctTapeSetType("Cover");
 }
 
 // Sets the gag type (small, cleave, otm, otn)
