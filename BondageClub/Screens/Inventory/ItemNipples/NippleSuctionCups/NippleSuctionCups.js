@@ -32,7 +32,7 @@ function InventoryItemNipplesNippleSuctionCupsClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel > 2)) InventoryItemNipplesNippleSuctionCupsIntensity(2 - DialogFocusItem.Property.SuctionLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel > 3)) InventoryItemNipplesNippleSuctionCupsIntensity(3 - DialogFocusItem.Property.SuctionLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel < 3)) InventoryItemNipplesNippleSuctionCupsIntensity(3 - DialogFocusItem.Property.SuctionLevel);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.SuctionLevel < 4)) InventoryItemNipplesNippleSuctionCupsIntensity(4 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.SuctionLevel < 4)) InventoryItemNipplesNippleSuctionCupsIntensity(4 - DialogFocusItem.Property.SuctionLevel);
 }
 
 // Sets the Nipple Suction Cups Level

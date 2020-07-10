@@ -37,24 +37,24 @@ function InventoryItemVulvaInflatableVibeDildoDraw() {
 
 // Catches the item extension clicks
 function InventoryItemVulvaInflatableVibeDildoClick() {
-	if (CommonIsClickAt(1885, 225, 90, 310-225)) DialogFocusItem = null;
-	if (CommonIsClickAt(1200, 775, 1400-1200, 55) && (DialogFocusItem.Property.InflateLevel > 0)) InventoryItemVulvaInflatableVibeDildoInflation(0 - DialogFocusItem.Property.InflateLevel);
+	if (CommonIsClickAt(1885, 225, 90, 55)) DialogFocusItem = null;
+	if (CommonIsClickAt(1200, 775, 200, 55) && (DialogFocusItem.Property.InflateLevel > 0)) InventoryItemVulvaInflatableVibeDildoInflation(0 - DialogFocusItem.Property.InflateLevel);
 	if (CommonIsClickAt(1550, 775, 200, 55) && (DialogFocusItem.Property.InflateLevel < 1)) InventoryItemVulvaInflatableVibeDildoInflation(1 - DialogFocusItem.Property.InflateLevel);
 	if (CommonIsClickAt(1550, 775, 200, 55) && (DialogFocusItem.Property.InflateLevel > 1)) InventoryItemVulvaInflatableVibeDildoInflation(1 - DialogFocusItem.Property.InflateLevel);
-	if (CommonIsClickAt(1200, 835, 200, 890-835) && (DialogFocusItem.Property.InflateLevel < 2)) InventoryItemVulvaInflatableVibeDildoInflation(2 - DialogFocusItem.Property.InflateLevel);
-	if (CommonIsClickAt(1200, 835, 200, 890-835) && (DialogFocusItem.Property.InflateLevel > 2)) InventoryItemVulvaInflatableVibeDildoInflation(2 - DialogFocusItem.Property.InflateLevel);
-	if (CommonIsClickAt(1550, 835, 200, 890-835) && (DialogFocusItem.Property.InflateLevel > 3)) InventoryItemVulvaInflatableVibeDildoInflation(3 - DialogFocusItem.Property.InflateLevel);
-	if (CommonIsClickAt(1550, 835, 200, 890-835) && (DialogFocusItem.Property.InflateLevel < 3)) InventoryItemVulvaInflatableVibeDildoInflation(3 - DialogFocusItem.Property.InflateLevel);
-	if (CommonIsClickAt(1375, 895, 1575-1375, 950-895) && (DialogFocusItem.Property.InflateLevel < 4)) InventoryItemVulvaInflatableVibeDildoInflation(4 - DialogFocusItem.Property.InflateLevel);
+	if (CommonIsClickAt(1200, 835, 200, 55) && (DialogFocusItem.Property.InflateLevel < 2)) InventoryItemVulvaInflatableVibeDildoInflation(2 - DialogFocusItem.Property.InflateLevel);
+	if (CommonIsClickAt(1200, 835, 200, 55) && (DialogFocusItem.Property.InflateLevel > 2)) InventoryItemVulvaInflatableVibeDildoInflation(2 - DialogFocusItem.Property.InflateLevel);
+	if (CommonIsClickAt(1550, 835, 200, 55) && (DialogFocusItem.Property.InflateLevel > 3)) InventoryItemVulvaInflatableVibeDildoInflation(3 - DialogFocusItem.Property.InflateLevel);
+	if (CommonIsClickAt(1550, 835, 200, 55) && (DialogFocusItem.Property.InflateLevel < 3)) InventoryItemVulvaInflatableVibeDildoInflation(3 - DialogFocusItem.Property.InflateLevel);
+	if (CommonIsClickAt(1375, 895, 200, 55) && (DialogFocusItem.Property.InflateLevel < 4)) InventoryItemVulvaInflatableVibeDildoInflation(4 - DialogFocusItem.Property.InflateLevel);
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1200, 550, 200, 605-550) && (DialogFocusItem.Property.Intensity > -1)) InventoryItemVulvaInflatableVibeDildoSetIntensity(-1 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 550, 200, 605-550) && (DialogFocusItem.Property.Intensity < 0)) InventoryItemVulvaInflatableVibeDildoSetIntensity(0 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 550, 200, 605-550) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemVulvaInflatableVibeDildoSetIntensity(0 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1200, 610, 200, 665-610) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemVulvaInflatableVibeDildoSetIntensity(1 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1200, 610, 200, 665-610) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemVulvaInflatableVibeDildoSetIntensity(1 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 610, 200, 665-610) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemVulvaInflatableVibeDildoSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 610, 200, 665-610) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemVulvaInflatableVibeDildoSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1375, 670, 1575-1375, 725-670) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaInflatableVibeDildoSetIntensity(3 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1200, 550, 200, 55) && (DialogFocusItem.Property.Intensity > -1)) InventoryItemVulvaInflatableVibeDildoSetIntensity(-1 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 550, 200, 55) && (DialogFocusItem.Property.Intensity < 0)) InventoryItemVulvaInflatableVibeDildoSetIntensity(0 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 550, 200, 55) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemVulvaInflatableVibeDildoSetIntensity(0 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1200, 610, 200, 55) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemVulvaInflatableVibeDildoSetIntensity(1 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1200, 610, 200, 55) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemVulvaInflatableVibeDildoSetIntensity(1 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 610, 200, 55) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemVulvaInflatableVibeDildoSetIntensity(2 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 610, 200, 55) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemVulvaInflatableVibeDildoSetIntensity(2 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1375, 670, 200, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaInflatableVibeDildoSetIntensity(3 - DialogFocusItem.Property.Intensity);
 }
 
 // Sets the inflatable vibe dildo pump Level

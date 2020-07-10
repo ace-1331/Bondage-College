@@ -33,7 +33,7 @@ function InventoryItemHeadInflatedBallHoodClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel > 2)) InventoryItemHeadInflatedBallHoodSetPump(2 - DialogFocusItem.Property.PumpLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel > 3)) InventoryItemHeadInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel < 3)) InventoryItemHeadInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemHeadInflatedBallHoodSetPump(4 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemHeadInflatedBallHoodSetPump(4 - DialogFocusItem.Property.PumpLevel);
 }
 
 // Sets the pump gag level

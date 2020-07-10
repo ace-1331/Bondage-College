@@ -34,7 +34,7 @@ function InventoryItemVulvaFullLatexSuitWandClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemVulvaFullLatexSuitWandSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemVulvaFullLatexSuitWandSetIntensity(2 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemVulvaFullLatexSuitWandSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaFullLatexSuitWandSetIntensity(3 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaFullLatexSuitWandSetIntensity(3 - DialogFocusItem.Property.Intensity);
 }
 
 // Sets the wand intensity

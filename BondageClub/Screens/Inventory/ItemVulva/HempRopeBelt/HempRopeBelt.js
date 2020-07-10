@@ -35,7 +35,7 @@ function InventoryItemVulvaHempRopeBeltClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemVulvaHempRopeBeltSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemVulvaHempRopeBeltSetIntensity(2 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemVulvaHempRopeBeltSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaHempRopeBeltSetIntensity(3 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaHempRopeBeltSetIntensity(3 - DialogFocusItem.Property.Intensity);
 }
 
 // Sets the Vibrating Latex Panties intensity

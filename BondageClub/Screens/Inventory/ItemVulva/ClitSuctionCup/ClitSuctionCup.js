@@ -32,7 +32,7 @@ function InventoryItemVulvaClitSuctionCupClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel > 2)) InventoryItemVulvaClitSuctionCupIntensity(2 - DialogFocusItem.Property.SuctionLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel > 3)) InventoryItemVulvaClitSuctionCupIntensity(3 - DialogFocusItem.Property.SuctionLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel < 3)) InventoryItemVulvaClitSuctionCupIntensity(3 - DialogFocusItem.Property.SuctionLevel);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.SuctionLevel < 4)) InventoryItemVulvaClitSuctionCupIntensity(4 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.SuctionLevel < 4)) InventoryItemVulvaClitSuctionCupIntensity(4 - DialogFocusItem.Property.SuctionLevel);
 }
 
 // Sets the Clit Suction Cup Level

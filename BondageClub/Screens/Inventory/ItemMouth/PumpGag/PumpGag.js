@@ -33,7 +33,7 @@ function InventoryItemMouthPumpGagClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel > 2)) InventoryItemMouthPumpGagSetPump(2 - DialogFocusItem.Property.PumpLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel > 3)) InventoryItemMouthPumpGagSetPump(3 - DialogFocusItem.Property.PumpLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel < 3)) InventoryItemMouthPumpGagSetPump(3 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemMouthPumpGagSetPump(4 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemMouthPumpGagSetPump(4 - DialogFocusItem.Property.PumpLevel);
 }
 
 // Sets the pump gag level

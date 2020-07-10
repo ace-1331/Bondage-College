@@ -32,7 +32,7 @@ function InventoryItemButtButtPumpClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.InflateLevel > 2)) InventoryItemButtButtPumpIntensity(2 - DialogFocusItem.Property.InflateLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.InflateLevel > 3)) InventoryItemButtButtPumpIntensity(3 - DialogFocusItem.Property.InflateLevel);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.InflateLevel < 3)) InventoryItemButtButtPumpIntensity(3 - DialogFocusItem.Property.InflateLevel);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.InflateLevel < 4)) InventoryItemButtButtPumpIntensity(4 - DialogFocusItem.Property.InflateLevel);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.InflateLevel < 4)) InventoryItemButtButtPumpIntensity(4 - DialogFocusItem.Property.InflateLevel);
 }
 
 // Sets the Butt Pump Level

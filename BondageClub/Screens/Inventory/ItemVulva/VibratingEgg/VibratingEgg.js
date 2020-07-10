@@ -33,7 +33,7 @@ function InventoryItemVulvaVibratingEggClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemVulvaVibratingEggSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemVulvaVibratingEggSetIntensity(2 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemVulvaVibratingEggSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaVibratingEggSetIntensity(3 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaVibratingEggSetIntensity(3 - DialogFocusItem.Property.Intensity);
 }
 
 // Sets the vibrating egg intensity

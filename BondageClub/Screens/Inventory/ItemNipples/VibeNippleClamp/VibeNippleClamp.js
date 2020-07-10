@@ -34,7 +34,7 @@ function InventoryItemNipplesVibeNippleClampClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemNipplesVibeNippleClampSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemNipplesVibeNippleClampSetIntensity(2 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNipplesVibeNippleClampSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemNipplesVibeNippleClampSetIntensity(3 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemNipplesVibeNippleClampSetIntensity(3 - DialogFocusItem.Property.Intensity);
 }
 
 // Sets the vibrating clamps intensity

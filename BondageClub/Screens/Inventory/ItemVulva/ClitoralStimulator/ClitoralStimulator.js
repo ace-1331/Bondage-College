@@ -33,7 +33,7 @@ function InventoryItemVulvaClitoralStimulatorClick() {
 	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemVulvaClitoralStimulatorSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemVulvaClitoralStimulatorSetIntensity(2 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemVulvaClitoralStimulatorSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaClitoralStimulatorSetIntensity(3 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1375, 770, 200, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaClitoralStimulatorSetIntensity(3 - DialogFocusItem.Property.Intensity);
 }
 
 // Sets the vibrating dildo intensity
