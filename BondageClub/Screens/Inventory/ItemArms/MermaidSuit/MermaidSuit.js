@@ -28,9 +28,9 @@ function InventoryItemArmsMermaidSuitDraw() {
 
 // Catches the item extension clicks
 function InventoryItemArmsMermaidSuitClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1150, 440, 1375-1150, 665-440) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsMermaidSuitSetType(null);
-	if (CommonIsClickAt(1600, 440, 1825-1600, 665-440) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "UnZip"))) InventoryItemArmsMermaidSuitSetType("UnZip");
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1150, 440, 1375-1150, 225) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsMermaidSuitSetType(null);
+	if (CommonIsClickAt(1600, 440, 1825-1600, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "UnZip"))) InventoryItemArmsMermaidSuitSetType("UnZip");
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 }
 

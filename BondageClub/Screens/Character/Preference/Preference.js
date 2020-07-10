@@ -507,19 +507,19 @@ function PreferenceSubscreenChatClick() {
 	}
 
 	// If the user used one of the BackNextButtons
-	if (CommonIsClickAt(1000, 190, 1350-1000, 270-190)) {
+	if (CommonIsClickAt(1000, 190, 350, 80)) {
 		if (MouseX <= 1175) PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex <= 0) ? PreferenceChatColorThemeList.length - 1 : PreferenceChatColorThemeIndex - 1;
 		else PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex >= PreferenceChatColorThemeList.length - 1) ? 0 : PreferenceChatColorThemeIndex + 1;
 		PreferenceChatColorThemeSelected = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
 		Player.ChatSettings.ColorTheme = PreferenceChatColorThemeSelected;
 	}
-	if (CommonIsClickAt(1000, 290, 1350-1000, 370-290)) {
+	if (CommonIsClickAt(1000, 290, 350, 80)) {
 		if (MouseX <= 1175) PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveIndex <= 0) ? PreferenceChatEnterLeaveList.length - 1 : PreferenceChatEnterLeaveIndex - 1;
 		else PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveIndex >= PreferenceChatEnterLeaveList.length - 1) ? 0 : PreferenceChatEnterLeaveIndex + 1;
 		PreferenceChatEnterLeaveSelected = PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex];
 		Player.ChatSettings.EnterLeave = PreferenceChatEnterLeaveSelected;
 	}
-	if (CommonIsClickAt(1000, 390, 1350-1000, 470-390)) {
+	if (CommonIsClickAt(1000, 390, 350, 80)) {
 		if (MouseX <= 1175) PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersIndex <= 0) ? PreferenceChatMemberNumbersList.length - 1 : PreferenceChatMemberNumbersIndex - 1;
 		else PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersIndex >= PreferenceChatMemberNumbersList.length - 1) ? 0 : PreferenceChatMemberNumbersIndex + 1;
 		PreferenceChatMemberNumbersSelected = PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex];

@@ -27,7 +27,7 @@ function InventoryItemMiscTimerPadlockDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMiscTimerPadlockClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) InventoryItemMiscTimerPadlockExit();
+	if (CommonIsClickAt(1885, 25, 90, 85)) InventoryItemMiscTimerPadlockExit();
 	if (CommonIsClickAt(1100, 836, 1164-1100, 900-836) && (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) && Player.CanInteract()) {
 		DialogFocusSourceItem.Property.RemoveItem = !(DialogFocusSourceItem.Property.RemoveItem);
 		if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(CharacterGetCurrent());

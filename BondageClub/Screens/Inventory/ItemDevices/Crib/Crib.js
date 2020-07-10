@@ -30,7 +30,7 @@ function InventoryItemDevicesCribDraw() {
 
 // Catches the item extension clicks
 function InventoryItemDevicesCribClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1050, 550, 1275-1050, 225) && !InventoryItemHasEffect(DialogFocusItem, "Lock", true) && (DialogFocusItem.Property.Type != null)) InventoryItemDevicesCribSetType(null);
 	if (CommonIsClickAt(1387, 550, 1612-1387, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Closed"))) InventoryItemDevicesCribSetType("Closed");
 	if (CommonIsClickAt(1725, 550, 1950-1725, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Stuffed"))) InventoryItemDevicesCribSetType("Stuffed");

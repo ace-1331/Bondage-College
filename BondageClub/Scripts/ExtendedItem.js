@@ -84,7 +84,7 @@ function ExtendedItemDraw(Options, DialogPrefix) {
  */
 function ExtendedItemClick(Options) {
 	// Exit button
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) {
+	if (CommonIsClickAt(1885, 25, 90, 85)) {
 		DialogFocusItem = null;
 		return;
 	}

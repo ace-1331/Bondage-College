@@ -34,12 +34,12 @@ function InventoryItemMouthDuctTapeDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMouthDuctTapeClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1000, 450, 1225-1000, 675-450) && (DialogFocusItem.Property.Type != null)) InventoryItemMouthDuctTapeSetType(null);
-	if (CommonIsClickAt(1375, 450, 1600-1375, 675-450) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Crossed"))) InventoryItemMouthDuctTapeSetType("Crossed");
-	if (CommonIsClickAt(1750, 450, 1975-1750, 675-450) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Full"))) InventoryItemMouthDuctTapeSetType("Full");
-	if (CommonIsClickAt(1150, 750, 1375-1150, 975-750) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Double"))) InventoryItemMouthDuctTapeSetType("Double");
-	if (CommonIsClickAt(1600, 750, 1825-1600, 975-750) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Cover"))) InventoryItemMouthDuctTapeSetType("Cover");
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1000, 450, 1225-1000, 225) && (DialogFocusItem.Property.Type != null)) InventoryItemMouthDuctTapeSetType(null);
+	if (CommonIsClickAt(1375, 450, 1600-1375, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Crossed"))) InventoryItemMouthDuctTapeSetType("Crossed");
+	if (CommonIsClickAt(1750, 450, 1975-1750, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Full"))) InventoryItemMouthDuctTapeSetType("Full");
+	if (CommonIsClickAt(1150, 750, 1375-1150, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Double"))) InventoryItemMouthDuctTapeSetType("Double");
+	if (CommonIsClickAt(1600, 750, 1825-1600, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Cover"))) InventoryItemMouthDuctTapeSetType("Cover");
 }
 
 // Sets the gag type (small, cleave, otm, otn)

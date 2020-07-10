@@ -30,7 +30,7 @@ function InventoryItemButtAnalHookDraw() {
 
 // Catches the item extension clicks
 function InventoryItemButtAnalHookClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1000, 550, 1225-1000, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemButtAnalHookSetPose(null);
 	if (CommonIsClickAt(1250, 550, 1475-1250, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Chain"))) InventoryItemButtAnalHookSetPose("Chain");
 	if (CommonIsClickAt(1500, 550, 1725-1500, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Hair"))) InventoryItemButtAnalHookSetPose("Hair");

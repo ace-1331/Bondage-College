@@ -35,7 +35,7 @@ function InventoryItemNeckAccessoriesCollarNameTagLivestockDraw() {
 
 // Catches the item extension clicks
 function InventoryItemNeckAccessoriesCollarNameTagLivestockClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) { DialogFocusItem = null; return; }
+	if (CommonIsClickAt(1885, 25, 90, 85)) { DialogFocusItem = null; return; }
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;

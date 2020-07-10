@@ -25,15 +25,15 @@ function InventoryItemButtVibratingDildoPlugDraw() {
 
 // Catches the item extension clicks
 function InventoryItemButtVibratingDildoPlugClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1200, 650, 200, 705-650) && (DialogFocusItem.Property.Intensity > -1)) InventoryItemButtVibratingDildoPlugSetIntensity(-1 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.Intensity < 0)) InventoryItemButtVibratingDildoPlugSetIntensity(0 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemButtVibratingDildoPlugSetIntensity(0 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1200, 710, 200, 765-710) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemButtVibratingDildoPlugSetIntensity(1 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1200, 710, 200, 765-710) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemButtVibratingDildoPlugSetIntensity(1 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 710, 200, 765-710) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemButtVibratingDildoPlugSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 710, 200, 765-710) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemButtVibratingDildoPlugSetIntensity(2 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 825-770) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemButtVibratingDildoPlugSetIntensity(3 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1200, 650, 200, 55) && (DialogFocusItem.Property.Intensity > -1)) InventoryItemButtVibratingDildoPlugSetIntensity(-1 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 650, 200, 55) && (DialogFocusItem.Property.Intensity < 0)) InventoryItemButtVibratingDildoPlugSetIntensity(0 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 650, 200, 55) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemButtVibratingDildoPlugSetIntensity(0 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemButtVibratingDildoPlugSetIntensity(1 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemButtVibratingDildoPlugSetIntensity(1 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemButtVibratingDildoPlugSetIntensity(2 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemButtVibratingDildoPlugSetIntensity(2 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemButtVibratingDildoPlugSetIntensity(3 - DialogFocusItem.Property.Intensity);
 }
 
 // Sets the vibrating dildo intensity

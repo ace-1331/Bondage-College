@@ -24,15 +24,15 @@ function InventoryItemVulvaClitSuctionCupDraw() {
 
 // Catches the item extension clicks
 function InventoryItemVulvaClitSuctionCupClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1200, 650, 200, 705-650) && (DialogFocusItem.Property.SuctionLevel > 0)) InventoryItemVulvaClitSuctionCupIntensity(0 - DialogFocusItem.Property.SuctionLevel);
-	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.SuctionLevel < 1)) InventoryItemVulvaClitSuctionCupIntensity(1 - DialogFocusItem.Property.SuctionLevel);
-	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.SuctionLevel > 1)) InventoryItemVulvaClitSuctionCupIntensity(1 - DialogFocusItem.Property.SuctionLevel);
-	if (CommonIsClickAt(1200, 710, 200, 765-710) && (DialogFocusItem.Property.SuctionLevel < 2)) InventoryItemVulvaClitSuctionCupIntensity(2 - DialogFocusItem.Property.SuctionLevel);
-	if (CommonIsClickAt(1200, 710, 200, 765-710) && (DialogFocusItem.Property.SuctionLevel > 2)) InventoryItemVulvaClitSuctionCupIntensity(2 - DialogFocusItem.Property.SuctionLevel);
-	if (CommonIsClickAt(1550, 710, 200, 765-710) && (DialogFocusItem.Property.SuctionLevel > 3)) InventoryItemVulvaClitSuctionCupIntensity(3 - DialogFocusItem.Property.SuctionLevel);
-	if (CommonIsClickAt(1550, 710, 200, 765-710) && (DialogFocusItem.Property.SuctionLevel < 3)) InventoryItemVulvaClitSuctionCupIntensity(3 - DialogFocusItem.Property.SuctionLevel);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 825-770) && (DialogFocusItem.Property.SuctionLevel < 4)) InventoryItemVulvaClitSuctionCupIntensity(4 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1200, 650, 200, 55) && (DialogFocusItem.Property.SuctionLevel > 0)) InventoryItemVulvaClitSuctionCupIntensity(0 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1550, 650, 200, 55) && (DialogFocusItem.Property.SuctionLevel < 1)) InventoryItemVulvaClitSuctionCupIntensity(1 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1550, 650, 200, 55) && (DialogFocusItem.Property.SuctionLevel > 1)) InventoryItemVulvaClitSuctionCupIntensity(1 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel < 2)) InventoryItemVulvaClitSuctionCupIntensity(2 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel > 2)) InventoryItemVulvaClitSuctionCupIntensity(2 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel > 3)) InventoryItemVulvaClitSuctionCupIntensity(3 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.SuctionLevel < 3)) InventoryItemVulvaClitSuctionCupIntensity(3 - DialogFocusItem.Property.SuctionLevel);
+	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.SuctionLevel < 4)) InventoryItemVulvaClitSuctionCupIntensity(4 - DialogFocusItem.Property.SuctionLevel);
 }
 
 // Sets the Clit Suction Cup Level

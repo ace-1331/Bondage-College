@@ -29,7 +29,7 @@ function InventoryItemArmsLeatherArmbinderDraw() {
 
 // Catches the item extension clicks
 function InventoryItemArmsLeatherArmbinderClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (CommonIsClickAt(1175, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("Strap");
 	if (CommonIsClickAt(1600, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("WrapStrap");

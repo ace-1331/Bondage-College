@@ -17,5 +17,5 @@ function InventoryItemMiscLoversPadlockDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMiscLoversPadlockClick() {
-    if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+    if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 }

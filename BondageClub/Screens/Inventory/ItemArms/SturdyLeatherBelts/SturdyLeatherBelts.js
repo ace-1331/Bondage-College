@@ -36,7 +36,7 @@ function InventoryItemArmsSturdyLeatherBeltsDraw() {
 // Catches the item extension clicks
 function InventoryItemArmsSturdyLeatherBeltsClick() {
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
-		if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+		if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 		if (CommonIsClickAt(1125, 550, 1350-1125, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemArmsSturdyLeatherBeltsSetPose(null);
 		if (CommonIsClickAt(1375, 550, 1600-1375, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Two"))) InventoryItemArmsSturdyLeatherBeltsSetPose("Two");
 		if (CommonIsClickAt(1625, 550, 1850-1625, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Three"))) InventoryItemArmsSturdyLeatherBeltsSetPose("Three");

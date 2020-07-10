@@ -31,7 +31,7 @@ function InventoryItemMouth2ClothGagDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMouth2ClothGagClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1000, 550, 1225-1000, 225) && (DialogFocusItem.Property.Type != null)) InventoryItemMouth2ClothGagSetType(null);
 //	if (CommonIsClickAt(1250, 550, 1475-1250, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Cleave"))) InventoryItemMouth2ClothGagSetType("Cleave");
 	if (CommonIsClickAt(1500, 550, 1725-1500, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "OTM"))) InventoryItemMouth2ClothGagSetType("OTM");

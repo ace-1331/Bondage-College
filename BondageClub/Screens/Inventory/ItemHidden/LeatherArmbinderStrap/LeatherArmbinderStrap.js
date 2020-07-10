@@ -18,7 +18,7 @@ function InventoryItemHiddenLeatherArmbinderStrapDraw() {
 
 // Catches the item extension clicks
 function InventoryItemHiddenLeatherArmbinderStrapClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1389, 550, 1614-1389, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != ""))) InventoryItemHiddenLeatherArmbinderStrapSetType("");
 }
 

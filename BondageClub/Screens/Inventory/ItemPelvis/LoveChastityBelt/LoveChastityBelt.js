@@ -54,7 +54,7 @@ function InventoryItemPelvisLoveChastityBeltDraw() {
 
 // Catches the item extension clicks
 function InventoryItemPelvisLoveChastityBeltClick() {
-  if (CommonIsClickAt(1885, 25, 1975-1885, 85)) { DialogFocusItem = null; return; }
+  if (CommonIsClickAt(1885, 25, 90, 85)) { DialogFocusItem = null; return; }
 
   var C = CharacterGetCurrent();
   if (CurrentScreen == "ChatRoom") {

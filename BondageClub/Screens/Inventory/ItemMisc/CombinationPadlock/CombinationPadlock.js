@@ -117,7 +117,7 @@ function InventoryItemMiscCombinationPadlockClick() {
 	}
 
 	// Exits the screen
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) {
+	if (CommonIsClickAt(1885, 25, 90, 85)) {
 		InventoryItemMiscCombinationPadlockExit();
 	}
 }

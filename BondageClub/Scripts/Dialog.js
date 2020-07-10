@@ -890,7 +890,7 @@ function DialogClick() {
 	} else {
 
 		// If we need to leave the dialog (only allowed when there's an entry point to the dialog, not in the middle of a conversation)
-		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT") && CommonIsClickAt(1885, 25, 1975-1885, 85))
+		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT") && CommonIsClickAt(1885, 25, 90, 85))
 			DialogLeave();
 
 		// If the user clicked on a text dialog option, we trigger it

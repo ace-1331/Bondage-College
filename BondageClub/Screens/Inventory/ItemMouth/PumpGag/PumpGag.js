@@ -24,16 +24,16 @@ function InventoryItemMouthPumpGagDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMouthPumpGagClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1200, 650, 200, 705-650) && (DialogFocusItem.Property.PumpLevel > 0)) InventoryItemMouthPumpGagSetPump(0 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.PumpLevel < 1)) InventoryItemMouthPumpGagSetPump(1 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.PumpLevel > 1)) InventoryItemMouthPumpGagSetPump(1 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1200, 710, 200, 765-710) && (DialogFocusItem.Property.PumpLevel < 2)) InventoryItemMouthPumpGagSetPump(2 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1200, 710, 200, 765-710) && (DialogFocusItem.Property.PumpLevel > 2)) InventoryItemMouthPumpGagSetPump(2 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1550, 710, 200, 765-710) && (DialogFocusItem.Property.PumpLevel > 3)) InventoryItemMouthPumpGagSetPump(3 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1550, 710, 200, 765-710) && (DialogFocusItem.Property.PumpLevel < 3)) InventoryItemMouthPumpGagSetPump(3 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1375, 770, 1575-1375, 825-770) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemMouthPumpGagSetPump(4 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1200, 650, 200, 55) && (DialogFocusItem.Property.PumpLevel > 0)) InventoryItemMouthPumpGagSetPump(0 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1550, 650, 200, 55) && (DialogFocusItem.Property.PumpLevel < 1)) InventoryItemMouthPumpGagSetPump(1 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1550, 650, 200, 55) && (DialogFocusItem.Property.PumpLevel > 1)) InventoryItemMouthPumpGagSetPump(1 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel < 2)) InventoryItemMouthPumpGagSetPump(2 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1200, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel > 2)) InventoryItemMouthPumpGagSetPump(2 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel > 3)) InventoryItemMouthPumpGagSetPump(3 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1550, 710, 200, 55) && (DialogFocusItem.Property.PumpLevel < 3)) InventoryItemMouthPumpGagSetPump(3 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1375, 770, 1575-1375, 55) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemMouthPumpGagSetPump(4 - DialogFocusItem.Property.PumpLevel);
 }
 
 // Sets the pump gag level
