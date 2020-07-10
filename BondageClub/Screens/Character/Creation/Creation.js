@@ -133,16 +133,16 @@ function CreationResponse(data) {
 function CreationClick() {
 
 	// If we must check or uncheck the importation checkbox
-	if (CommonIsClickAt(1480, 750, 1544-1480, 814-750) && (ImportBondageCollegeData != null))
+	if (CommonIsClickAt(1480, 750, 64, 64) && (ImportBondageCollegeData != null))
 		ImportBondageCollegeData = !ImportBondageCollegeData;
 
 	// If we must go back to the login screen
-	if (CommonIsClickAt(1440, 920, 1560-1440, 980-920)) {
+	if (CommonIsClickAt(1440, 920, 120, 60)) {
 		CreationExit();
 	}
 
 	// If we must try to create a new account (make sure we don't create it twice)
-	if (CommonIsClickAt(1050, 825, 1450-1050, 885-825) && (CreationMessage != TextGet("CreatingCharacter"))) {
+	if (CommonIsClickAt(1050, 825, 400, 60) && (CreationMessage != TextGet("CreatingCharacter"))) {
 
 		// First, we make sure both passwords are the same
 		var CharacterName = ElementValue("InputCharacter");

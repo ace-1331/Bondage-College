@@ -42,11 +42,11 @@ function AsylumMeetingRun() {
 
 // When the user clicks in the room
 function AsylumMeetingClick() {
-	if (CommonIsClickAt(250, 0, 750-250, 1000-0) && !AsylumMeetingPatientLeft.RunAway) CharacterSetCurrent(AsylumMeetingPatientLeft);
-	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(Player);
-	if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(AsylumMeetingPatientRight);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "AsylumEntrance");
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(250, 0, 500, 1000) && !AsylumMeetingPatientLeft.RunAway) CharacterSetCurrent(AsylumMeetingPatientLeft);
+	if (CommonIsClickAt(750, 0, 500, 1000)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(1250, 0, 500, 1000)) CharacterSetCurrent(AsylumMeetingPatientRight);
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "AsylumEntrance");
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 }
 
 // When the player smokes with the patient

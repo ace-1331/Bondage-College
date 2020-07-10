@@ -105,7 +105,7 @@ function StableRun() {
 // When the user clicks in the stable
 function StableClick() {
 	if (StablePlayerInIsolation == true) {
-		if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(750, 0, 500, 1000)) CharacterSetCurrent(Player);
 	} else if (StableProgress >= 0) {
 		// If the user wants to speed up the add / swap / remove progress
 		if (CommonIsClickAt(0, 200, 2000, 800) && (StableProgress >= 0) && CommonIsMobile) StableGenericRun(false);
@@ -115,8 +115,8 @@ function StableClick() {
 		if (CommonIsClickAt(750, 0, 500, 1000)) CharacterSetCurrent(StableTrainer);
 		if (CommonIsClickAt(1250, 0, 500, 1000)) CharacterSetCurrent(StablePony);
 		if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk() && (!StablePlayerTrainingActiv || StablePlayerIsExamPony)) CommonSetScreen("Room", "MainHall");
-		if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
-		if (CommonIsClickAt(1885, 265, 90, 355-265) && StableCanHideDice()) StableHideDice();
+		if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+		if (CommonIsClickAt(1885, 265, 90, 90) && StableCanHideDice()) StableHideDice();
 	}
 }
 

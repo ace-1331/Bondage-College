@@ -156,7 +156,7 @@ function TennisVerifyEnd() {
 function TennisClick() {
 
 	// If the game is over, clicking on the player image will end it
-	if (MiniGameEnded && CommonIsClickAt(0, 100, 450-0, 999-100))
+	if (MiniGameEnded && CommonIsClickAt(0, 100, 450, 899))
 		CommonDynamicFunction(MiniGameReturnFunction + "()");
 
 }

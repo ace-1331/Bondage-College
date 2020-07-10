@@ -51,8 +51,8 @@ function RelogRun() {
 
 // When the user clicks on the relog screen buttons
 function RelogClick() {
-	if (CommonIsClickAt(675, 750, 975-675, 810-750)) RelogSend();
-	if (CommonIsClickAt(1025, 750, 1325-1025, 810-750)) RelogExit();
+	if (CommonIsClickAt(675, 750, 300, 60)) RelogSend();
+	if (CommonIsClickAt(1025, 750, 300, 60)) RelogExit();
 }
 
 // When the user press "enter" we send the relog query

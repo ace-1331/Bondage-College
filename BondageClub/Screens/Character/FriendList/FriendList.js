@@ -30,12 +30,12 @@ function FriendListRun() {
 
 // When the user clicks on the screen
 function FriendListClick() {
-	if (CommonIsClickAt(1865, 5, 1925-1865, 65-5)) {
+	if (CommonIsClickAt(1865, 5, 60, 60)) {
 		FriendListModeIndex++;
 		if (FriendListModeIndex >= FriendListMode.length) FriendListModeIndex = 0;
 		ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
-	if (CommonIsClickAt(1935, 5, 1995-1935, 65-5)) FriendListExit();
+	if (CommonIsClickAt(1935, 5, 60, 60)) FriendListExit();
 }
 
 // when the user exit this screen

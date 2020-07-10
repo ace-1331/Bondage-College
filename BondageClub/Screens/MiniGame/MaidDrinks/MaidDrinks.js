@@ -256,9 +256,9 @@ function MaidDrinksClick() {
 	if ((MiniGameTimer > 5000) && (MiniGameProgress != -1) && !MiniGameEnded && CommonIsMobile) {
 		var MoveType = -1;
 		if (CommonIsClickAt(1200, 700, 200, 150)) MoveType = 0;
-		if (CommonIsClickAt(1400, 700, 150, 150)) MoveType = 1;
-		if (CommonIsClickAt(1600, 700, 1800-1600, 150)) MoveType = 2;
-		if (CommonIsClickAt(1800, 700, 2000-1800, 150)) MoveType = 3;
+		if (CommonIsClickAt(1400, 700, 200, 150)) MoveType = 1;
+		if (CommonIsClickAt(1600, 700, 200, 150)) MoveType = 2;
+		if (CommonIsClickAt(1800, 700, 200, 150)) MoveType = 3;
 		MaidDrinksDoMove(MoveType);
 	}
 

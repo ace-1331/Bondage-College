@@ -69,7 +69,7 @@ function DailyJobSubSearchClick() {
 	if (IntroductionJobCurrent == "SubSearch") {
 		if (DailyJobSubSearchIsActive() && (MouseX >= IntroductionJobPosition.X - 100) && (MouseX <= IntroductionJobPosition.X + 100) && (MouseY >= IntroductionJobPosition.Y - 100) && (MouseY <= IntroductionJobPosition.Y + 100)) IntroductionJobProgress("SubSearch", CurrentScreen);
 		if (DailyJobSubSearchIsActive() && (IntroductionJobCount > 0) && (MouseX <= 1900)) { IntroductionJobPosition.ClickX = MouseX; IntroductionJobPosition.ClickY = MouseY; IntroductionJobPosition.ClickScreen = CurrentScreen; }
-		if (CommonIsClickAt(1885, 885, 90, 975-885)) IntroductionJobPosition.Active = !IntroductionJobPosition.Active;
+		if (CommonIsClickAt(1885, 885, 90, 90)) IntroductionJobPosition.Active = !IntroductionJobPosition.Active;
 	}
 }
 

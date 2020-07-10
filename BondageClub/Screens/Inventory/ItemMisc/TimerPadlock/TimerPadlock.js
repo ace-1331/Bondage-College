@@ -28,11 +28,11 @@ function InventoryItemMiscTimerPadlockDraw() {
 // Catches the item extension clicks
 function InventoryItemMiscTimerPadlockClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) InventoryItemMiscTimerPadlockExit();
-	if (CommonIsClickAt(1100, 836, 1164-1100, 900-836) && (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) && Player.CanInteract()) {
+	if (CommonIsClickAt(1100, 836, 1164-1100, 64) && (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) && Player.CanInteract()) {
 		DialogFocusSourceItem.Property.RemoveItem = !(DialogFocusSourceItem.Property.RemoveItem);
 		if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(CharacterGetCurrent());
 	}
-	if (CommonIsClickAt(1350, 910, 1650-1350, 975-910) && Player.CanInteract()) InventoryItemMiscTimerPadlockReset();
+	if (CommonIsClickAt(1350, 910, 1650-1350, 64) && Player.CanInteract()) InventoryItemMiscTimerPadlockReset();
 }
 
 // When the timer resets

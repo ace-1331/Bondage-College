@@ -41,8 +41,8 @@ function CollegeEntranceClick() {
 	if (CommonIsClickAt(1885, 385, 90, 90) && CollegeEntranceCanGoTennis()) CommonSetScreen("Room", "CollegeTennis");
 	if (CommonIsClickAt(1885, 505, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeCafeteria");
 	if (CommonIsClickAt(1885, 625, 90, 90) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeTheater");
-	if (CommonIsClickAt(1885, 745, 90, 835-745) && CollegeEntranceCanGoDetention()) CommonSetScreen("Room", "CollegeDetention");
-	if (CommonIsClickAt(1885, 865, 90, 975-865) && CollegeEntranceCanGoTeacher()) CommonSetScreen("Room", "CollegeTeacher");
+	if (CommonIsClickAt(1885, 745, 90, 90) && CollegeEntranceCanGoDetention()) CommonSetScreen("Room", "CollegeDetention");
+	if (CommonIsClickAt(1885, 865, 90, 90) && CollegeEntranceCanGoTeacher()) CommonSetScreen("Room", "CollegeTeacher");
 }
 
 // Changes the character into college student clothes

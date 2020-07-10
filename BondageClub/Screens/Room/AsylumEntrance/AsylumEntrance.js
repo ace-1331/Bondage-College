@@ -40,20 +40,20 @@ function AsylumEntranceRun() {
 
 // When the user clicks in the room
 function AsylumEntranceClick() {
-	if (CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
-	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) {
+	if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(1000, 0, 500, 1000)) {
 		if (LogValue("Committed", "Asylum") >= CurrentTime) AsylumEntranceNurse.Stage = "100";
 		else if (AsylumEntranceNurse.Stage == "100") AsylumEntranceNurse.Stage = "0";
 		if ((LogValue("Escaped", "Asylum") >= CurrentTime) && !AsylumEntranceNurse.IsRestrained()) AsylumEntranceNurse.Stage = "140";
 		ManagementClubSlaveDialog(AsylumEntranceNurse);
 		CharacterSetCurrent(AsylumEntranceNurse);
 	}
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk() && (LogValue("Committed", "Asylum") < CurrentTime)) CommonSetScreen("Room", "MainHall");
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
-	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && AsylumEntranceCanWander()) AsylumEntranceStartChat();
-	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumBedroom");
-	if (CommonIsClickAt(1885, 505, 1975-1885, 595-505) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumMeeting");
-	if (CommonIsClickAt(1885, 625, 1975-1885, 715-625) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumTherapy");
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk() && (LogValue("Committed", "Asylum") < CurrentTime)) CommonSetScreen("Room", "MainHall");
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 90, 90) && AsylumEntranceCanWander()) AsylumEntranceStartChat();
+	if (CommonIsClickAt(1885, 385, 90, 90) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumBedroom");
+	if (CommonIsClickAt(1885, 505, 90, 90) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumMeeting");
+	if (CommonIsClickAt(1885, 625, 90, 90) && AsylumEntranceCanWander()) CommonSetScreen("Room", "AsylumTherapy");
 }
 
 // Enters the online chat room in "Asylum mode"

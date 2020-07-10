@@ -566,46 +566,46 @@ function PreferenceSubscreenArousalClick() {
 	if (PreferenceArousalIsActive()) {
 
 		// Meter affect your facial expressions check box
-		if (CommonIsClickAt(1250, 286, 1314-1250, 350-286)) 
+		if (CommonIsClickAt(1250, 286, 64, 64)) 
 			Player.ArousalSettings.AffectExpression = !Player.ArousalSettings.AffectExpression;
 
 		// Arousal visible control
-		if (CommonIsClickAt(1505, 193, 1905-1505, 257-193)) {
+		if (CommonIsClickAt(1505, 193, 500, 64)) {
 			if (MouseX <= 1705) PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.length + PreferenceArousalVisibleIndex - 1) % PreferenceArousalVisibleList.length;
 			else PreferenceArousalVisibleIndex = (PreferenceArousalVisibleIndex + 1) % PreferenceArousalVisibleList.length;
 			Player.ArousalSettings.Visible = PreferenceArousalVisibleList[PreferenceArousalVisibleIndex];
 		}
 
 		// Arousal activity control
-		if (CommonIsClickAt(900, 493, 1400-900, 557-493)) {
+		if (CommonIsClickAt(900, 493, 500, 64)) {
 			if (MouseX <= 1150) PreferenceArousalActivityIndex = (PreferenceArousalActivityList.length + PreferenceArousalActivityIndex - 1) % PreferenceArousalActivityList.length;
 			else PreferenceArousalActivityIndex = (PreferenceArousalActivityIndex + 1) % PreferenceArousalActivityList.length;
 			PreferenceLoadActivityFactor();
 		}
 
 		// Arousal activity love on self control
-		if (CommonIsClickAt(900, 593, 1200-900, 657-593)) {
+		if (CommonIsClickAt(900, 593, 300, 64)) {
 			if (MouseX <= 1050) PreferenceArousalActivityFactorSelf = (5 + PreferenceArousalActivityFactorSelf - 1) % 5;
 			else PreferenceArousalActivityFactorSelf = (PreferenceArousalActivityFactorSelf + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true, PreferenceArousalActivityFactorSelf);
 		}
 
 		// Arousal activity love on other control
-		if (CommonIsClickAt(1605, 593, 1905-1605, 657-593)) {
+		if (CommonIsClickAt(1605, 593, 300, 64)) {
 			if (MouseX <= 1755) PreferenceArousalActivityFactorOther = (5 + PreferenceArousalActivityFactorOther - 1) % 5;
 			else PreferenceArousalActivityFactorOther = (PreferenceArousalActivityFactorOther + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false, PreferenceArousalActivityFactorOther);
 		}
 
 		// Arousal zone love control
-		if ((Player.FocusGroup != null) && CommonIsClickAt(550, 793, 1150-550, 857-793)) {
+		if ((Player.FocusGroup != null) && CommonIsClickAt(550, 793, 600, 64)) {
 			if (MouseX <= 850) PreferenceArousalZoneFactor = (5 + PreferenceArousalZoneFactor - 1) % 5;
 			else PreferenceArousalZoneFactor = (PreferenceArousalZoneFactor + 1) % 5;
 			PreferenceSetZoneFactor(Player, Player.FocusGroup.Name, PreferenceArousalZoneFactor);
 		}
 
 		// Arousal zone orgasm check box
-		if ((Player.FocusGroup != null) && CommonIsClickAt(1230, 793, 1294-1230, 857-793))
+		if ((Player.FocusGroup != null) && CommonIsClickAt(1230, 793, 64, 64))
 			PreferenceSetZoneOrgasm(Player, Player.FocusGroup.Name, !PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
 
 		// In arousal mode, the player can click on her zones
@@ -634,7 +634,7 @@ function PreferenceSubscreenSecurityClick() {
 	}
 
 	// If we must update the email
-	if (CommonIsClickAt(500, 365, 250, 415-365)) {
+	if (CommonIsClickAt(500, 365, 250, 50)) {
 		var EmailOld = ElementValue("InputEmailOld");
 		var EmailNew = ElementValue("InputEmailNew");
 		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;

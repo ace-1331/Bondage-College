@@ -360,21 +360,21 @@ function LoginResponse(C) {
 function LoginClick() {
 	
 	// Opens the cheat panel
-	if (CheatAllow && (CommonIsClickAt(825, 870, 1175-825, 930-870))) {
+	if (CheatAllow && (CommonIsClickAt(825, 870, 350, 60))) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CommonSetScreen("Character", "Cheat");
 	}
 
 	// Opens the password reset screen
-	if (!CheatAllow && (CommonIsClickAt(825, 870, 1175-825, 930-870))) {
+	if (!CheatAllow && (CommonIsClickAt(825, 870, 350, 60))) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CommonSetScreen("Character", "PasswordReset");
 	}
 
 	// If we must create a new character
-	if (CommonIsClickAt(825, 740, 1175-825, 800-740)) {
+	if (CommonIsClickAt(825, 740, 350, 60)) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CharacterAppearanceSetDefault(Player);
@@ -385,12 +385,12 @@ function LoginClick() {
 	}
 	
 	// Try to login
-	if (CommonIsClickAt(775, 500, 975-775, 560-500)) {
+	if (CommonIsClickAt(775, 500, 200, 60)) {
 		LoginDoLogin();
 	}
 
 	// If we must change the language
-	if (CommonIsClickAt(1025, 500, 1225-1025, 560-500)) {
+	if (CommonIsClickAt(1025, 500, 200, 60)) {
 		TranslationNextLanguage();
 		TextLoad();
 		AssetLoadDescription("Female3DCG");

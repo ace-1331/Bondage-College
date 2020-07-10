@@ -117,7 +117,7 @@ function NurseryClick() {
 	if (NurserySituation == "AtGate") {
 		if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 		if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk() && !NurseryJustClicked) NurserySituation = "Admitted";
-		if (CommonIsClickAt(1500, 25, 1800-1500, 100-25) && Player.CanWalk()) NurseryEscapeGate();
+		if (CommonIsClickAt(1500, 25, 300, 75) && Player.CanWalk()) NurseryEscapeGate();
 	}
 	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 	if (NurserySituation == "AtGate" || NurserySituation == "Admitted") {

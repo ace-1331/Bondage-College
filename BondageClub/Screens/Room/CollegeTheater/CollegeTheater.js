@@ -63,9 +63,9 @@ function CollegeTheaterRun() {
 
 // When the user clicks in the room
 function CollegeTheaterClick() {
-	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && (CollegeTheaterJulia != null) && !CollegeTheaterJulia.GoneAway) CharacterSetCurrent(CollegeTheaterJulia);
+	if (CommonIsClickAt(1000, 0, 500, 1000) && (CollegeTheaterJulia != null) && !CollegeTheaterJulia.GoneAway) CharacterSetCurrent(CollegeTheaterJulia);
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
-	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 }
 
 // Wears the clothes for the play

@@ -167,7 +167,7 @@ function InventoryItemNeckSlaveCollarClick() {
                 ElementRemove("InputColor");
                 CharacterLoadCanvas(C);
             }
-            if (CommonIsClickAt(1300, 145, 1975-1300, 975-145)) {
+            if (CommonIsClickAt(1300, 145, 675, 830)) {
                 var Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
                 CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
                 CharacterLoadCanvas(C);

@@ -804,11 +804,11 @@ function AppearanceClick() {
 			CharacterAppearanceWardrobeOffset += 6;
 			if (CharacterAppearanceWardrobeOffset >= Player.Wardrobe.length) CharacterAppearanceWardrobeOffset = 0;
 		}
-		if (CommonIsClickAt(1300, 430, 1800-1300, 970-430))
+		if (CommonIsClickAt(1300, 430, 500, 540))
 			for (var W = CharacterAppearanceWardrobeOffset; W < Player.Wardrobe.length && W < CharacterAppearanceWardrobeOffset + 6; W++)
 				if ((MouseY >= 430 + (W - CharacterAppearanceWardrobeOffset) * 95) && (MouseY <= 495 + (W - CharacterAppearanceWardrobeOffset) * 95))
 					WardrobeFastLoad(C, W, false);
-		if (CommonIsClickAt(1820, 430, 1975-1820, 970-430))
+		if (CommonIsClickAt(1820, 430, 155, 540))
 			for (var W = CharacterAppearanceWardrobeOffset; W < Player.Wardrobe.length && W < CharacterAppearanceWardrobeOffset + 6; W++)
 				if ((MouseY >= 430 + (W - CharacterAppearanceWardrobeOffset) * 95) && (MouseY <= 495 + (W - CharacterAppearanceWardrobeOffset) * 95)) {
 					WardrobeFastSave(C, W);
@@ -829,7 +829,7 @@ function AppearanceClick() {
 	} else {
 
 		// Can set a color manually from the text field
-		if (CommonIsClickAt(1610, 37, 1675-1610, 102-37))
+		if (CommonIsClickAt(1610, 37, 65, 65))
 			if (CommonIsColor(ElementValue("InputColor")))
 				CharacterAppearanceSetColorForGroup(C, ElementValue("InputColor").toLowerCase(), CharacterAppearanceColorPicker);
 

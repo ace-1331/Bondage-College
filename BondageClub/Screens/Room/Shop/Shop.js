@@ -111,10 +111,10 @@ function ShopClick() {
 	
 	// Out of shopping mode, the player can click on herself, the vendor or exit
 	if (!ShopStarted) {
-		if (CommonIsClickAt(0, 0, 500-0, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(0, 0, 500, 1000)) CharacterSetCurrent(Player);
 		if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(ShopVendor);
 		if (CommonIsClickAt(1885, 25, 90, 90)) CommonSetScreen("Room", "MainHall");
-		if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+		if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 	} else {
 
 		// The user can select a different body by clicking on the vendor
