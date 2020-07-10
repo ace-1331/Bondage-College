@@ -27,8 +27,8 @@ function InventoryItemLegsLeatherLegCuffsDraw() {
 // Catches the item extension clicks
 function InventoryItemLegsLeatherLegCuffsClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1250, 550, 1475-1250, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemLegsLeatherLegCuffsSetPose(null);
-	if (CommonIsClickAt(1500, 550, 1725-1500, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Closed"))) InventoryItemLegsLeatherLegCuffsSetPose("Closed");
+	if (CommonIsClickAt(1250, 550, 225, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemLegsLeatherLegCuffsSetPose(null);
+	if (CommonIsClickAt(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Closed"))) InventoryItemLegsLeatherLegCuffsSetPose("Closed");
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)

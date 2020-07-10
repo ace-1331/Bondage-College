@@ -47,10 +47,10 @@ function InventoryItemHandsPawMittensDraw() {
 // Catches the item extension clicks
 function InventoryItemHandsPawMittensClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-//	if (CommonIsClickAt(1000, 550, 1225-1000, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemArmsLeatherCuffsSetPose(null);
-	if (CommonIsClickAt(1250, 550, 1475-1250, 225)) InventoryItemHandsPawMittensChain();
-//	if (CommonIsClickAt(1500, 550, 1725-1500, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Elbow"))) InventoryItemArmsLeatherCuffsSetPose("Elbow");
-//	if (CommonIsClickAt(1750, 550, 1975-1750, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Both"))) InventoryItemArmsLeatherCuffsSetPose("Both");
+//	if (CommonIsClickAt(1000, 550, 225, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemArmsLeatherCuffsSetPose(null);
+	if (CommonIsClickAt(1250, 550, 225, 225)) InventoryItemHandsPawMittensChain();
+//	if (CommonIsClickAt(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Elbow"))) InventoryItemArmsLeatherCuffsSetPose("Elbow");
+//	if (CommonIsClickAt(1750, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Both"))) InventoryItemArmsLeatherCuffsSetPose("Both");
 //	if (CommonIsClickAt(1525, 700, 1900-1525, 765-700)) InventoryItemHandsPawMittensChain();
 }
 

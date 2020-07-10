@@ -33,10 +33,10 @@ function InventoryItemArmsStraitJacketDraw() {
 // Catches the item extension clicks
 function InventoryItemArmsStraitJacketClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1000, 550, 1225-1000, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemArmsStraitJacketSetPose(null);
-	if (CommonIsClickAt(1250, 550, 1475-1250, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Normal"))) InventoryItemArmsStraitJacketSetPose("Normal");
-	if (CommonIsClickAt(1500, 550, 1725-1500, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Snug"))) InventoryItemArmsStraitJacketSetPose("Snug");
-	if (CommonIsClickAt(1750, 550, 1975-1750, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Tight"))) InventoryItemArmsStraitJacketSetPose("Tight");
+	if (CommonIsClickAt(1000, 550, 225, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemArmsStraitJacketSetPose(null);
+	if (CommonIsClickAt(1250, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Normal"))) InventoryItemArmsStraitJacketSetPose("Normal");
+	if (CommonIsClickAt(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Snug"))) InventoryItemArmsStraitJacketSetPose("Snug");
+	if (CommonIsClickAt(1750, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Tight"))) InventoryItemArmsStraitJacketSetPose("Tight");
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)

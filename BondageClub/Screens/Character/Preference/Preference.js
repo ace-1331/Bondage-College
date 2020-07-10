@@ -272,28 +272,28 @@ function PreferenceClick() {
 	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityClick();
 
 	// If the user clicks on "Exit"
-	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) PreferenceExit();
+	if (CommonIsClickAt(1815, 75, 90, 90) && (PreferenceColorPick == "")) PreferenceExit();
 
 	// If the user clicks on the chat settings button
-	if (CommonIsClickAt(1815, 190, 90, 280-190) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 190, 90, 90) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Chat";
 	}
 
 	// If the user clicks on the audio settings button
-	if (CommonIsClickAt(1815, 305, 90, 395-305) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 305, 90, 90) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Audio";
 	}
 
 	// If the user clicks on the arousal settings button
-	if (CommonIsClickAt(1815, 420, 90, 510-420) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 420, 90, 90) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Arousal";
 	}
 
 	// If the user clicks on the security settings button
-	if (CommonIsClickAt(1815, 535, 90, 625-535) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 535, 90, 90) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		ElementCreateInput("InputEmailOld", "text", "", "100");
 		ElementCreateInput("InputEmailNew", "text", "", "100");
@@ -302,7 +302,7 @@ function PreferenceClick() {
 	}
 	
 	// If we must change the restrain permission level
-	if (CommonIsClickAt(500, 280, 90, 370-280)) {
+	if (CommonIsClickAt(500, 280, 90, 90)) {
 		Player.ItemPermission++;
 		if (Player.ItemPermission > 5) Player.ItemPermission = 0;
 	}
@@ -312,7 +312,7 @@ function PreferenceClick() {
 	if (CommonIsClickAt(1815, 75, 90, 90) && (PreferenceColorPick != "")) PreferenceColorPick = "";
 
     // If we must change audio gameplay or visual settings
-	if (CommonIsClickAt(500, 392, 250, 456-392)) {
+	if (CommonIsClickAt(500, 392, 250, 64)) {
 		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
@@ -468,13 +468,13 @@ function PreferenceSubscreenSecurityRun() {
 function PreferenceSubscreenAudioClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 90, 90) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		PreferenceMainScreenLoad();
 	}
 
 	// Volume increase/decrease control
-    if (CommonIsClickAt(500, 193, 250, 257-193)) {
+    if (CommonIsClickAt(500, 193, 250, 64)) {
         if (MouseX <= 625) PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.length + PreferenceSettingsVolumeIndex - 1) % PreferenceSettingsVolumeList.length;
         else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
         Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
@@ -527,7 +527,7 @@ function PreferenceSubscreenChatClick() {
 	}
 
 	// If the user clicked the exit icon to return to the main screen
-	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 90, 90) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		PreferenceMainScreenLoad();
 	}
@@ -538,28 +538,28 @@ function PreferenceSubscreenChatClick() {
 function PreferenceSubscreenArousalClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 90, 90) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		Player.FocusGroup = null;
 		PreferenceMainScreenLoad();
 	}
 
 	// Arousal active control
-    if (CommonIsClickAt(750, 193, 1200-750, 257-193)) {
+    if (CommonIsClickAt(750, 193, 500, 64)) {
         if (MouseX <= 975) PreferenceArousalActiveIndex = (PreferenceArousalActiveList.length + PreferenceArousalActiveIndex - 1) % PreferenceArousalActiveList.length;
         else PreferenceArousalActiveIndex = (PreferenceArousalActiveIndex + 1) % PreferenceArousalActiveList.length;
         Player.ArousalSettings.Active = PreferenceArousalActiveList[PreferenceArousalActiveIndex];
     }
 
 	// Speech stuttering control
-    if (CommonIsClickAt(900, 393, 1400-900, 457-393)) {
+    if (CommonIsClickAt(900, 393, 500, 64)) {
         if (MouseX <= 1150) PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.length + PreferenceArousalAffectStutterIndex - 1) % PreferenceArousalAffectStutterList.length;
         else PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterIndex + 1) % PreferenceArousalAffectStutterList.length;
         Player.ArousalSettings.AffectStutter = PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex];
     }
 
 	// Show other player meter check box
-	if (CommonIsClickAt(550, 286, 614-550, 350-286)) 
+	if (CommonIsClickAt(550, 286, 64, 64)) 
 		Player.ArousalSettings.ShowOtherMeter = !Player.ArousalSettings.ShowOtherMeter;
 	
 	// If the arousal is active, we allow more controls
@@ -626,7 +626,7 @@ function PreferenceSubscreenArousalClick() {
 function PreferenceSubscreenSecurityClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 90, 90) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		ElementRemove("InputEmailOld");
 		ElementRemove("InputEmailNew");

@@ -37,9 +37,9 @@ function InventoryItemArmsDuctTapeDraw() {
 // Catches the item extension clicks
 function InventoryItemArmsDuctTapeClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1000, 450, 1225-1000, 225) && (DialogFocusItem.Property != null)) InventoryItemArmsDuctTapeSetPose(null);
+	if (CommonIsClickAt(1000, 450, 225, 225) && (DialogFocusItem.Property != null)) InventoryItemArmsDuctTapeSetPose(null);
 	if (CommonIsClickAt(1375, 450, 1600-1375, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Bottom"))) InventoryItemArmsDuctTapeSetPose("Bottom");
-	if (CommonIsClickAt(1750, 450, 1975-1750, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Top"))) InventoryItemArmsDuctTapeSetPose("Top");
+	if (CommonIsClickAt(1750, 450, 225, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Top"))) InventoryItemArmsDuctTapeSetPose("Top");
 	if (CommonIsClickAt(1150, 750, 1375-1150, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Full"))) InventoryItemArmsDuctTapeSetPose("Full");
 	if (CommonIsClickAt(1600, 750, 1825-1600, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Complete"))) InventoryItemArmsDuctTapeSetPose("Complete");
 }

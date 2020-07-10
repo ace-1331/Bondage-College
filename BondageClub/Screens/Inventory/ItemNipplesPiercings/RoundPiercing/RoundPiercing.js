@@ -28,8 +28,8 @@ function InventoryItemNipplesPiercingsRoundPiercingDraw() {
 // Catches the item extension clicks
 function InventoryItemNipplesPiercingsRoundPiercingClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1000, 550, 1225-1000, 225) && (DialogFocusItem.Property != null)) InventoryItemNipplesPiercingsRoundPiercingSetPose(null);
-	if (CommonIsClickAt(1250, 550, 1475-1250, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "Chain"))) InventoryItemNipplesPiercingsRoundPiercingSetPose("Chain");
+	if (CommonIsClickAt(1000, 550, 225, 225) && (DialogFocusItem.Property != null)) InventoryItemNipplesPiercingsRoundPiercingSetPose(null);
+	if (CommonIsClickAt(1250, 550, 225, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "Chain"))) InventoryItemNipplesPiercingsRoundPiercingSetPose("Chain");
 }
 
 // Sets the piercing type (chain requires a collar)

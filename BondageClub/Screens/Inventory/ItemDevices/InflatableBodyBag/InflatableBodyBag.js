@@ -33,10 +33,10 @@ function InventoryItemDevicesInflatableBodyBagDraw() {
 // Catches the item extension clicks
 function InventoryItemDevicesInflatableBodyBagClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1000, 550, 1225-1000, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemDevicesInflatableBodyBagSetPose(null);
-	if (CommonIsClickAt(1250, 550, 1475-1250, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Inflated"))) InventoryItemDevicesInflatableBodyBagSetPose("Inflated");
-	if (CommonIsClickAt(1500, 550, 1725-1500, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Bloated"))) InventoryItemDevicesInflatableBodyBagSetPose("Bloated");
-	if (CommonIsClickAt(1750, 550, 1975-1750, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Max"))) InventoryItemDevicesInflatableBodyBagSetPose("Max");
+	if (CommonIsClickAt(1000, 550, 225, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemDevicesInflatableBodyBagSetPose(null);
+	if (CommonIsClickAt(1250, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Inflated"))) InventoryItemDevicesInflatableBodyBagSetPose("Inflated");
+	if (CommonIsClickAt(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Bloated"))) InventoryItemDevicesInflatableBodyBagSetPose("Bloated");
+	if (CommonIsClickAt(1750, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Max"))) InventoryItemDevicesInflatableBodyBagSetPose("Max");
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)

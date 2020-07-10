@@ -415,7 +415,7 @@ function KidnapClick() {
 	}
 
 	// If we must cancel out and don't select any item
-	if (CommonIsClickAt(1750, 25, 1975-1750, 90-25))
+	if (CommonIsClickAt(1750, 25, 225, 90-25))
 		KidnapSetMode("SelectMove");
 	
 	// If the user clicks on one of the items to be applied to the opponent
