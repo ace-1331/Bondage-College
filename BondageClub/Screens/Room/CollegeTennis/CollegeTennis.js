@@ -71,9 +71,9 @@ function CollegeTennisRun() {
 
 // When the user clicks in the room
 function CollegeTennisClick() {
-	if (CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) CharacterSetCurrent(CollegeTennisJennifer);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
 	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 }
 

@@ -81,7 +81,7 @@ function MagicClick() {
 	if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
 	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(MagicPerformer);
 	if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(MagicAssistant);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 }
 

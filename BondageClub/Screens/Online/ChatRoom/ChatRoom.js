@@ -322,10 +322,10 @@ function ChatRoomClick() {
 	}
 
 	// When the user chats or clicks on a character
-	if (CommonIsClickAt(0, 0, 1000-0, 1000-0)) ChatRoomDrawCharacter(true);
+	if (CommonIsClickAt(0, 0, 1000, 1000)) ChatRoomDrawCharacter(true);
 
 	// When the user leaves
-	if (CommonIsClickAt(1005, 0, 1125-1005, 62-0) && ChatRoomCanLeave()) {
+	if (CommonIsClickAt(1005, 0, 120, 60) && ChatRoomCanLeave()) {
 		ElementRemove("InputChat");
 		ElementRemove("TextAreaChatLog");
 		ServerSend("ChatRoomLeave", "");
@@ -333,7 +333,7 @@ function ChatRoomClick() {
 	}
 
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
-	if (CommonIsClickAt(1179, 2, 1299-1179, 62-2) && (OnlineGameName == "")) {
+	if (CommonIsClickAt(1179, 2, 120, 60) && (OnlineGameName == "")) {
 		var L = document.getElementById("TextAreaChatLog");
 		while (L.childElementCount > 20)
 			L.removeChild(L.childNodes[0]);
@@ -341,21 +341,21 @@ function ChatRoomClick() {
 	}
 
 	// The cut button can become the game option button if there's an online game going on
-	if (CommonIsClickAt(1179, 0, 1299-1179, 62-0) && (OnlineGameName != "")) {
+	if (CommonIsClickAt(1179, 0, 120, 62) && (OnlineGameName != "")) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		CommonSetScreen("Online", "Game" + OnlineGameName);
 	}
 
 	// When the user character kneels
-	if (CommonIsClickAt(1353, 0, 1473-1353, 62-0) && Player.CanKneel()) {
+	if (CommonIsClickAt(1353, 0, 120, 62) && Player.CanKneel()) {
 		ServerSend("ChatRoomChat", { Content: (Player.ActivePose == null) ? "KneelDown": "StandUp", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]} );
 		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 	}
 
 	// When the user wants to change clothes
-	if (CommonIsClickAt(1527, 0, 1647-1527, 62-0) && Player.CanChange() && OnlineGameAllowChange()) {
+	if (CommonIsClickAt(1527, 0, 120, 62) && Player.CanChange() && OnlineGameAllowChange()) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
@@ -364,14 +364,14 @@ function ChatRoomClick() {
 	}
 	
 	// When the user checks her profile
-	if (CommonIsClickAt(1701, 0, 1821-1701, 62-0)) {
+	if (CommonIsClickAt(1701, 0, 120, 62)) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		InformationSheetLoadCharacter(Player);
 	}
 
 	// When the user enters the room administration screen
-	if (CommonIsClickAt(1875, 0, 1995-1875, 62-0)) {
+	if (CommonIsClickAt(1875, 0, 120, 62)) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		CommonSetScreen("Online", "ChatAdmin");

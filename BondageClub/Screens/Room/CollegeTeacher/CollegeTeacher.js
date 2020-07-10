@@ -61,8 +61,8 @@ function CollegeTeacherRun() {
 
 // When the user clicks in the room
 function CollegeTeacherClick() {
-	if (CommonIsClickAt(500, 0, 1000-500, 1000-0) && (CollegeTeacherMildred != null) && !CollegeTeacherMildred.GoneAway) CharacterSetCurrent(CollegeTeacherMildred);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
+	if (CommonIsClickAt(500, 0, 500, 1000) && (CollegeTeacherMildred != null) && !CollegeTeacherMildred.GoneAway) CharacterSetCurrent(CollegeTeacherMildred);
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
 	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 }
 

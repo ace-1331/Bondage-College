@@ -100,7 +100,7 @@ function GamblingClick() {
 	if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(GamblingFirstSub);
 	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(Player);
 	if ((CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) && ((ReputationGet("Gambling") > 20) || MaidQuartersCurrentRescue == "Gambling") ) CharacterSetCurrent(GamblingSecondSub);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265)) GamblingDressBackPlayer();
 	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385)  && GamblingCanStealDice()) GamblingStealDice();

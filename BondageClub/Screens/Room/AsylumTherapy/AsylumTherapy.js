@@ -32,10 +32,10 @@ function AsylumTherapyRun() {
 
 // When the user clicks in the room
 function AsylumTherapyClick() {
-	if (CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && (ReputationGet("Asylum") >= 1)) CharacterSetCurrent(AsylumTherapyPatient);
 	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && (ReputationGet("Asylum") <= -1)) CharacterSetCurrent(AsylumTherapyNurse);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) {
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) {
 		if (Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) AsylumEntranceWearPatientClothes(Player);
 		if ((ReputationGet("Asylum") <= -50) && (LogValue("Committed", "Asylum") >= CurrentTime) && Player.CanInteract()) InventoryWear(Player, "StraitJacket", "ItemArms", "Default", 3);
 		CommonSetScreen("Room", "AsylumEntrance");

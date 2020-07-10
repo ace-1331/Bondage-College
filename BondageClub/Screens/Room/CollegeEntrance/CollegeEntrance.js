@@ -33,9 +33,9 @@ function CollegeEntranceRun() {
 
 // When the user clicks in the room
 function CollegeEntranceClick() {
-	if (CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) CharacterSetCurrent(CollegeEntranceStudent);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && CollegeEntranceCanGoTennis()) CommonSetScreen("Room", "CollegeTennis");

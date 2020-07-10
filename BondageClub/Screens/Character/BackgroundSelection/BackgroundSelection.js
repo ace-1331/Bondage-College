@@ -117,7 +117,7 @@ function BackgroundSelectionRun() {
 function BackgroundSelectionClick() {
 
 	// Exit by selecting or cancelling
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) BackgroundSelectionExit(true);
+	if (CommonIsClickAt(1885, 25, 90, 90)) BackgroundSelectionExit(true);
 	if (CommonIsClickAt(1785, 25, 1875-1785, 115-25)) BackgroundSelectionExit(false);
 
 	// Set next offset backward

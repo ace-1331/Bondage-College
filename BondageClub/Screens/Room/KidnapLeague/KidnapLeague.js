@@ -45,13 +45,13 @@ function KidnapLeagueRun() {
 
 // When the user clicks in the kidnap league room
 function KidnapLeagueClick() {
-	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) {
 		ManagementClubSlaveDialog(KidnapLeagueTrainer);
 		CharacterSetCurrent(KidnapLeagueTrainer);
 	}
 	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) {
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) {
 		if ((InventoryGet(Player, "Cloth") == null) && (KidnapPlayerCloth != null)) {
 			InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);
 			if (KidnapPlayerClothAccessory != null) InventoryWear(Player, KidnapPlayerClothAccessory.Asset.Name, "ClothAccessory", KidnapPlayerClothAccessory.Color);

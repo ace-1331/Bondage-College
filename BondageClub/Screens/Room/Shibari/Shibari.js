@@ -115,7 +115,7 @@ function ShibariClick() {
 	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && Player.CanChange()) CharacterDress(Player, ShibariPlayerAppearance);
 	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && Player.CanChange()) CharacterNaked(Player);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) {
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) {
 		CharacterDress(Player, ShibariPlayerAppearance);
 		ShibariPlayerAppearance = null;
 		CommonSetScreen("Room", "MainHall");

@@ -64,7 +64,7 @@ function CollegeTheaterRun() {
 // When the user clicks in the room
 function CollegeTheaterClick() {
 	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && (CollegeTheaterJulia != null) && !CollegeTheaterJulia.GoneAway) CharacterSetCurrent(CollegeTheaterJulia);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
 	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 }
 

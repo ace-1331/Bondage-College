@@ -54,7 +54,7 @@ function PhotographicRun() {
 function PhotographicClick() {
 	if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
 	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(PhotographicSub);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) {
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) {
 		CharacterRefresh(Player);
 		CommonSetScreen("Room", "MainHall");
 	}

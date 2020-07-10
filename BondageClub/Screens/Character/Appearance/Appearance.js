@@ -795,7 +795,7 @@ function AppearanceClick() {
 		if (CommonIsClickAt(1534, 25, 1624-1534, 115-25)) CharacterAppearanceStripLayer(C);
 		if (CommonIsClickAt(1651, 25, 1741-1651, 115-25)) CharacterAppearanceMoveOffset(C, CharacterAppearanceNumPerPage);
 		if (CommonIsClickAt(1768, 25, 1858-1768, 115-25)) CharacterAppearanceExit(C);
-		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) CharacterAppearanceReady(C);
+		if (CommonIsClickAt(1885, 25, 90, 90)) CharacterAppearanceReady(C);
 
 	} else if (CharacterAppearanceWardrobeMode) {
 
@@ -824,7 +824,7 @@ function AppearanceClick() {
 		if (CommonIsClickAt(1417, 25, 1507-1417, 115-25)) { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); }
 		if (CommonIsClickAt(1534, 25, 1624-1534, 115-25)) CharacterAppearanceStripLayer(C);
 		if (CommonIsClickAt(1768, 25, 1858-1768, 115-25)) CharacterAppearanceExit(C);
-		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) CharacterAppearanceReady(C);
+		if (CommonIsClickAt(1885, 25, 90, 90)) CharacterAppearanceReady(C);
 
 	} else {
 
@@ -840,7 +840,7 @@ function AppearanceClick() {
 		}
 
 		// Cancel out of color picking
-		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) CharacterAppearanceColorPicker = "";
+		if (CommonIsClickAt(1885, 25, 90, 90)) CharacterAppearanceColorPicker = "";
 		if (CharacterAppearanceColorPicker == "") ElementRemove("InputColor");
 
 	}

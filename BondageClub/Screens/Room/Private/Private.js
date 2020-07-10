@@ -323,9 +323,9 @@ function PrivateClick() {
 	}
 
 	// Main screens buttons
-	if (CommonIsClickAt(500, 0, 1000-500, 1000-0) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(500, 0, 500, 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(Player);
 	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && !LogQuery("RentRoom", "PrivateRoom")) { NPCTraitDialog(PrivateVendor); CharacterSetCurrent(PrivateVendor); }
-	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk() && (Player.Cage == null)) CommonSetScreen("Room", "MainHall");
+	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk() && (Player.Cage == null)) CommonSetScreen("Room", "MainHall");
 	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
 	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
