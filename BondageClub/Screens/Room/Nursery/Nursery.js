@@ -96,32 +96,32 @@ function NurseryRun() {
 function NurseryClick() {
 	if (NurserySituation == null) {
 		if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
-		if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) NurseryLoadNurse(); 
+		if (CommonIsClickAt(1000, 0, 500, 1000)) NurseryLoadNurse(); 
 		if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) {
 			NurseryPlayerAppearance = null;
 			CommonSetScreen("Room", "MainHall");
 		}
-		if (CommonIsClickAt(1885, 265, 90, 355-265) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+		if (CommonIsClickAt(1885, 265, 90, 90) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	}
 	if (NurserySituation == "Admitted") {
-		if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
-		if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(NurseryABDL1);
-		if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(NurseryABDL2);
+		if (CommonIsClickAt(250, 0, 750-250, 1000)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(750, 0, 500, 1000)) CharacterSetCurrent(NurseryABDL1);
+		if (CommonIsClickAt(1250, 0, 1750-1250, 1000)) CharacterSetCurrent(NurseryABDL2);
 		if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) {
 			NurserySituation = "AtGate";
 			NurseryGateMsg = true;
 			NurseryJustClicked = true;
 		}
-		if (CommonIsClickAt(1885, 505, 90, 595-505) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+		if (CommonIsClickAt(1885, 505, 90, 90) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 	}
 	if (NurserySituation == "AtGate") {
 		if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 		if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk() && !NurseryJustClicked) NurserySituation = "Admitted";
 		if (CommonIsClickAt(1500, 25, 1800-1500, 100-25) && Player.CanWalk()) NurseryEscapeGate();
 	}
-	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 	if (NurserySituation == "AtGate" || NurserySituation == "Admitted") {
-		if (CommonIsClickAt(1885, 265, 90, 355-265)) {
+		if (CommonIsClickAt(1885, 265, 90, 90)) {
 			NurseryLoadNurse();
 		}
 	}

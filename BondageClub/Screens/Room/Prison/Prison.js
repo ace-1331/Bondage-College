@@ -179,14 +179,14 @@ function PrisonRun() {
 // When the user clicks in the Cell
 function PrisonClick() {
 	if ((MaidQuartersCurrentRescue == "Prison") && MaidQuartersCurrentRescueCompleted == false) {
-		if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(1000, 0, 500, 1000)) CharacterSetCurrent(Player);
 		if (CommonIsClickAt(500, 0, 500, 1000) && PrisonSubIsPresent) CharacterSetCurrent(PrisonSub);
 	} else if (PrisonPlayerCatchedBadGirl == true) {
 		if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
-		if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && PrisonPoliceIsPresent) CharacterSetCurrent(PrisonPolice);
+		if (CommonIsClickAt(1000, 0, 500, 1000) && PrisonPoliceIsPresent) CharacterSetCurrent(PrisonPolice);
 	} else {
 		if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
-		if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && PrisonMaidIsPresent) CharacterSetCurrent(PrisonMaid);
+		if (CommonIsClickAt(1000, 0, 500, 1000) && PrisonMaidIsPresent) CharacterSetCurrent(PrisonMaid);
 	}
 	if (CommonIsClickAt(1885, 25, 90, 90)) {
 		if (MaidQuartersCurrentRescue == "Prison" && MaidQuartersCurrentRescueCompleted == false && PrisonSubIsPresent == true) {
@@ -199,7 +199,7 @@ function PrisonClick() {
 			Player.CurrentDialog = TextGet("LockKey");
 		} 
 	}
-	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 }
 
 // Returns true if Appearance for Character available

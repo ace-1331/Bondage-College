@@ -26,8 +26,8 @@ function InventoryItemPelvisMetalChastityBeltDraw() {
 // Catches the item extension clicks
 function InventoryItemPelvisMetalChastityBeltClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1200, 675, 1450-1200, 740-675) && !InventoryItemHasEffect(DialogFocusItem, "Lock", true) && (DialogFocusItem.Property.Restrain != null)) InventoryItemPelvisMetalChastityBeltSetPose(null);
-	if (CommonIsClickAt(1550, 675, 1800-1550, 740-675) && !InventoryItemHasEffect(DialogFocusItem, "Lock", true) && (DialogFocusItem.Property.Restrain == null)) InventoryItemPelvisMetalChastityBeltSetPose("ClosedBack");
+	if (CommonIsClickAt(1200, 675, 250, 65) && !InventoryItemHasEffect(DialogFocusItem, "Lock", true) && (DialogFocusItem.Property.Restrain != null)) InventoryItemPelvisMetalChastityBeltSetPose(null);
+	if (CommonIsClickAt(1550, 675, 250, 65) && !InventoryItemHasEffect(DialogFocusItem, "Lock", true) && (DialogFocusItem.Property.Restrain == null)) InventoryItemPelvisMetalChastityBeltSetPose("ClosedBack");
 }
 
 // Sets the Shield position (OpenBack, ClosedBack)

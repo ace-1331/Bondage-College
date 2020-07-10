@@ -302,17 +302,17 @@ function PreferenceClick() {
 	}
 	
 	// If we must change the restrain permission level
-	if (CommonIsClickAt(500, 280, 590-500, 370-280)) {
+	if (CommonIsClickAt(500, 280, 90, 370-280)) {
 		Player.ItemPermission++;
 		if (Player.ItemPermission > 5) Player.ItemPermission = 0;
 	}
 
 	// If we must show/hide/use the color picker
-	if (CommonIsClickAt(1140, 187, 1205-1140, 252-187)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
-	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick != "")) PreferenceColorPick = "";
+	if (CommonIsClickAt(1140, 187, 65, 65)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
+	if (CommonIsClickAt(1815, 75, 90, 90) && (PreferenceColorPick != "")) PreferenceColorPick = "";
 
     // If we must change audio gameplay or visual settings
-	if (CommonIsClickAt(500, 392, 750-500, 456-392)) {
+	if (CommonIsClickAt(500, 392, 250, 456-392)) {
 		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
@@ -474,7 +474,7 @@ function PreferenceSubscreenAudioClick() {
 	}
 
 	// Volume increase/decrease control
-    if (CommonIsClickAt(500, 193, 750-500, 257-193)) {
+    if (CommonIsClickAt(500, 193, 250, 257-193)) {
         if (MouseX <= 625) PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.length + PreferenceSettingsVolumeIndex - 1) % PreferenceSettingsVolumeList.length;
         else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
         Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
@@ -634,7 +634,7 @@ function PreferenceSubscreenSecurityClick() {
 	}
 
 	// If we must update the email
-	if (CommonIsClickAt(500, 365, 750-500, 415-365)) {
+	if (CommonIsClickAt(500, 365, 250, 415-365)) {
 		var EmailOld = ElementValue("InputEmailOld");
 		var EmailNew = ElementValue("InputEmailNew");
 		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;

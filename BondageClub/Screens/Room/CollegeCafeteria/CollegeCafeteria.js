@@ -86,11 +86,11 @@ function CollegeCafeteriaRun() {
 
 // When the user clicks in the room
 function CollegeCafeteriaClick() {
-	if (CommonIsClickAt(485, 0, 955-485, 1000-0)) CharacterSetCurrent(CollegeCafeteriaSidney);
-	if (CommonIsClickAt(925, 0, 1425-925, 1000-0)) CharacterSetCurrent(CollegeCafeteriaStudentRight);
-	if (CommonIsClickAt(1395, 0, 1885-1395, 1000-0)) CharacterSetCurrent(CollegeCafeteriaStudentFarRight);
+	if (CommonIsClickAt(485, 0, 955-485, 1000)) CharacterSetCurrent(CollegeCafeteriaSidney);
+	if (CommonIsClickAt(925, 0, 1425-925, 1000)) CharacterSetCurrent(CollegeCafeteriaStudentRight);
+	if (CommonIsClickAt(1395, 0, 1885-1395, 1000)) CharacterSetCurrent(CollegeCafeteriaStudentFarRight);
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
-	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 }
 
 // When Sidney love towards the player changes

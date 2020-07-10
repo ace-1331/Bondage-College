@@ -109,12 +109,12 @@ function ShibariRun() {
 
 // When the user clicks in the shibari dojo
 function ShibariClick() {
-	if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
-	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(ShibariTeacher);
-	if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(ShibariStudent);
-	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
-	if (CommonIsClickAt(1885, 265, 90, 355-265) && Player.CanChange()) CharacterDress(Player, ShibariPlayerAppearance);
-	if (CommonIsClickAt(1885, 385, 90, 475-385) && Player.CanChange()) CharacterNaked(Player);
+	if (CommonIsClickAt(250, 0, 750-250, 1000)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(750, 0, 500, 1000)) CharacterSetCurrent(ShibariTeacher);
+	if (CommonIsClickAt(1250, 0, 1750-1250, 1000)) CharacterSetCurrent(ShibariStudent);
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 90, 90) && Player.CanChange()) CharacterDress(Player, ShibariPlayerAppearance);
+	if (CommonIsClickAt(1885, 385, 90, 90) && Player.CanChange()) CharacterNaked(Player);
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) {
 		CharacterDress(Player, ShibariPlayerAppearance);
 		ShibariPlayerAppearance = null;

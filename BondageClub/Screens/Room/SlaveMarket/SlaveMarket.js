@@ -30,11 +30,11 @@ function SlaveMarketRun() {
 
 // When the user clicks in the Slave Market
 function SlaveMarketClick() {
-	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
-	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(SlaveMarketMistress);
-	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(SlaveMarketSlave);
+	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(250, 0, 750-250, 1000)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(750, 0, 500, 1000)) CharacterSetCurrent(SlaveMarketMistress);
+	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(1250, 0, 1750-1250, 1000)) CharacterSetCurrent(SlaveMarketSlave);
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 	DailyJobSubSearchClick();
 }
 

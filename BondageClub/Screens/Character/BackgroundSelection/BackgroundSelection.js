@@ -118,10 +118,10 @@ function BackgroundSelectionClick() {
 
 	// Exit by selecting or cancelling
 	if (CommonIsClickAt(1885, 25, 90, 90)) BackgroundSelectionExit(true);
-	if (CommonIsClickAt(1785, 25, 1875-1785, 90)) BackgroundSelectionExit(false);
+	if (CommonIsClickAt(1785, 25, 90, 90)) BackgroundSelectionExit(false);
 
 	// Set next offset backward
-	if (CommonIsClickAt(1585, 25, 1675-1585, 90)) {
+	if (CommonIsClickAt(1585, 25, 90, 90)) {
 		BackgroundSelectionOffset -= BackgroundSelectionSize;
 		if (BackgroundSelectionOffset < 0) {
 			BackgroundSelectionOffset = Math.ceil(BackgroundSelectionView.length / BackgroundSelectionSize - 1) * BackgroundSelectionSize;
@@ -129,7 +129,7 @@ function BackgroundSelectionClick() {
 	}
 
 	// Set next offset forward
-	if (CommonIsClickAt(1685, 25, 1775-1685, 90)) {
+	if (CommonIsClickAt(1685, 25, 90, 90)) {
 		BackgroundSelectionOffset += BackgroundSelectionSize;
 		if (BackgroundSelectionOffset >= BackgroundSelectionView.length) BackgroundSelectionOffset = 0;
 	}

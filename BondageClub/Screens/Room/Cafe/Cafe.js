@@ -42,7 +42,7 @@ function CafeRun() {
 // When the user clicks in the Cafe room
 function CafeClick() {
 	if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
-	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) {
+	if (CommonIsClickAt(1000, 0, 500, 1000)) {
 		if (MaidQuartersMaid != null) {
 			if ((MaidQuartersMaid.Stage == "285" || MaidQuartersMaid.Stage == "286") && (InventoryGet(Player, "ItemMisc").Asset.Name == "WoodenMaidTrayFull" || InventoryGet(Player, "ItemMisc").Asset.Name == "WoodenMaidTray")) {
 				if (!CafeMaid.IsRestrained()) {
@@ -55,7 +55,7 @@ function CafeClick() {
 		}
 		CharacterSetCurrent(CafeMaid);
 	}
-	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 }
 

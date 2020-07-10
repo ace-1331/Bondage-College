@@ -125,8 +125,8 @@ function ManagementRun() {
 
 // When the user clicks in the management room
 function ManagementClick() {
-	if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
-	if (CommonIsClickAt(750, 0, 1250-750, 1000-0) && !ManagementEmpty) {		
+	if (CommonIsClickAt(250, 0, 750-250, 1000)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(750, 0, 500, 1000) && !ManagementEmpty) {		
 		if ((ManagementMistress.Stage == "0") && ManagementIsClubSlave()) ManagementMistress.Stage = "350";
 		if ((ManagementMistress.Stage == "0") && (ReputationGet("Dominant") < 50) && LogQuery("ClubMistress", "Management")) {
 			ManagementMistress.Stage = "500";
@@ -140,10 +140,10 @@ function ManagementClick() {
 		if ((ManagementMistress.Stage == "5") && Player.IsKneeling()) ManagementMistress.Stage = "0";
 		CharacterSetCurrent(ManagementMistress);
 	}
-	if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0) && !ManagementEmpty) CharacterSetCurrent(ManagementSub);
+	if (CommonIsClickAt(1250, 0, 1750-1250, 1000) && !ManagementEmpty) CharacterSetCurrent(ManagementSub);
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
-	if (CommonIsClickAt(1885, 265, 90, 355-265) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if (CommonIsClickAt(1885, 145, 90, 90)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 90, 90) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 }
 
 // Releases the player and dress her back

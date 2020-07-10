@@ -79,7 +79,7 @@ function ChatSearchClick() {
 	if (CommonIsClickAt(25, 25, 1975-25, 875-25) && Array.isArray(ChatSearchResult) && (ChatSearchResult.length >= 1)) ChatSearchJoin();
 	if (CommonIsClickAt(1065, 898, 1385-1065, 962-898)) ChatSearchQuery();
 	if (CommonIsClickAt(1415, 898, 1735-1415, 962-898)) CommonSetScreen("Online", "ChatCreate");
-	if (CommonIsClickAt(1765, 885, 1855-1765, 975-885)) { ElementRemove("InputSearch"); CommonSetScreen("Character", "FriendList"); FriendListReturn = "ChatSearch"; }
+	if (CommonIsClickAt(1765, 885, 90, 975-885)) { ElementRemove("InputSearch"); CommonSetScreen("Character", "FriendList"); FriendListReturn = "ChatSearch"; }
 	if (CommonIsClickAt(1885, 885, 90, 975-885)) ChatSearchExit();
 }
 
