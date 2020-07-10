@@ -18,8 +18,8 @@ function InventoryItemHiddenLeatherArmbinderStrapDraw() {
 
 // Catches the item extension clicks
 function InventoryItemHiddenLeatherArmbinderStrapClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1389) && (MouseX <= 1614) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != ""))) InventoryItemHiddenLeatherArmbinderStrapSetType("");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1389, 550, 1614-1389, 775-550) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != ""))) InventoryItemHiddenLeatherArmbinderStrapSetType("");
 }
 
 // Sets if like (Strap, )

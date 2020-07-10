@@ -78,11 +78,11 @@ function MagicRun() {
 
 // When the user clicks in the Magic
 function MagicClick() {
-	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(MagicPerformer);
-	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(MagicAssistant);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(MagicPerformer);
+	if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(MagicAssistant);
+	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////

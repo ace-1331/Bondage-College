@@ -51,8 +51,8 @@ function RelogRun() {
 
 // When the user clicks on the relog screen buttons
 function RelogClick() {
-	if ((MouseX >= 675) && (MouseX <= 975) && (MouseY >= 750) && (MouseY <= 810)) RelogSend();
-	if ((MouseX >= 1025) && (MouseX <= 1325) && (MouseY >= 750) && (MouseY <= 810)) RelogExit();
+	if (CommonIsClickAt(675, 750, 975-675, 810-750)) RelogSend();
+	if (CommonIsClickAt(1025, 750, 1325-1025, 810-750)) RelogExit();
 }
 
 // When the user press "enter" we send the relog query

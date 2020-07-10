@@ -90,13 +90,13 @@ function ChatAdminRun() {
 function ChatAdminClick() {
 
 	// When the user cancels/exits
-	if ((MouseX >= 1625) && (MouseX < 1875) && (MouseY >= 840) && (MouseY < 905)) ChatAdminExit();
+	if (CommonIsClickAt(1625, 840, 1875-1625, 905-840)) ChatAdminExit();
 
 	// All other controls are for administrators only
 	if (ChatRoomPlayerIsAdmin()) {
 
 		// When we select a new background
-		if ((MouseX >= 1350) && (MouseX <= 1850) && (MouseY >= 500) && (MouseY <= 565)) {
+		if (CommonIsClickAt(1350, 500, 1850-1350, 565-500)) {
 			ChatAdminBackgroundIndex += ((MouseX < 1600) ? -1 : 1);
 			if (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length) ChatAdminBackgroundIndex = 0;
 			if (ChatAdminBackgroundIndex < 0) ChatAdminBackgroundIndex = ChatCreateBackgroundList.length - 1;
@@ -104,13 +104,13 @@ function ChatAdminClick() {
 		}
 
 		// Private & Locked check boxes + save button + quickban buttons
-		if ((MouseX >= 1486) && (MouseX <= 1550) && (MouseY >= 708) && (MouseY <= 772)) ChatAdminPrivate = !ChatAdminPrivate;
-		if ((MouseX >= 1786) && (MouseX <= 1850) && (MouseY >= 708) && (MouseY <= 772)) ChatAdminLocked = !ChatAdminLocked;
-		if ((MouseX >= 1325) && (MouseX < 1575) && (MouseY >= 840) && (MouseY < 905) && ChatRoomPlayerIsAdmin()) ChatAdminUpdateRoom();
-		if ((MouseX >= 695) && (MouseX < 945) && (MouseY >= 770) && (MouseY < 835)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(true, false, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
-		if ((MouseX >= 975) && (MouseX < 1225) && (MouseY >= 770) && (MouseY < 835)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(false, true, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
+		if (CommonIsClickAt(1486, 708, 1550-1486, 772-708)) ChatAdminPrivate = !ChatAdminPrivate;
+		if (CommonIsClickAt(1786, 708, 1850-1786, 772-708)) ChatAdminLocked = !ChatAdminLocked;
+		if (CommonIsClickAt(1325, 840, 1575-1325, 905-840) && ChatRoomPlayerIsAdmin()) ChatAdminUpdateRoom();
+		if (CommonIsClickAt(695, 770, 945-695, 835-770)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(true, false, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
+		if (CommonIsClickAt(975, 770, 1225-975, 835-770)) ElementValue("InputBanList", CommonConvertArrayToString(ChatRoomConcatenateBanList(false, true, CommonConvertStringToArray(ElementValue("InputBanList").trim()))));
 		
-		if ((MouseX >= 1450) && (MouseX <= 1750) && (MouseY >= 600) && (MouseY <= 665)) {
+		if (CommonIsClickAt(1450, 600, 1750-1450, 665-600)) {
 			// Save the input values before entering background selection
 			ChatAdminTemporaryData = {
 				Name: ElementValue("InputName"),

@@ -272,28 +272,28 @@ function PreferenceClick() {
 	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityClick();
 
 	// If the user clicks on "Exit"
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
+	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) PreferenceExit();
 
 	// If the user clicks on the chat settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 190, 1905-1815, 280-190) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Chat";
 	}
 
 	// If the user clicks on the audio settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 305, 1905-1815, 395-305) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Audio";
 	}
 
 	// If the user clicks on the arousal settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 420) && (MouseY < 510) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 420, 1905-1815, 510-420) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Arousal";
 	}
 
 	// If the user clicks on the security settings button
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 535) && (MouseY < 625) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 535, 1905-1815, 625-535) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		ElementCreateInput("InputEmailOld", "text", "", "100");
 		ElementCreateInput("InputEmailNew", "text", "", "100");
@@ -302,17 +302,17 @@ function PreferenceClick() {
 	}
 	
 	// If we must change the restrain permission level
-	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
+	if (CommonIsClickAt(500, 280, 590-500, 370-280)) {
 		Player.ItemPermission++;
 		if (Player.ItemPermission > 5) Player.ItemPermission = 0;
 	}
 
 	// If we must show/hide/use the color picker
-	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick != "")) PreferenceColorPick = "";
+	if (CommonIsClickAt(1140, 187, 1205-1140, 252-187)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
+	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick != "")) PreferenceColorPick = "";
 
     // If we must change audio gameplay or visual settings
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 392) && (MouseY < 456)) {
+	if (CommonIsClickAt(500, 392, 750-500, 456-392)) {
 		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
@@ -468,13 +468,13 @@ function PreferenceSubscreenSecurityRun() {
 function PreferenceSubscreenAudioClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		PreferenceMainScreenLoad();
 	}
 
 	// Volume increase/decrease control
-    if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
+    if (CommonIsClickAt(500, 193, 750-500, 257-193)) {
         if (MouseX <= 625) PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.length + PreferenceSettingsVolumeIndex - 1) % PreferenceSettingsVolumeList.length;
         else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
         Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
@@ -507,19 +507,19 @@ function PreferenceSubscreenChatClick() {
 	}
 
 	// If the user used one of the BackNextButtons
-	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 190) && (MouseY < 270)) {
+	if (CommonIsClickAt(1000, 190, 1350-1000, 270-190)) {
 		if (MouseX <= 1175) PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex <= 0) ? PreferenceChatColorThemeList.length - 1 : PreferenceChatColorThemeIndex - 1;
 		else PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex >= PreferenceChatColorThemeList.length - 1) ? 0 : PreferenceChatColorThemeIndex + 1;
 		PreferenceChatColorThemeSelected = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
 		Player.ChatSettings.ColorTheme = PreferenceChatColorThemeSelected;
 	}
-	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 290) && (MouseY < 370)) {
+	if (CommonIsClickAt(1000, 290, 1350-1000, 370-290)) {
 		if (MouseX <= 1175) PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveIndex <= 0) ? PreferenceChatEnterLeaveList.length - 1 : PreferenceChatEnterLeaveIndex - 1;
 		else PreferenceChatEnterLeaveIndex = (PreferenceChatEnterLeaveIndex >= PreferenceChatEnterLeaveList.length - 1) ? 0 : PreferenceChatEnterLeaveIndex + 1;
 		PreferenceChatEnterLeaveSelected = PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex];
 		Player.ChatSettings.EnterLeave = PreferenceChatEnterLeaveSelected;
 	}
-	if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 390) && (MouseY < 470)) {
+	if (CommonIsClickAt(1000, 390, 1350-1000, 470-390)) {
 		if (MouseX <= 1175) PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersIndex <= 0) ? PreferenceChatMemberNumbersList.length - 1 : PreferenceChatMemberNumbersIndex - 1;
 		else PreferenceChatMemberNumbersIndex = (PreferenceChatMemberNumbersIndex >= PreferenceChatMemberNumbersList.length - 1) ? 0 : PreferenceChatMemberNumbersIndex + 1;
 		PreferenceChatMemberNumbersSelected = PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex];
@@ -527,7 +527,7 @@ function PreferenceSubscreenChatClick() {
 	}
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		PreferenceMainScreenLoad();
 	}
@@ -538,74 +538,74 @@ function PreferenceSubscreenChatClick() {
 function PreferenceSubscreenArousalClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		Player.FocusGroup = null;
 		PreferenceMainScreenLoad();
 	}
 
 	// Arousal active control
-    if ((MouseX >= 750) && (MouseX < 1200) && (MouseY >= 193) && (MouseY < 257)) {
+    if (CommonIsClickAt(750, 193, 1200-750, 257-193)) {
         if (MouseX <= 975) PreferenceArousalActiveIndex = (PreferenceArousalActiveList.length + PreferenceArousalActiveIndex - 1) % PreferenceArousalActiveList.length;
         else PreferenceArousalActiveIndex = (PreferenceArousalActiveIndex + 1) % PreferenceArousalActiveList.length;
         Player.ArousalSettings.Active = PreferenceArousalActiveList[PreferenceArousalActiveIndex];
     }
 
 	// Speech stuttering control
-    if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 393) && (MouseY < 457)) {
+    if (CommonIsClickAt(900, 393, 1400-900, 457-393)) {
         if (MouseX <= 1150) PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterList.length + PreferenceArousalAffectStutterIndex - 1) % PreferenceArousalAffectStutterList.length;
         else PreferenceArousalAffectStutterIndex = (PreferenceArousalAffectStutterIndex + 1) % PreferenceArousalAffectStutterList.length;
         Player.ArousalSettings.AffectStutter = PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex];
     }
 
 	// Show other player meter check box
-	if ((MouseX >= 550) && (MouseX < 614) && (MouseY >= 286) && (MouseY < 350)) 
+	if (CommonIsClickAt(550, 286, 614-550, 350-286)) 
 		Player.ArousalSettings.ShowOtherMeter = !Player.ArousalSettings.ShowOtherMeter;
 	
 	// If the arousal is active, we allow more controls
 	if (PreferenceArousalIsActive()) {
 
 		// Meter affect your facial expressions check box
-		if ((MouseX >= 1250) && (MouseX < 1314) && (MouseY >= 286) && (MouseY < 350)) 
+		if (CommonIsClickAt(1250, 286, 1314-1250, 350-286)) 
 			Player.ArousalSettings.AffectExpression = !Player.ArousalSettings.AffectExpression;
 
 		// Arousal visible control
-		if ((MouseX >= 1505) && (MouseX < 1905) && (MouseY >= 193) && (MouseY <= 257)) {
+		if (CommonIsClickAt(1505, 193, 1905-1505, 257-193)) {
 			if (MouseX <= 1705) PreferenceArousalVisibleIndex = (PreferenceArousalVisibleList.length + PreferenceArousalVisibleIndex - 1) % PreferenceArousalVisibleList.length;
 			else PreferenceArousalVisibleIndex = (PreferenceArousalVisibleIndex + 1) % PreferenceArousalVisibleList.length;
 			Player.ArousalSettings.Visible = PreferenceArousalVisibleList[PreferenceArousalVisibleIndex];
 		}
 
 		// Arousal activity control
-		if ((MouseX >= 900) && (MouseX < 1400) && (MouseY >= 493) && (MouseY <= 557)) {
+		if (CommonIsClickAt(900, 493, 1400-900, 557-493)) {
 			if (MouseX <= 1150) PreferenceArousalActivityIndex = (PreferenceArousalActivityList.length + PreferenceArousalActivityIndex - 1) % PreferenceArousalActivityList.length;
 			else PreferenceArousalActivityIndex = (PreferenceArousalActivityIndex + 1) % PreferenceArousalActivityList.length;
 			PreferenceLoadActivityFactor();
 		}
 
 		// Arousal activity love on self control
-		if ((MouseX >= 900) && (MouseX < 1200) && (MouseY >= 593) && (MouseY <= 657)) {
+		if (CommonIsClickAt(900, 593, 1200-900, 657-593)) {
 			if (MouseX <= 1050) PreferenceArousalActivityFactorSelf = (5 + PreferenceArousalActivityFactorSelf - 1) % 5;
 			else PreferenceArousalActivityFactorSelf = (PreferenceArousalActivityFactorSelf + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true, PreferenceArousalActivityFactorSelf);
 		}
 
 		// Arousal activity love on other control
-		if ((MouseX >= 1605) && (MouseX < 1905) && (MouseY >= 593) && (MouseY <= 657)) {
+		if (CommonIsClickAt(1605, 593, 1905-1605, 657-593)) {
 			if (MouseX <= 1755) PreferenceArousalActivityFactorOther = (5 + PreferenceArousalActivityFactorOther - 1) % 5;
 			else PreferenceArousalActivityFactorOther = (PreferenceArousalActivityFactorOther + 1) % 5;
 			PreferenceSetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false, PreferenceArousalActivityFactorOther);
 		}
 
 		// Arousal zone love control
-		if ((Player.FocusGroup != null) && (MouseX >= 550) && (MouseX < 1150) && (MouseY >= 793) && (MouseY < 857)) {
+		if ((Player.FocusGroup != null) && CommonIsClickAt(550, 793, 1150-550, 857-793)) {
 			if (MouseX <= 850) PreferenceArousalZoneFactor = (5 + PreferenceArousalZoneFactor - 1) % 5;
 			else PreferenceArousalZoneFactor = (PreferenceArousalZoneFactor + 1) % 5;
 			PreferenceSetZoneFactor(Player, Player.FocusGroup.Name, PreferenceArousalZoneFactor);
 		}
 
 		// Arousal zone orgasm check box
-		if ((Player.FocusGroup != null) && (MouseX >= 1230) && (MouseX < 1294) && (MouseY >= 793) && (MouseY < 857))
+		if ((Player.FocusGroup != null) && CommonIsClickAt(1230, 793, 1294-1230, 857-793))
 			PreferenceSetZoneOrgasm(Player, Player.FocusGroup.Name, !PreferenceGetZoneOrgasm(Player, Player.FocusGroup.Name));
 
 		// In arousal mode, the player can click on her zones
@@ -626,7 +626,7 @@ function PreferenceSubscreenArousalClick() {
 function PreferenceSubscreenSecurityClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		ElementRemove("InputEmailOld");
 		ElementRemove("InputEmailNew");
@@ -634,7 +634,7 @@ function PreferenceSubscreenSecurityClick() {
 	}
 
 	// If we must update the email
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 365) && (MouseY < 415)) {
+	if (CommonIsClickAt(500, 365, 750-500, 415-365)) {
 		var EmailOld = ElementValue("InputEmailOld");
 		var EmailNew = ElementValue("InputEmailNew");
 		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;

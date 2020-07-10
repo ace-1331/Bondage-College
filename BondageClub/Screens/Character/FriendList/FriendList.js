@@ -30,12 +30,12 @@ function FriendListRun() {
 
 // When the user clicks on the screen
 function FriendListClick() {
-	if ((MouseX >= 1865) && (MouseX < 1925) && (MouseY >= 5) && (MouseY < 65)) {
+	if (CommonIsClickAt(1865, 5, 1925-1865, 65-5)) {
 		FriendListModeIndex++;
 		if (FriendListModeIndex >= FriendListMode.length) FriendListModeIndex = 0;
 		ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
-	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 5) && (MouseY < 65)) FriendListExit();
+	if (CommonIsClickAt(1935, 5, 1995-1935, 65-5)) FriendListExit();
 }
 
 // when the user exit this screen

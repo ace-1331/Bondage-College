@@ -36,12 +36,12 @@ function InventoryItemArmsDuctTapeDraw() {
 
 // Catches the item extension clicks
 function InventoryItemArmsDuctTapeClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 450) && (MouseY <= 675) && (DialogFocusItem.Property != null)) InventoryItemArmsDuctTapeSetPose(null);
-	if ((MouseX >= 1375) && (MouseX <= 1600) && (MouseY >= 450) && (MouseY <= 675) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Bottom"))) InventoryItemArmsDuctTapeSetPose("Bottom");
-	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 450) && (MouseY <= 675) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Top"))) InventoryItemArmsDuctTapeSetPose("Top");
-	if ((MouseX >= 1150) && (MouseX <= 1375) && (MouseY >= 750) && (MouseY <= 975) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Full"))) InventoryItemArmsDuctTapeSetPose("Full");
-	if ((MouseX >= 1600) && (MouseX <= 1825) && (MouseY >= 750) && (MouseY <= 975) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Complete"))) InventoryItemArmsDuctTapeSetPose("Complete");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1000, 450, 1225-1000, 675-450) && (DialogFocusItem.Property != null)) InventoryItemArmsDuctTapeSetPose(null);
+	if (CommonIsClickAt(1375, 450, 1600-1375, 675-450) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Bottom"))) InventoryItemArmsDuctTapeSetPose("Bottom");
+	if (CommonIsClickAt(1750, 450, 1975-1750, 675-450) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Top"))) InventoryItemArmsDuctTapeSetPose("Top");
+	if (CommonIsClickAt(1150, 750, 1375-1150, 975-750) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Full"))) InventoryItemArmsDuctTapeSetPose("Full");
+	if (CommonIsClickAt(1600, 750, 1825-1600, 975-750) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Complete"))) InventoryItemArmsDuctTapeSetPose("Complete");
 }
 
 // Sets the duct tape type (the wraps require no clothes)

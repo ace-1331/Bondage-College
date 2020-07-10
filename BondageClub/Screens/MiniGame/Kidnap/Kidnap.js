@@ -401,7 +401,7 @@ function KidnapClick() {
 		for(var M = 0; M < 4; M++)
 			if ((MouseX >= 50) && (MouseX <= 450) && (MouseY >= 100 + (M * 100)) && (MouseY <= 170 + (M * 100)))
 				KidnapSelectMove(M);
-		if ((MouseX >= 50) && (MouseX <= 450) && (MouseY >= 900) && (MouseY <= 970))
+		if (CommonIsClickAt(50, 900, 450-50, 970-900))
 			KidnapSurrender();
 		return;
 	}
@@ -415,11 +415,11 @@ function KidnapClick() {
 	}
 
 	// If we must cancel out and don't select any item
-	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 90))
+	if (CommonIsClickAt(1750, 25, 1975-1750, 90-25))
 		KidnapSetMode("SelectMove");
 	
 	// If the user clicks on one of the items to be applied to the opponent
-	if ((KidnapMode == "SelectItem") && (MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000)) {
+	if ((KidnapMode == "SelectItem") && CommonIsClickAt(1000, 125, 1975-1000, 1000-125)) {
 
 		// For each items in the player/opponent inventory
 		var X = 1000;

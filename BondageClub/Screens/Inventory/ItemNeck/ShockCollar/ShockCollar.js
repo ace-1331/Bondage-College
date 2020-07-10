@@ -21,13 +21,13 @@ function InventoryItemNeckShockCollarDraw() {
 
 // Catches the item extension clicks
 function InventoryItemNeckShockCollarClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1325) && (MouseX <= 1389) && (MouseY >= 800) && (MouseY <= 864) && (CurrentScreen == "ChatRoom")) {
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1325, 800, 1389-1325, 864-800) && (CurrentScreen == "ChatRoom")) {
 		DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
 		DialogLeave();
 	}
-	if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckShockCollarSetIntensity(-1);
-	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckShockCollarSetIntensity(1);
+	if (CommonIsClickAt(1200, 700, 1450-1200, 765-700) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckShockCollarSetIntensity(-1);
+	if (CommonIsClickAt(1550, 700, 1800-1550, 765-700) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckShockCollarSetIntensity(1);
 }
 
 // Sets the shock collar intensity

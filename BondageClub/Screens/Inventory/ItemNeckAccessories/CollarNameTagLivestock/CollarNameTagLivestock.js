@@ -35,7 +35,7 @@ function InventoryItemNeckAccessoriesCollarNameTagLivestockDraw() {
 
 // Catches the item extension clicks
 function InventoryItemNeckAccessoriesCollarNameTagLivestockClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) { DialogFocusItem = null; return; }
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) { DialogFocusItem = null; return; }
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		var List = DialogFocusItem.Asset.AllowType;
 		var X = 955;

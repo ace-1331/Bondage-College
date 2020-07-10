@@ -105,18 +105,18 @@ function StableRun() {
 // When the user clicks in the stable
 function StableClick() {
 	if (StablePlayerInIsolation == true) {
-		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(Player);
 	} else if (StableProgress >= 0) {
 		// If the user wants to speed up the add / swap / remove progress
-		if ((MouseX >= 0) && (MouseX < 2000) && (MouseY >= 200) && (MouseY < 1000) && (StableProgress >= 0) && CommonIsMobile) StableGenericRun(false);
-		if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 100)) StableGenericCancel();
+		if (CommonIsClickAt(0, 200, 2000-0, 1000-200) && (StableProgress >= 0) && CommonIsMobile) StableGenericRun(false);
+		if (CommonIsClickAt(1750, 25, 1975-1750, 100-25)) StableGenericCancel();
 	} else {
-		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StableTrainer);
-		if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StablePony);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (!StablePlayerTrainingActiv || StablePlayerIsExamPony)) CommonSetScreen("Room", "MainHall");
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && StableCanHideDice()) StableHideDice();
+		if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(StableTrainer);
+		if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(StablePony);
+		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk() && (!StablePlayerTrainingActiv || StablePlayerIsExamPony)) CommonSetScreen("Room", "MainHall");
+		if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+		if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && StableCanHideDice()) StableHideDice();
 	}
 }
 

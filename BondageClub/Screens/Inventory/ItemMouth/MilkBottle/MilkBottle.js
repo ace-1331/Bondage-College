@@ -30,10 +30,10 @@ function InventoryItemMouthMilkBottleDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMouthMilkBottleClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1050) && (MouseX <= 1275) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != null)) InventoryItemMouthMilkBottleSetType(null);
-	if ((MouseX >= 1387) && (MouseX <= 1612) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Raised"))) InventoryItemMouthMilkBottleSetType("Raised");
-	if ((MouseX >= 1725) && (MouseX <= 1950) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Chug"))) InventoryItemMouthMilkBottleSetType("Chug");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1050, 550, 1275-1050, 775-550) && (DialogFocusItem.Property.Type != null)) InventoryItemMouthMilkBottleSetType(null);
+	if (CommonIsClickAt(1387, 550, 1612-1387, 775-550) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Raised"))) InventoryItemMouthMilkBottleSetType("Raised");
+	if (CommonIsClickAt(1725, 550, 1950-1725, 775-550) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Chug"))) InventoryItemMouthMilkBottleSetType("Chug");
 }
 
 // Sets the Mouth bondage position (Rest, Raised, Chug)

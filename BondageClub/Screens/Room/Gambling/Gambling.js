@@ -97,13 +97,13 @@ function GamblingRun() {
 
 // When the user clicks in the Gambling Hall
 function GamblingClick() {
-	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(GamblingFirstSub);
-	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if (((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) && ((ReputationGet("Gambling") > 20) || MaidQuartersCurrentRescue == "Gambling") ) CharacterSetCurrent(GamblingSecondSub);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) GamblingDressBackPlayer();
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)  && GamblingCanStealDice()) GamblingStealDice();
+	if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(GamblingFirstSub);
+	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(Player);
+	if ((CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) && ((ReputationGet("Gambling") > 20) || MaidQuartersCurrentRescue == "Gambling") ) CharacterSetCurrent(GamblingSecondSub);
+	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265)) GamblingDressBackPlayer();
+	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385)  && GamblingCanStealDice()) GamblingStealDice();
 }
 
 // Print the Stack of Dices and the Sum of Ponits and Player Money

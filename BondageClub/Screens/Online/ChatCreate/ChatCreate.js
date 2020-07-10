@@ -63,10 +63,10 @@ function ChatCreateRun() {
 function ChatCreateClick() {
 
 	// When the private box is checked
-	if ((MouseX >= 1300) && (MouseX < 1364) && (MouseY >= 428) && (MouseY < 492)) ChatCreatePrivate = !ChatCreatePrivate;
+	if (CommonIsClickAt(1300, 428, 1364-1300, 492-428)) ChatCreatePrivate = !ChatCreatePrivate;
 
 	// When we select a new background
-	if ((MouseX >= 900) && (MouseX < 1250) && (MouseY >= 640) && (MouseY < 705)) {
+	if (CommonIsClickAt(900, 640, 1250-900, 705-640)) {
 		ChatCreateBackgroundIndex += ((MouseX < 1075) ? -1 : 1);
 		if (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length) ChatCreateBackgroundIndex = 0;
 		if (ChatCreateBackgroundIndex < 0) ChatCreateBackgroundIndex = ChatCreateBackgroundList.length - 1;
@@ -75,7 +75,7 @@ function ChatCreateClick() {
 	}
 
 	// Show backgrounds in grid
-	if ((MouseX >= 1300) && (MouseX < 1600) && (MouseY >= 640) && (MouseY < 705)) {
+	if (CommonIsClickAt(1300, 640, 1600-1300, 705-640)) {
 		BackgroundSelectionMake(ChatCreateBackgroundList, ChatCreateBackgroundIndex, Name => ChatCreateBackgroundSelect = Name);
 		document.getElementById("InputName").style.display = "none";
 		document.getElementById("InputDescription").style.display = "none";
@@ -83,12 +83,12 @@ function ChatCreateClick() {
 	}
 
 	// If the user wants to create a room
-	if ((MouseX >= 600) && (MouseX < 900) && (MouseY >= 800) && (MouseY < 865)) {
+	if (CommonIsClickAt(600, 800, 900-600, 865-800)) {
 		ChatCreateRoom();
 	}
 
 	// When the user cancels
-	if ((MouseX >= 1100) && (MouseX < 1400) && (MouseY >= 800) && (MouseY < 865)) {
+	if (CommonIsClickAt(1100, 800, 1400-1100, 865-800)) {
 		ChatCreateExit();
 	}
 }

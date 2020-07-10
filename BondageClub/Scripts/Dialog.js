@@ -781,7 +781,7 @@ function DialogItemClick(ClickItem) {
 function DialogClick() {
 
 	// If the user clicked the Up button, move the character up to the top of the screen
-	if ((CurrentCharacter.HeightModifier < -90) && (CurrentCharacter.FocusGroup != null) && (MouseX >= 510) && (MouseX < 600) && (MouseY >= 25) && (MouseY < 115)) {
+	if ((CurrentCharacter.HeightModifier < -90) && (CurrentCharacter.FocusGroup != null) && CommonIsClickAt(510, 25, 600-510, 115-25)) {
 		CharacterAppearanceForceUpCharacter = CurrentCharacter.MemberNumber;
 		CurrentCharacter.HeightModifier = 0;
 		return;
@@ -819,7 +819,7 @@ function DialogClick() {
 
 	// In activity mode, we check if the user clicked on an activity box
 	if (DialogActivityMode && (DialogProgress < 0) && (DialogColor == null) && ((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)))
-		if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter)) {
+		if (CommonIsClickAt(1000, 125, 1975-1000, 1000-125) && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter)) {
 
 			// For each activities in the list
 			var X = 1000;
@@ -856,13 +856,13 @@ function DialogClick() {
 		else {
 
 			// If the user wants to speed up the add / swap / remove progress
-			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 600) && (MouseY < 1000) && (DialogProgress >= 0) && CommonIsMobile) DialogStruggle(false);
+			if (CommonIsClickAt(1000, 600, 2000-1000, 1000-600) && (DialogProgress >= 0) && CommonIsMobile) DialogStruggle(false);
 
 			// If the user wants to click on one of icons in the item menu
-			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 15) && (MouseY <= 105)) DialogMenuButtonClick();
+			if (CommonIsClickAt(1000, 15, 2000-1000, 105-15)) DialogMenuButtonClick();
 
 			// If the user clicks on one of the items
-			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter))) && (DialogProgress < 0) && (DialogColor == null)) {
+			if (CommonIsClickAt(1000, 125, 1975-1000, 1000-125) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter))) && (DialogProgress < 0) && (DialogColor == null)) {
 
 				// For each items in the player inventory
 				var X = 1000;
@@ -890,11 +890,11 @@ function DialogClick() {
 	} else {
 
 		// If we need to leave the dialog (only allowed when there's an entry point to the dialog, not in the middle of a conversation)
-		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT") && (MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110))
+		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT") && CommonIsClickAt(1885, 25, 1975-1885, 110-25))
 			DialogLeave();
 
 		// If the user clicked on a text dialog option, we trigger it
-		if ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 100) && (MouseY <= 990) && (CurrentCharacter != null)) {
+		if (CommonIsClickAt(1025, 100, 1975-1025, 990-100) && (CurrentCharacter != null)) {
 			var pos = 0;
 			for (var D = 0; D < CurrentCharacter.Dialog.length; D++)
 				if ((CurrentCharacter.Dialog[D].Stage == CurrentCharacter.Stage) && (CurrentCharacter.Dialog[D].Option != null) && DialogPrerequisite(D)) {

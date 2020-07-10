@@ -94,7 +94,7 @@ function TitleRun() {
 function TitleClick() {
 
 	// When the user exits
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) TitleExit();
+	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75)) TitleExit();
 
 	// When the user selects a title
 	var X = 130;

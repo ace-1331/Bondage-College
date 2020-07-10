@@ -59,7 +59,7 @@ function PasswordResetResponse(msg) {
 function PasswordResetClick() {
 
 	// Push a recovery request to the server
-	if ((MouseX >= 800) && (MouseX <= 1200) && (MouseY >= 180) && (MouseY <= 240)) {
+	if (CommonIsClickAt(800, 180, 1200-800, 240-180)) {
 		var Email = ElementValue("InputEmail");
 		var E = /^[a-zA-Z0-9@.]+$/;
 		if (Email.match(E) && (Email.length >= 5) && (Email.length <= 100) && (Email.indexOf("@") > 0) && (Email.indexOf(".") > 0)) {
@@ -69,7 +69,7 @@ function PasswordResetClick() {
 	}
 
 	// If we must try to login (make sure we don't send the login query twice)
-	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560) && !LoginSubmitted) {
+	if (CommonIsClickAt(775, 500, 975-775, 560-500) && !LoginSubmitted) {
 		var Name = ElementValue("InputName");
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
@@ -83,7 +83,7 @@ function PasswordResetClick() {
 	}
 
 	// If we must send the reset number info to the server
-	if ((MouseX >= 675) && (MouseX <= 975) && (MouseY >= 890) && (MouseY <= 950)) {
+	if (CommonIsClickAt(675, 890, 975-675, 950-890)) {
 		
 		// Make sure the passwords match
 		var AccountName = ElementValue("InputAccountName");
@@ -111,7 +111,7 @@ function PasswordResetClick() {
 	}
 
 	// Go back to the login screen
-	if ((MouseX >= 1025) && (MouseX <= 1325) && (MouseY >= 890) && (MouseY <= 950)) {
+	if (CommonIsClickAt(1025, 890, 1325-1025, 950-890)) {
 		PasswordResetExit();
 	}
 

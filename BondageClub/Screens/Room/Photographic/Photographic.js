@@ -52,16 +52,16 @@ function PhotographicRun() {
 }
 
 function PhotographicClick() {
-	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(PhotographicSub);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
+	if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(PhotographicSub);
+	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) {
 		CharacterRefresh(Player);
 		CommonSetScreen("Room", "MainHall");
 	}
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanInteract()) PhotographicCanvasToPng(750);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)  && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && Player.CanInteract()) PhotographicCanvasToPng(750);
+	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385)  && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if (CommonIsClickAt(1885, 505, 1975-1885, 595-505) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 }
 
 function PhotographicCanvasToPng(x) {

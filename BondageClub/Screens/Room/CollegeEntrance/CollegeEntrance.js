@@ -33,16 +33,16 @@ function CollegeEntranceRun() {
 
 // When the user clicks in the room
 function CollegeEntranceClick() {
-	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(CollegeEntranceStudent);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && CollegeEntranceCanGoTennis()) CommonSetScreen("Room", "CollegeTennis");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeCafeteria");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeTheater");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 835) && CollegeEntranceCanGoDetention()) CommonSetScreen("Room", "CollegeDetention");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 865) && (MouseY < 975) && CollegeEntranceCanGoTeacher()) CommonSetScreen("Room", "CollegeTeacher");
+	if (CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) CharacterSetCurrent(CollegeEntranceStudent);
+	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && CollegeEntranceCanGoTennis()) CommonSetScreen("Room", "CollegeTennis");
+	if (CommonIsClickAt(1885, 505, 1975-1885, 595-505) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeCafeteria");
+	if (CommonIsClickAt(1885, 625, 1975-1885, 715-625) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeTheater");
+	if (CommonIsClickAt(1885, 745, 1975-1885, 835-745) && CollegeEntranceCanGoDetention()) CommonSetScreen("Room", "CollegeDetention");
+	if (CommonIsClickAt(1885, 865, 1975-1885, 975-865) && CollegeEntranceCanGoTeacher()) CommonSetScreen("Room", "CollegeTeacher");
 }
 
 // Changes the character into college student clothes

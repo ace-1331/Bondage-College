@@ -109,13 +109,13 @@ function ShibariRun() {
 
 // When the user clicks in the shibari dojo
 function ShibariClick() {
-	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(ShibariTeacher);
-	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(ShibariStudent);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanChange()) CharacterDress(Player, ShibariPlayerAppearance);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && Player.CanChange()) CharacterNaked(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
+	if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(ShibariTeacher);
+	if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(ShibariStudent);
+	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && Player.CanChange()) CharacterDress(Player, ShibariPlayerAppearance);
+	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && Player.CanChange()) CharacterNaked(Player);
+	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) {
 		CharacterDress(Player, ShibariPlayerAppearance);
 		ShibariPlayerAppearance = null;
 		CommonSetScreen("Room", "MainHall");

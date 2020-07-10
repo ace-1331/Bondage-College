@@ -137,7 +137,7 @@ function InventoryItemNeckSlaveCollarDraw() {
 function InventoryItemNeckSlaveCollarClick() {
 
 	// When the user exits the screen
-    if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) {
+    if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) {
 		ElementRemove("InputColor");
 		DialogFocusItem = null;
 		return;
@@ -149,7 +149,7 @@ function InventoryItemNeckSlaveCollarClick() {
         if (InventoryItemNeckSlaveCollarColorMode) {
 
 			// In color picking mode, we allow the user to change the collar color
-            if ((MouseX >= 1665) && (MouseX <= 1755) && (MouseY >= 25) && (MouseY <= 110)) {
+            if (CommonIsClickAt(1665, 25, 1755-1665, 110-25)) {
                 var Color = ElementValue("InputColor");
                 if (CommonIsColor(Color)) {
                     CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
@@ -160,14 +160,14 @@ function InventoryItemNeckSlaveCollarClick() {
                     DialogFocusItem = null;
                 }
             }
-            if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) {
+            if (CommonIsClickAt(1775, 25, 1865-1775, 110-25)) {
 				InventoryItemNeckSlaveCollarColor = "Default";
                 InventoryItemNeckSlaveCollarColorMode = false;
                 CharacterAppearanceSetColorForGroup(C, InventoryItemNeckSlaveCollarColor, "ItemNeck");
                 ElementRemove("InputColor");
                 CharacterLoadCanvas(C);
             }
-            if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975)) {
+            if (CommonIsClickAt(1300, 145, 1975-1300, 975-145)) {
                 var Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
                 CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
                 CharacterLoadCanvas(C);
@@ -177,11 +177,11 @@ function InventoryItemNeckSlaveCollarClick() {
         } else {
 			
 			// In regular mode, the owner can select the collar model and change the offset to get the next 8 models
-            if ((MouseX >= 1665) && (MouseX <= 1755) && (MouseY >= 25) && (MouseY <= 110)) {
+            if (CommonIsClickAt(1665, 25, 1755-1665, 110-25)) {
 				InventoryItemNeckSlaveCollarOffset = InventoryItemNeckSlaveCollarOffset + 8;
 				if (InventoryItemNeckSlaveCollarOffset >= InventoryItemNeckSlaveCollarTypes.length) InventoryItemNeckSlaveCollarOffset = 0;
             }
-            if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) {
+            if (CommonIsClickAt(1775, 25, 1865-1775, 110-25)) {
                 InventoryItemNeckSlaveCollarColorMode = true;
                 InventoryItemNeckSlaveCollarColor = DialogFocusItem.Color;
                 ElementCreateInput("InputColor", "text", (DialogColorSelect != null) ? DialogColorSelect.toString() : "");

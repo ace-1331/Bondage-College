@@ -95,33 +95,33 @@ function NurseryRun() {
 // When the user clicks in the nursery
 function NurseryClick() {
 	if (NurserySituation == null) {
-		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) NurseryLoadNurse(); 
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
+		if (CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) NurseryLoadNurse(); 
+		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) {
 			NurseryPlayerAppearance = null;
 			CommonSetScreen("Room", "MainHall");
 		}
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+		if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	}
 	if (NurserySituation == "Admitted") {
-		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(NurseryABDL1);
-		if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(NurseryABDL2);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
+		if (CommonIsClickAt(250, 0, 750-250, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(NurseryABDL1);
+		if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(NurseryABDL2);
+		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) {
 			NurserySituation = "AtGate";
 			NurseryGateMsg = true;
 			NurseryJustClicked = true;
 		}
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+		if (CommonIsClickAt(1885, 505, 1975-1885, 595-505) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 	}
 	if (NurserySituation == "AtGate") {
-		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && !NurseryJustClicked) NurserySituation = "Admitted";
-		if ((MouseX >= 1500) && (MouseX < 1800) && (MouseY >= 25) && (MouseY < 100) && Player.CanWalk()) NurseryEscapeGate();
+		if (CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk() && !NurseryJustClicked) NurserySituation = "Admitted";
+		if (CommonIsClickAt(1500, 25, 1800-1500, 100-25) && Player.CanWalk()) NurseryEscapeGate();
 	}
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 	if (NurserySituation == "AtGate" || NurserySituation == "Admitted") {
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {
+		if (CommonIsClickAt(1885, 265, 1975-1885, 355-265)) {
 			NurseryLoadNurse();
 		}
 	}

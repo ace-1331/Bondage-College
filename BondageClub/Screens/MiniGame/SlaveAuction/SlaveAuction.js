@@ -101,12 +101,12 @@ function SlaveAuctionRun() {
 
 // When the player clicks on the slave auction screen, she can bid or end the auction
 function SlaveAuctionClick() {
-	if (!SlaveAuctionEnd && (SlaveAuctionBidCurrent != "Player") && (Player.Money >= SlaveAuctionBidAmount + 10) && (MouseX >= 800) && (MouseX < 975) && (MouseY >= 235) && (MouseY < 300)) {
+	if (!SlaveAuctionEnd && (SlaveAuctionBidCurrent != "Player") && (Player.Money >= SlaveAuctionBidAmount + 10) && CommonIsClickAt(800, 235, 975-800, 300-235)) {
 		SlaveAuctionSetNextBidTime();
 		SlaveAuctionBidCurrent = "Player";
 		SlaveAuctionBidAmount = SlaveAuctionBidAmount + 10;
 		SlaveAuctionBidTime = CurrentTime;
 	}
-	if (((SlaveAuctionBidCurrent != "Player") || SlaveAuctionEnd) && (MouseX >= 1025) && (MouseX < 1200) && (MouseY >= 235) && (MouseY < 300))
+	if (((SlaveAuctionBidCurrent != "Player") || SlaveAuctionEnd) && CommonIsClickAt(1025, 235, 1200-1025, 300-235))
 		CommonDynamicFunction(MiniGameReturnFunction + "()");
 }

@@ -310,22 +310,22 @@ function ChatRoomRun() {
 function ChatRoomClick() {
 
 	// In orgasm mode, we do not allow any clicks expect the chat
-	if ((MouseX >= 1905) && (MouseX <= 1995) && (MouseY >= 910) && (MouseY <= 999)) ChatRoomSendChat();
+	if (CommonIsClickAt(1905, 910, 1995-1905, 999-910)) ChatRoomSendChat();
 	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
 
 		// On stage 0, the player can choose to resist the orgasm or not.  At 1, the player plays a mini-game to fight her orgasm
-		if ((MouseX >= 200) && (MouseX <= 450) && (MouseY >= 532) && (MouseY <= 600) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmGameGenerate(0);
-		if ((MouseX >= 550) && (MouseX <= 800) && (MouseY >= 532) && (MouseY <= 600) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmStart(Player);
+		if (CommonIsClickAt(200, 532, 450-200, 600-532) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmGameGenerate(0);
+		if (CommonIsClickAt(550, 532, 800-550, 600-532) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmStart(Player);
 		if ((MouseX >= ActivityOrgasmGameButtonX) && (MouseX <= ActivityOrgasmGameButtonX + 250) && (MouseY >= ActivityOrgasmGameButtonY) && (MouseY <= ActivityOrgasmGameButtonY + 64) && (Player.ArousalSettings.OrgasmStage == 1)) ActivityOrgasmGameGenerate(ActivityOrgasmGameProgress + 1);
 		return;
 
 	}
 
 	// When the user chats or clicks on a character
-	if ((MouseX >= 0) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) ChatRoomDrawCharacter(true);
+	if (CommonIsClickAt(0, 0, 1000-0, 1000-0)) ChatRoomDrawCharacter(true);
 
 	// When the user leaves
-	if ((MouseX >= 1005) && (MouseX < 1125) && (MouseY >= 0) && (MouseY <= 62) && ChatRoomCanLeave()) {
+	if (CommonIsClickAt(1005, 0, 1125-1005, 62-0) && ChatRoomCanLeave()) {
 		ElementRemove("InputChat");
 		ElementRemove("TextAreaChatLog");
 		ServerSend("ChatRoomLeave", "");
@@ -333,7 +333,7 @@ function ChatRoomClick() {
 	}
 
 	// When the user wants to remove the top part of his chat to speed up the screen, we only keep the last 20 entries
-	if ((MouseX >= 1179) && (MouseX < 1299) && (MouseY >= 2) && (MouseY <= 62) && (OnlineGameName == "")) {
+	if (CommonIsClickAt(1179, 2, 1299-1179, 62-2) && (OnlineGameName == "")) {
 		var L = document.getElementById("TextAreaChatLog");
 		while (L.childElementCount > 20)
 			L.removeChild(L.childNodes[0]);
@@ -341,21 +341,21 @@ function ChatRoomClick() {
 	}
 
 	// The cut button can become the game option button if there's an online game going on
-	if ((MouseX >= 1179) && (MouseX < 1299) && (MouseY >= 0) && (MouseY <= 62) && (OnlineGameName != "")) {
+	if (CommonIsClickAt(1179, 0, 1299-1179, 62-0) && (OnlineGameName != "")) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		CommonSetScreen("Online", "Game" + OnlineGameName);
 	}
 
 	// When the user character kneels
-	if ((MouseX >= 1353) && (MouseX < 1473) && (MouseY >= 0) && (MouseY <= 62) && Player.CanKneel()) {
+	if (CommonIsClickAt(1353, 0, 1473-1353, 62-0) && Player.CanKneel()) {
 		ServerSend("ChatRoomChat", { Content: (Player.ActivePose == null) ? "KneelDown": "StandUp", Type: "Action", Dictionary: [{Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber}]} );
 		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 	}
 
 	// When the user wants to change clothes
-	if ((MouseX >= 1527) && (MouseX < 1647) && (MouseY >= 0) && (MouseY <= 62) && Player.CanChange() && OnlineGameAllowChange()) {
+	if (CommonIsClickAt(1527, 0, 1647-1527, 62-0) && Player.CanChange() && OnlineGameAllowChange()) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
@@ -364,14 +364,14 @@ function ChatRoomClick() {
 	}
 	
 	// When the user checks her profile
-	if ((MouseX >= 1701) && (MouseX < 1821) && (MouseY >= 0) && (MouseY <= 62)) {
+	if (CommonIsClickAt(1701, 0, 1821-1701, 62-0)) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		InformationSheetLoadCharacter(Player);
 	}
 
 	// When the user enters the room administration screen
-	if ((MouseX >= 1875) && (MouseX < 1995) && (MouseY >= 0) && (MouseY <= 62)) {
+	if (CommonIsClickAt(1875, 0, 1995-1875, 62-0)) {
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		CommonSetScreen("Online", "ChatAdmin");

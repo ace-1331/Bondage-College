@@ -97,25 +97,25 @@ function WardrobeRun() {
 function WardrobeClick() {
 
 	// If we must go back to the room
-	if ((MouseX >= 1750) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 85))
+	if (CommonIsClickAt(1750, 25, 1975-1750, 85-25))
 		WardrobeExit();
 
 	// If we must move to the next page
-	if ((MouseX >= 1000) && (MouseX < 1060) && (MouseY >= 25) && (MouseY < 85)) {
+	if (CommonIsClickAt(1000, 25, 1060-1000, 85-25)) {
 		WardrobeOffset = WardrobeOffset + 12;
 		if (WardrobeOffset >= WardrobeSize) WardrobeOffset = 0;
 	}
 
 	// If we must load a saved outfit
-	if ((MouseX >= 500) && (MouseX < 725) && (MouseY >= 25) && (MouseY < 85) && (WardrobeSelection >= 0))
+	if (CommonIsClickAt(500, 25, 725-500, 85-25) && (WardrobeSelection >= 0))
 		WardrobeFastLoad(Player, WardrobeSelection);
 
 	// If we must save an outfit
-	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 85) && (WardrobeSelection >= 0))
+	if (CommonIsClickAt(750, 25, 975-750, 85-25) && (WardrobeSelection >= 0))
 		WardrobeFastSave(Player, WardrobeSelection);
 
 	// If we must select a different wardrobe
-	if ((MouseX >= 500) && (MouseX < 2000) && (MouseY >= 100) && (MouseY < 1000))
+	if (CommonIsClickAt(500, 100, 2000-500, 1000-100))
 		for (var C = 0; C < 12; C++)
 			if (C < 6) {
 				if ((MouseX >= 500 + C * 250) && (MouseX <= 725 + C * 250) && (MouseY >= 100) && (MouseY <= 450))

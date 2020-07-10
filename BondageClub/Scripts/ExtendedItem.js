@@ -84,7 +84,7 @@ function ExtendedItemDraw(Options, DialogPrefix) {
  */
 function ExtendedItemClick(Options) {
 	// Exit button
-	if (MouseX >= 1885 && MouseX <= 1975 && MouseY >= 25 && MouseY <= 110) {
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) {
 		DialogFocusItem = null;
 		return;
 	}
@@ -216,7 +216,7 @@ function ExtendedItemClickTwo(Options, IsSelfBondage) {
  */
 function ExtendedItemClickGrid(Options, IsSelfBondage) {
 	// Pagination button
-	if (Options.length > 4 && MouseX >= 1775 && MouseX <= 1865 && MouseY >= 25 && MouseY <= 110) {
+	if (Options.length > 4 && CommonIsClickAt(1775, 25, 1865-1775, 110-25)) {
 		ExtendedItemNextPage(InventoryItemArmsWebOptions);
 	}
 

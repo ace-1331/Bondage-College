@@ -754,28 +754,28 @@ function AppearanceClick() {
 	if (!CharacterAppearanceWardrobeMode && CharacterAppearanceColorPicker == "") {
 
 		// If we must remove/restore to default the item
-		if ((MouseX >= 1210) && (MouseX < 1275) && (MouseY >= 145) && (MouseY < 975))
+		if (CommonIsClickAt(1210, 145, 65, 830))
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing) && AssetGroup[A].AllowNone && !AssetGroup[A].KeepNaked && (InventoryGet(C, AssetGroup[A].Name) != null))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
 						InventoryRemove(C, AssetGroup[A].Name);
 
 		// If we must switch to the next item in the assets
-		if ((MouseX >= 1300) && (MouseX < 1700) && (MouseY >= 145) && (MouseY < 975))
+		if (CommonIsClickAt(1300, 145, 400, 830))
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
 						CharacterAppearanceNextItem(C, AssetGroup[A].Name, (MouseX > 1500));
 
 		// If we must switch to the next color in the assets
-		if ((MouseX >= 1725) && (MouseX < 1885) && (MouseY >= 145) && (MouseY < 975))
+		if (CommonIsClickAt(1725, 145, 160, 830))
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
 						CharacterAppearanceNextColor(C, AssetGroup[A].Name);
 
 		// If we must open the color panel
-		if ((MouseX >= 1910) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975))
+		if (CommonIsClickAt(1910,145, 65, 830))
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing) && AssetGroup[A].AllowColorize)
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95)) {
@@ -788,27 +788,27 @@ function AppearanceClick() {
 					}
 
 		// If we must set back the default outfit or set a random outfit
-		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && !LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceSetDefault(C);
-		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
-		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0)) CharacterAppearanceFullRandom(C);
-		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID != 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
-		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceStripLayer(C);
-		if ((MouseX >= 1651) && (MouseX < 1741) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceMoveOffset(C, CharacterAppearanceNumPerPage);
-		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceExit(C);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceReady(C);
+		if (CommonIsClickAt(1300, 25, 1390-1300, 115-25) && (C.ID == 0) && !LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceSetDefault(C);
+		if (CommonIsClickAt(1300, 25, 1390-1300, 115-25) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
+		if (CommonIsClickAt(1417, 25, 1507-1417, 115-25) && (C.ID == 0)) CharacterAppearanceFullRandom(C);
+		if (CommonIsClickAt(1417, 25, 1507-1417, 115-25) && (C.ID != 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
+		if (CommonIsClickAt(1534, 25, 1624-1534, 115-25)) CharacterAppearanceStripLayer(C);
+		if (CommonIsClickAt(1651, 25, 1741-1651, 115-25)) CharacterAppearanceMoveOffset(C, CharacterAppearanceNumPerPage);
+		if (CommonIsClickAt(1768, 25, 1858-1768, 115-25)) CharacterAppearanceExit(C);
+		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) CharacterAppearanceReady(C);
 
 	} else if (CharacterAppearanceWardrobeMode) {
 
 		// In warehouse mode, we draw the 12 possible warehouse slots for the character to save & load
-		if ((MouseX >= 1651) && (MouseX < 1741) && (MouseY >= 25) && (MouseY < 115)) {
+		if (CommonIsClickAt(1651, 25, 1741-1651, 115-25)) {
 			CharacterAppearanceWardrobeOffset += 6;
 			if (CharacterAppearanceWardrobeOffset >= Player.Wardrobe.length) CharacterAppearanceWardrobeOffset = 0;
 		}
-		if ((MouseX >= 1300) && (MouseX < 1800) && (MouseY >= 430) && (MouseY < 970))
+		if (CommonIsClickAt(1300, 430, 1800-1300, 970-430))
 			for (var W = CharacterAppearanceWardrobeOffset; W < Player.Wardrobe.length && W < CharacterAppearanceWardrobeOffset + 6; W++)
 				if ((MouseY >= 430 + (W - CharacterAppearanceWardrobeOffset) * 95) && (MouseY <= 495 + (W - CharacterAppearanceWardrobeOffset) * 95))
 					WardrobeFastLoad(C, W, false);
-		if ((MouseX >= 1820) && (MouseX < 1975) && (MouseY >= 430) && (MouseY < 970))
+		if (CommonIsClickAt(1820, 430, 1975-1820, 970-430))
 			for (var W = CharacterAppearanceWardrobeOffset; W < Player.Wardrobe.length && W < CharacterAppearanceWardrobeOffset + 6; W++)
 				if ((MouseY >= 430 + (W - CharacterAppearanceWardrobeOffset) * 95) && (MouseY <= 495 + (W - CharacterAppearanceWardrobeOffset) * 95)) {
 					WardrobeFastSave(C, W);
@@ -821,26 +821,26 @@ function AppearanceClick() {
 						CharacterAppearanceWardrobeText = TextGet("WardrobeNameError");
 					}
 				}
-		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115)) { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); }
-		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceStripLayer(C);
-		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceExit(C);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceReady(C);
+		if (CommonIsClickAt(1417, 25, 1507-1417, 115-25)) { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); }
+		if (CommonIsClickAt(1534, 25, 1624-1534, 115-25)) CharacterAppearanceStripLayer(C);
+		if (CommonIsClickAt(1768, 25, 1858-1768, 115-25)) CharacterAppearanceExit(C);
+		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) CharacterAppearanceReady(C);
 
 	} else {
 
 		// Can set a color manually from the text field
-		if ((MouseX >= 1610) && (MouseX < 1675) && (MouseY >= 37) && (MouseY < 102))
+		if (CommonIsClickAt(1610, 37, 1675-1610, 102-37))
 			if (CommonIsColor(ElementValue("InputColor")))
 				CharacterAppearanceSetColorForGroup(C, ElementValue("InputColor").toLowerCase(), CharacterAppearanceColorPicker);
 
 		// Accepts the new color
-		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) {
+		if (CommonIsClickAt(1768, 25, 1858-1768, 115-25)) {
 			CharacterAppearanceSetColorForGroup(C, CharacterAppearanceColorPickerBackup, CharacterAppearanceColorPicker);
 			CharacterAppearanceColorPicker = "";
 		}
 
 		// Cancel out of color picking
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceColorPicker = "";
+		if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) CharacterAppearanceColorPicker = "";
 		if (CharacterAppearanceColorPicker == "") ElementRemove("InputColor");
 
 	}

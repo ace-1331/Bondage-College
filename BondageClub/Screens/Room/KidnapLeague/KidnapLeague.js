@@ -45,13 +45,13 @@ function KidnapLeagueRun() {
 
 // When the user clicks in the kidnap league room
 function KidnapLeagueClick() {
-	if (!DailyJobSubSearchIsActive() && (MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if (!DailyJobSubSearchIsActive() && (MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
+	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) {
 		ManagementClubSlaveDialog(KidnapLeagueTrainer);
 		CharacterSetCurrent(KidnapLeagueTrainer);
 	}
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
+	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25) && Player.CanWalk()) {
 		if ((InventoryGet(Player, "Cloth") == null) && (KidnapPlayerCloth != null)) {
 			InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);
 			if (KidnapPlayerClothAccessory != null) InventoryWear(Player, KidnapPlayerClothAccessory.Asset.Name, "ClothAccessory", KidnapPlayerClothAccessory.Color);

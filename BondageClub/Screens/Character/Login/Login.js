@@ -360,21 +360,21 @@ function LoginResponse(C) {
 function LoginClick() {
 	
 	// Opens the cheat panel
-	if (CheatAllow && ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 870) && (MouseY <= 930))) {
+	if (CheatAllow && (CommonIsClickAt(825, 870, 1175-825, 930-870))) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CommonSetScreen("Character", "Cheat");
 	}
 
 	// Opens the password reset screen
-	if (!CheatAllow && ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 870) && (MouseY <= 930))) {
+	if (!CheatAllow && (CommonIsClickAt(825, 870, 1175-825, 930-870))) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CommonSetScreen("Character", "PasswordReset");
 	}
 
 	// If we must create a new character
-	if ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 740) && (MouseY <= 800)) {
+	if (CommonIsClickAt(825, 740, 1175-825, 800-740)) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CharacterAppearanceSetDefault(Player);
@@ -385,12 +385,12 @@ function LoginClick() {
 	}
 	
 	// Try to login
-	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) {
+	if (CommonIsClickAt(775, 500, 975-775, 560-500)) {
 		LoginDoLogin();
 	}
 
 	// If we must change the language
-	if ((MouseX >= 1025) && (MouseX <= 1225) && (MouseY >= 500) && (MouseY <= 560)) {
+	if (CommonIsClickAt(1025, 500, 1225-1025, 560-500)) {
 		TranslationNextLanguage();
 		TextLoad();
 		AssetLoadDescription("Female3DCG");

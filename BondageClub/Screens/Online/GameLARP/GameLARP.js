@@ -182,11 +182,11 @@ function GameLARPClickProcess() {
 	if (GameLARPTurnFocusGroup != null) {
 
 		// If "Next" or "Cancel" is clicked
-		if ((GameLARPInventory.length > 12) && (MouseX >= 525) && (MouseX < 725) && (MouseY >= 20) && (MouseY <= 80)) {
+		if ((GameLARPInventory.length > 12) && CommonIsClickAt(525, 20, 725-525, 80-20)) {
 			GameLARPInventoryOffset = GameLARPInventoryOffset + 12;
 			if (GameLARPInventoryOffset >= GameLARPInventory.length) GameLARPInventoryOffset = 0;
 		}
-		if ((MouseX >= 775) && (MouseX < 975) && (MouseY >= 20) && (MouseY <= 80)) GameLARPTurnFocusGroup = null;
+		if (CommonIsClickAt(775, 20, 975-775, 80-20)) GameLARPTurnFocusGroup = null;
 		
 		// Checks if one of the 4x3 inventory square is clicked
 		var X = 15;
@@ -209,7 +209,7 @@ function GameLARPClickProcess() {
 				GameLARPClickOption(GameLARPOption[O].Name);
 
 		// If we must exit from the currently focused character
-		if ((MouseX >= 50) && (MouseX < 450) && (MouseY >= 900) && (MouseY <= 965)) GameLARPTurnFocusCharacter = null;
+		if (CommonIsClickAt(50, 900, 450-50, 965-900)) GameLARPTurnFocusCharacter = null;
 
 	}
 
@@ -222,10 +222,10 @@ function GameLARPClickProcess() {
 function GameLARPClick() {
 
 	// When the user exits
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) GameLARPExit();
+	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75)) GameLARPExit();
 
 	// When the user selects a new class
-	if ((MouseX >= 900) && (MouseX < 1300) && (MouseY >= 193) && (MouseY < 257) && (GameLARPStatus == "")) {
+	if (CommonIsClickAt(900, 193, 1300-900, 257-193) && (GameLARPStatus == "")) {
 		var Index = 0;
 		for (var I = 0; I < GameLARPClass.length; I++)
 			if (GameLARPClass[I].Name == Player.Game.LARP.Class)
@@ -236,13 +236,13 @@ function GameLARPClick() {
 	}
 	
 	// When the user selects a new team
-	if ((MouseX >= 900) && (MouseX < 1300) && (MouseY >= 293) && (MouseY < 357) && (GameLARPStatus == "")) {
+	if (CommonIsClickAt(900, 293, 1300-900, 357-293) && (GameLARPStatus == "")) {
 		if (MouseX <= 1100) Player.Game.LARP.Team = (GameLARPTeamList.indexOf(Player.Game.LARP.Team) <= 0) ? GameLARPTeamList[GameLARPTeamList.length - 1] : GameLARPTeamList[GameLARPTeamList.indexOf(Player.Game.LARP.Team) - 1];
 		else Player.Game.LARP.Team = (GameLARPTeamList.indexOf(Player.Game.LARP.Team) >= GameLARPTeamList.length - 1) ? GameLARPTeamList[0] : GameLARPTeamList[GameLARPTeamList.indexOf(Player.Game.LARP.Team) + 1];
 	}
 	
 	// If the administrator wants to start the game
-	if ((MouseX >= 550) && (MouseX < 950) && (MouseY >= 500) && (MouseY < 565) && GameLARPCanLaunchGame()) {
+	if (CommonIsClickAt(550, 500, 950-550, 565-500) && GameLARPCanLaunchGame()) {
 
 		// Shuffles all players in the chat room
 		for (var C = 0; C < ChatRoomCharacter.length; C++) {

@@ -68,8 +68,8 @@ function InventoryItemLegsHempRopeClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	
 	// Menu buttons
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeLegsOptionOffset += 4;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1775, 25, 1865-1775, 110-25)) HempRopeLegsOptionOffset += 4;
 	if (HempRopeLegsOptionOffset >= HempRopeLegsOptions.length) HempRopeLegsOptionOffset = 0;
 
 	// Item buttons

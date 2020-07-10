@@ -27,11 +27,11 @@ function InventoryItemButtAnalBeads2Draw() {
 
 // Catches the item extension clicks
 function InventoryItemButtAnalBeads2Click() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.InsertedBeads > 1)) InventoryItemButtAnalBeads2SetBeads(-1);
-	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 800) && (MouseY <= 865) && (DialogFocusItem.Property.InsertedBeads < 5)) InventoryItemButtAnalBeads2SetBeads(5);
-	if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 800) && (MouseY <= 865) && (DialogFocusItem.Property.InsertedBeads > 1)) InventoryItemButtAnalBeads2SetBeads(-5);
-	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.InsertedBeads < 5)) InventoryItemButtAnalBeads2SetBeads(1);
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1200, 700, 1450-1200, 765-700) && (DialogFocusItem.Property.InsertedBeads > 1)) InventoryItemButtAnalBeads2SetBeads(-1);
+	if (CommonIsClickAt(1550, 800, 1800-1550, 865-800) && (DialogFocusItem.Property.InsertedBeads < 5)) InventoryItemButtAnalBeads2SetBeads(5);
+	if (CommonIsClickAt(1200, 800, 1450-1200, 865-800) && (DialogFocusItem.Property.InsertedBeads > 1)) InventoryItemButtAnalBeads2SetBeads(-5);
+	if (CommonIsClickAt(1550, 700, 1800-1550, 765-700) && (DialogFocusItem.Property.InsertedBeads < 5)) InventoryItemButtAnalBeads2SetBeads(1);
 }
 
 // Sets the amount of beads

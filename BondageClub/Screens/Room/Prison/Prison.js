@@ -179,16 +179,16 @@ function PrisonRun() {
 // When the user clicks in the Cell
 function PrisonClick() {
 	if ((MaidQuartersCurrentRescue == "Prison") && MaidQuartersCurrentRescueCompleted == false) {
-		if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000) && PrisonSubIsPresent) CharacterSetCurrent(PrisonSub);
+		if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(500, 0, 1000-500, 1000-0) && PrisonSubIsPresent) CharacterSetCurrent(PrisonSub);
 	} else if (PrisonPlayerCatchedBadGirl == true) {
-		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && PrisonPoliceIsPresent) CharacterSetCurrent(PrisonPolice);
+		if (CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && PrisonPoliceIsPresent) CharacterSetCurrent(PrisonPolice);
 	} else {
-		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && PrisonMaidIsPresent) CharacterSetCurrent(PrisonMaid);
+		if (CommonIsClickAt(500, 0, 1000-500, 1000-0)) CharacterSetCurrent(Player);
+		if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && PrisonMaidIsPresent) CharacterSetCurrent(PrisonMaid);
 	}
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
+	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) {
 		if (MaidQuartersCurrentRescue == "Prison" && MaidQuartersCurrentRescueCompleted == false && PrisonSubIsPresent == true) {
 			CharacterSetCurrent(Player);
 			Player.CurrentDialog = TextGet("Watch");
@@ -199,7 +199,7 @@ function PrisonClick() {
 			Player.CurrentDialog = TextGet("LockKey");
 		} 
 	}
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
 }
 
 // Returns true if Appearance for Character available

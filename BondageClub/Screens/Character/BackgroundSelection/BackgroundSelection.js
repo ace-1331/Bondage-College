@@ -117,11 +117,11 @@ function BackgroundSelectionRun() {
 function BackgroundSelectionClick() {
 
 	// Exit by selecting or cancelling
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) BackgroundSelectionExit(true);
-	if ((MouseX >= 1785) && (MouseX < 1875) && (MouseY >= 25) && (MouseY < 115)) BackgroundSelectionExit(false);
+	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) BackgroundSelectionExit(true);
+	if (CommonIsClickAt(1785, 25, 1875-1785, 115-25)) BackgroundSelectionExit(false);
 
 	// Set next offset backward
-	if ((MouseX >= 1585) && (MouseX < 1675) && (MouseY >= 25) && (MouseY < 115)) {
+	if (CommonIsClickAt(1585, 25, 1675-1585, 115-25)) {
 		BackgroundSelectionOffset -= BackgroundSelectionSize;
 		if (BackgroundSelectionOffset < 0) {
 			BackgroundSelectionOffset = Math.ceil(BackgroundSelectionView.length / BackgroundSelectionSize - 1) * BackgroundSelectionSize;
@@ -129,7 +129,7 @@ function BackgroundSelectionClick() {
 	}
 
 	// Set next offset forward
-	if ((MouseX >= 1685) && (MouseX < 1775) && (MouseY >= 25) && (MouseY < 115)) {
+	if (CommonIsClickAt(1685, 25, 1775-1685, 115-25)) {
 		BackgroundSelectionOffset += BackgroundSelectionSize;
 		if (BackgroundSelectionOffset >= BackgroundSelectionView.length) BackgroundSelectionOffset = 0;
 	}

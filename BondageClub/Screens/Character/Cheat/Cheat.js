@@ -72,7 +72,7 @@ function CheatRun() {
 function CheatClick() {
 	
 	// When the user exits
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CheatExit();
+	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75)) CheatExit();
 	
 	// When the user activates an option
 	for(var C = 0; C < CheatList.length; C++)

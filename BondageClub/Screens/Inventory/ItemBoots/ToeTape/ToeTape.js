@@ -26,9 +26,9 @@ function InventoryItemBootsToeTapeDraw() {
 
 // Catches the item extension clicks
 function InventoryItemBootsToeTapeClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1175) && (MouseX <= 1400) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != null)) InventoryItemBootsToeTapeSetType(null);
-	if ((MouseX >= 1600) && (MouseX <= 1825) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Full")) && (SkillGetLevelReal(Player, "Bondage") >= null)) InventoryItemBootsToeTapeSetType("Full");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1175, 550, 1400-1175, 775-550) && (DialogFocusItem.Property.Type != null)) InventoryItemBootsToeTapeSetType(null);
+	if (CommonIsClickAt(1600, 550, 1825-1600, 775-550) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Full")) && (SkillGetLevelReal(Player, "Bondage") >= null)) InventoryItemBootsToeTapeSetType("Full");
 }
 
 // Sets the rope bondage position (Toes or Full)

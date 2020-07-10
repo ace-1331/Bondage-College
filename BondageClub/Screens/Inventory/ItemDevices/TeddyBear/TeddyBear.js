@@ -37,13 +37,13 @@ function InventoryItemDevicesTeddyBearDraw() {
 
 // Catches the item extension clicks
 function InventoryItemDevicesTeddyBearClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 450) && (MouseY <= 675) && (DialogFocusItem.Property.Type != null)) InventoryItemDevicesTeddyBearSetType(null);
-	if ((MouseX >= 1375) && (MouseX <= 1600) && (MouseY >= 450) && (MouseY <= 675) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Fox"))) InventoryItemDevicesTeddyBearSetType("Fox");
-	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 450) && (MouseY <= 675) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Kitty"))) InventoryItemDevicesTeddyBearSetType("Kitty");
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 750) && (MouseY <= 975) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Pup"))) InventoryItemDevicesTeddyBearSetType("Pup");
-	if ((MouseX >= 1375) && (MouseX <= 1600) && (MouseY >= 750) && (MouseY <= 975) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Bunny"))) InventoryItemDevicesTeddyBearSetType("Bunny");
-	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 750) && (MouseY <= 975) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Pony"))) InventoryItemDevicesTeddyBearSetType("Pony");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1000, 450, 1225-1000, 675-450) && (DialogFocusItem.Property.Type != null)) InventoryItemDevicesTeddyBearSetType(null);
+	if (CommonIsClickAt(1375, 450, 1600-1375, 675-450) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Fox"))) InventoryItemDevicesTeddyBearSetType("Fox");
+	if (CommonIsClickAt(1750, 450, 1975-1750, 675-450) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Kitty"))) InventoryItemDevicesTeddyBearSetType("Kitty");
+	if (CommonIsClickAt(1000, 750, 1225-1000, 975-750) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Pup"))) InventoryItemDevicesTeddyBearSetType("Pup");
+	if (CommonIsClickAt(1375, 750, 1600-1375, 975-750) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Bunny"))) InventoryItemDevicesTeddyBearSetType("Bunny");
+	if (CommonIsClickAt(1750, 750, 1975-1750, 975-750) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Pony"))) InventoryItemDevicesTeddyBearSetType("Pony");
 }
 
 // Sets the teddy type (bear, fox, kitty and pup)

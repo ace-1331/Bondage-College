@@ -55,8 +55,8 @@ function InventoryItemPelvisHempRopeDraw() {
 function InventoryItemPelvisHempRopeClick() {
 
 	// Menu buttons
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopePelvisOptionOffset += 2;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1775, 25, 1865-1775, 110-25)) HempRopePelvisOptionOffset += 2;
 	if (HempRopePelvisOptionOffset >= HempRopePelvisOptions.length) HempRopePelvisOptionOffset = 0;
 
 	// Item buttons

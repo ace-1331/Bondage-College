@@ -184,38 +184,38 @@ function MainHallWalk(RoomName) {
 function MainHallClick() {
 
 	// Character, Dressing, Exit & Chat
-	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 25) && (MouseY < 115)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 25) && (MouseY < 115) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) window.location = window.location;
-	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 145) && (MouseY < 235)) ChatRoomStart("", "", "MainHall", "IntroductionDark", CommonBackgroundList.slice());
+	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(Player);
+	if (CommonIsClickAt(1645, 25, 1735-1645, 115-25)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1765, 25, 1855-1765, 115-25) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 25, 1975-1885, 115-25)) window.location = window.location;
+	if (CommonIsClickAt(1645, 145, 1735-1645, 235-145)) ChatRoomStart("", "", "MainHall", "IntroductionDark", CommonBackgroundList.slice());
 
 	// The options below are only available if the player can move
 	if (Player.CanWalk()) {
 
 		// Chat, Shop & Private Room
-		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Shop");
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235) && !LogQuery("LockOutOfPrivateRoom", "Rule")) MainHallWalk("Private");
+		if (CommonIsClickAt(1765, 145, 1855-1765, 235-145)) MainHallWalk("Shop");
+		if (CommonIsClickAt(1885, 145, 1975-1885, 235-145) && !LogQuery("LockOutOfPrivateRoom", "Rule")) MainHallWalk("Private");
 
 		// Introduction, Maid & Management
-		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Introduction");
-		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("MaidQuarters");
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Management");
+		if (CommonIsClickAt(1645, 265, 1735-1645, 355-265)) MainHallWalk("Introduction");
+		if (CommonIsClickAt(1765, 265, 1855-1765, 355-265)) MainHallWalk("MaidQuarters");
+		if (CommonIsClickAt(1885, 265, 1975-1885, 355-265)) MainHallWalk("Management");
 
 		// Kidnap League, Dojo & Explore/Sarah
-		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("KidnapLeague");
-		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("Shibari");
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && SarahRoomAvailable) MainHallWalk("Sarah");
+		if (CommonIsClickAt(1645, 385, 1735-1645, 475-385)) MainHallWalk("KidnapLeague");
+		if (CommonIsClickAt(1765, 385, 1855-1765, 475-385)) MainHallWalk("Shibari");
+		if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && SarahRoomAvailable) MainHallWalk("Sarah");
 
 		// Cell, Slave Market & Look for trouble
-		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("Trouble");
-		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("SlaveMarket");
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("Cell");
+		if (CommonIsClickAt(1645, 505, 1735-1645, 595-505)) MainHallWalk("Trouble");
+		if (CommonIsClickAt(1765, 505, 1855-1765, 595-505)) MainHallWalk("SlaveMarket");
+		if (CommonIsClickAt(1885, 505, 1975-1885, 595-505)) MainHallWalk("Cell");
 
 		// Asylum & College
-		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 625) && (MouseY < 715) && !ManagementIsClubSlave()) MainHallWalk("LARP");
-		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 625) && (MouseY < 715) && !ManagementIsClubSlave()) MainHallWalk("CollegeEntrance");
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715)) MainHallWalk("AsylumEntrance");
+		if (CommonIsClickAt(1645, 625, 1735-1645, 715-625) && !ManagementIsClubSlave()) MainHallWalk("LARP");
+		if (CommonIsClickAt(1765, 625, 1855-1765, 715-625) && !ManagementIsClubSlave()) MainHallWalk("CollegeEntrance");
+		if (CommonIsClickAt(1885, 625, 1975-1885, 715-625)) MainHallWalk("AsylumEntrance");
 		
 		// Custom content rooms - Gambling, Prison & Photographic
 		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Gambling");

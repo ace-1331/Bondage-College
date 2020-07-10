@@ -30,10 +30,10 @@ function InventoryItemButtAnalHookDraw() {
 
 // Catches the item extension clicks
 function InventoryItemButtAnalHookClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemButtAnalHookSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Chain"))) InventoryItemButtAnalHookSetPose("Chain");
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Hair"))) InventoryItemButtAnalHookSetPose("Hair");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1000, 550, 1225-1000, 775-550) && (DialogFocusItem.Property.Restrain != null)) InventoryItemButtAnalHookSetPose(null);
+	if (CommonIsClickAt(1250, 550, 1475-1250, 775-550) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Chain"))) InventoryItemButtAnalHookSetPose("Chain");
+	if (CommonIsClickAt(1500, 550, 1725-1500, 775-550) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Hair"))) InventoryItemButtAnalHookSetPose("Hair");
 }
 
 

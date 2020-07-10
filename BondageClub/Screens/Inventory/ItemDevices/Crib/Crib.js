@@ -30,10 +30,10 @@ function InventoryItemDevicesCribDraw() {
 
 // Catches the item extension clicks
 function InventoryItemDevicesCribClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1050) && (MouseX <= 1275) && (MouseY >= 550) && (MouseY <= 775) && !InventoryItemHasEffect(DialogFocusItem, "Lock", true) && (DialogFocusItem.Property.Type != null)) InventoryItemDevicesCribSetType(null);
-	if ((MouseX >= 1387) && (MouseX <= 1612) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Closed"))) InventoryItemDevicesCribSetType("Closed");
-	if ((MouseX >= 1725) && (MouseX <= 1950) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Stuffed"))) InventoryItemDevicesCribSetType("Stuffed");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1050, 550, 1275-1050, 775-550) && !InventoryItemHasEffect(DialogFocusItem, "Lock", true) && (DialogFocusItem.Property.Type != null)) InventoryItemDevicesCribSetType(null);
+	if (CommonIsClickAt(1387, 550, 1612-1387, 775-550) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Closed"))) InventoryItemDevicesCribSetType("Closed");
+	if (CommonIsClickAt(1725, 550, 1950-1725, 775-550) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Stuffed"))) InventoryItemDevicesCribSetType("Stuffed");
 }
 
 // Sets the Devices bondage position (Open, Closed, Stuffed)

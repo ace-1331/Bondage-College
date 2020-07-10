@@ -28,9 +28,9 @@ function InventoryItemArmsBitchSuitDraw() {
 
 // Catches the item extension clicks
 function InventoryItemArmsBitchSuitClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1150) && (MouseX <= 1375) && (MouseY >= 440) && (MouseY <= 665) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsBitchSuitSetType(null);
-	if ((MouseX >= 1600) && (MouseX <= 1825) && (MouseY >= 440) && (MouseY <= 665) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "UnZip"))) InventoryItemArmsBitchSuitSetType("UnZip");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1150, 440, 1375-1150, 665-440) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsBitchSuitSetType(null);
+	if (CommonIsClickAt(1600, 440, 1825-1600, 665-440) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "UnZip"))) InventoryItemArmsBitchSuitSetType("UnZip");
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 }
 
