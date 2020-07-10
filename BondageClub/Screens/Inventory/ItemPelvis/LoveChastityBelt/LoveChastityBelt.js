@@ -63,17 +63,17 @@ function InventoryItemPelvisLoveChastityBeltClick() {
   }
 
   if (C && DialogFocusItem && C.IsOwnedByPlayer()) {
-    if (CommonIsClickAt(1200, 600, 1450-1200, 665-600) && (DialogFocusItem.Property.Type == "Vibe") && (DialogFocusItem.Property.Intensity > -1)) InventoryItemPelvisLoveChastityBeltSetIntensity(-1 - DialogFocusItem.Property.Intensity);
+    if (CommonIsClickAt(1200, 600, 250, 65) && (DialogFocusItem.Property.Type == "Vibe") && (DialogFocusItem.Property.Intensity > -1)) InventoryItemPelvisLoveChastityBeltSetIntensity(-1 - DialogFocusItem.Property.Intensity);
 
     if (DialogFocusItem.Property.Type == "Shock") {
-      if (CommonIsClickAt(1200, 600, 1450-1200, 665-600)) InventoryItemPelvisLoveChastityBeltTriggerShock();
-      if (CommonIsClickAt(1200, 900, 1264-1200, 964-900) && (CurrentScreen == "ChatRoom")) {
+      if (CommonIsClickAt(1200, 600, 250, 65)) InventoryItemPelvisLoveChastityBeltTriggerShock();
+      if (CommonIsClickAt(1200, 900, 64, 64) && (CurrentScreen == "ChatRoom")) {
         DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
       }
     }
 
-    if (CommonIsClickAt(1200, 700, 1450-1200, 765-700) && InventoryItemPelvisLoveChastityBeltIntensityCanDecrease()) InventoryItemPelvisLoveChastityBeltSetIntensity(-1);
-    if (CommonIsClickAt(1550, 700, 1800-1550, 765-700) && InventoryItemPelvisLoveChastityBeltIntensityCanIncrease()) InventoryItemPelvisLoveChastityBeltSetIntensity(1);
+    if (CommonIsClickAt(1200, 700, 250, 65) && InventoryItemPelvisLoveChastityBeltIntensityCanDecrease()) InventoryItemPelvisLoveChastityBeltSetIntensity(-1);
+    if (CommonIsClickAt(1550, 700, 1800-1550, 65) && InventoryItemPelvisLoveChastityBeltIntensityCanIncrease()) InventoryItemPelvisLoveChastityBeltSetIntensity(1);
 
     if (CommonIsClickAt(1550, 800, 1800-1550, 865-800)) {
       DialogFocusItem.Property.LockButt = !DialogFocusItem.Property.LockButt;
@@ -86,16 +86,16 @@ function InventoryItemPelvisLoveChastityBeltClick() {
     }
 
     if ((DialogFocusItem.Property.Type == "Closed") || (DialogFocusItem.Property.Type == "Vibe") || (DialogFocusItem.Property.Type == "Shock")) {
-      if (CommonIsClickAt(1200, 800, 1450-1200, 865-800)) {
+      if (CommonIsClickAt(1200, 800, 250, 865-800)) {
         DialogFocusItem.Property.Intensity = -1;
         InventoryItemPelvisLoveChastityBeltSetTypeTo("Open", "LoveChastityBeltRemoveShieldMessage");
       }
     } else {
-      if (CommonIsClickAt(1200, 800, 1450-1200, 865-800)) {
+      if (CommonIsClickAt(1200, 800, 250, 865-800)) {
         InventoryItemPelvisLoveChastityBeltSetTypeTo("Closed", "LoveChastityBeltAddShieldMessage");
       }
       if (InventoryItemPelvisLoveChastityBeltCanInsert(C)) {
-        if (CommonIsClickAt(1200, 900, 1450-1200, 965-900)) {
+        if (CommonIsClickAt(1200, 900, 250, 965-900)) {
           InventoryItemPelvisLoveChastityBeltSetTypeTo("Vibe", "LoveChastityBeltAddVibeMessage");
         }
         if (CommonIsClickAt(1550, 900, 1800-1550, 965-900)) {

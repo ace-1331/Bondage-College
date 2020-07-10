@@ -216,7 +216,7 @@ function ExtendedItemClickTwo(Options, IsSelfBondage) {
  */
 function ExtendedItemClickGrid(Options, IsSelfBondage) {
 	// Pagination button
-	if (Options.length > 4 && CommonIsClickAt(1775, 25, 1865-1775, 85)) {
+	if (Options.length > 4 && CommonIsClickAt(1775, 25, 90, 85)) {
 		ExtendedItemNextPage(InventoryItemArmsWebOptions);
 	}
 

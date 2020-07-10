@@ -62,7 +62,7 @@ function InventoryItemTorsoHempRopeHarnessClick() {
 
 	// Menu buttons
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1775, 25, 1865-1775, 85)) HempRopeTorsoOptionOffset += 4;
+	if (CommonIsClickAt(1775, 25, 90, 85)) HempRopeTorsoOptionOffset += 4;
 	if (HempRopeTorsoOptionOffset >= HempRopeTorsoOptions.length) HempRopeTorsoOptionOffset = 0;
 
 	// Item buttons

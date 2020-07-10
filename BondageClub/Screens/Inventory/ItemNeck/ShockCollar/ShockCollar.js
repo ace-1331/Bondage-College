@@ -26,8 +26,8 @@ function InventoryItemNeckShockCollarClick() {
 		DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
 		DialogLeave();
 	}
-	if (CommonIsClickAt(1200, 700, 1450-1200, 765-700) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckShockCollarSetIntensity(-1);
-	if (CommonIsClickAt(1550, 700, 1800-1550, 765-700) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckShockCollarSetIntensity(1);
+	if (CommonIsClickAt(1200, 700, 250, 65) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckShockCollarSetIntensity(-1);
+	if (CommonIsClickAt(1550, 700, 1800-1550, 65) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckShockCollarSetIntensity(1);
 }
 
 // Sets the shock collar intensity

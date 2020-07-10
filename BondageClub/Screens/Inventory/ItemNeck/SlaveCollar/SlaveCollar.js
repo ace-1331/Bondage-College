@@ -149,7 +149,7 @@ function InventoryItemNeckSlaveCollarClick() {
         if (InventoryItemNeckSlaveCollarColorMode) {
 
 			// In color picking mode, we allow the user to change the collar color
-            if (CommonIsClickAt(1665, 25, 1755-1665, 85)) {
+            if (CommonIsClickAt(1665, 25, 90, 85)) {
                 var Color = ElementValue("InputColor");
                 if (CommonIsColor(Color)) {
                     CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
@@ -160,7 +160,7 @@ function InventoryItemNeckSlaveCollarClick() {
                     DialogFocusItem = null;
                 }
             }
-            if (CommonIsClickAt(1775, 25, 1865-1775, 85)) {
+            if (CommonIsClickAt(1775, 25, 90, 85)) {
 				InventoryItemNeckSlaveCollarColor = "Default";
                 InventoryItemNeckSlaveCollarColorMode = false;
                 CharacterAppearanceSetColorForGroup(C, InventoryItemNeckSlaveCollarColor, "ItemNeck");
@@ -177,11 +177,11 @@ function InventoryItemNeckSlaveCollarClick() {
         } else {
 			
 			// In regular mode, the owner can select the collar model and change the offset to get the next 8 models
-            if (CommonIsClickAt(1665, 25, 1755-1665, 85)) {
+            if (CommonIsClickAt(1665, 25, 90, 85)) {
 				InventoryItemNeckSlaveCollarOffset = InventoryItemNeckSlaveCollarOffset + 8;
 				if (InventoryItemNeckSlaveCollarOffset >= InventoryItemNeckSlaveCollarTypes.length) InventoryItemNeckSlaveCollarOffset = 0;
             }
-            if (CommonIsClickAt(1775, 25, 1865-1775, 85)) {
+            if (CommonIsClickAt(1775, 25, 90, 85)) {
                 InventoryItemNeckSlaveCollarColorMode = true;
                 InventoryItemNeckSlaveCollarColor = DialogFocusItem.Color;
                 ElementCreateInput("InputColor", "text", (DialogColorSelect != null) ? DialogColorSelect.toString() : "");

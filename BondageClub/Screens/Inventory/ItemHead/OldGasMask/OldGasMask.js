@@ -44,10 +44,10 @@ function InventoryItemHeadOldGasMaskClick() {
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1885, 25, 90, 85)) DialogFocusItem = null;
 	
-	if (CommonIsClickAt(1250, 650, 1450-1250, 55) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskLenses");
+	if (CommonIsClickAt(1250, 650, 200, 55) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskLenses");
 	if (CommonIsClickAt(1550, 650, 200, 55) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskTube1");
-	if (CommonIsClickAt(1250, 750, 1450-1250, 805-750) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskRebreather");
-	if (CommonIsClickAt(1550, 750, 200, 805-750) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskTube2");
+	if (CommonIsClickAt(1250, 750, 200, 65) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskRebreather");
+	if (CommonIsClickAt(1550, 750, 200, 65) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskTube2");
 	
 }
 

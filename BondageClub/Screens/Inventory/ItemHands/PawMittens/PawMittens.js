@@ -51,7 +51,7 @@ function InventoryItemHandsPawMittensClick() {
 	if (CommonIsClickAt(1250, 550, 225, 225)) InventoryItemHandsPawMittensChain();
 //	if (CommonIsClickAt(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Elbow"))) InventoryItemArmsLeatherCuffsSetPose("Elbow");
 //	if (CommonIsClickAt(1750, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Both"))) InventoryItemArmsLeatherCuffsSetPose("Both");
-//	if (CommonIsClickAt(1525, 700, 1900-1525, 765-700)) InventoryItemHandsPawMittensChain();
+//	if (CommonIsClickAt(1525, 700, 1900-1525, 65)) InventoryItemHandsPawMittensChain();
 }
 
 
