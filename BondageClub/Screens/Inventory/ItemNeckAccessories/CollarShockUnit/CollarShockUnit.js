@@ -28,9 +28,9 @@ function InventoryItemNeckAccessoriesCollarShockUnitClick() {
 		DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
 		DialogLeave();
 	}
-	if (CommonIsClickAt(1200, 650, 1400-1200, 705-650) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(0 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 650, 1750-1550, 705-650) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1550, 650, 1750-1550, 705-650) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1200, 650, 200, 705-650) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(0 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
+	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(1 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1375, 710, 1575-1375, 765-710) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(2 - DialogFocusItem.Property.Intensity);
 }
 

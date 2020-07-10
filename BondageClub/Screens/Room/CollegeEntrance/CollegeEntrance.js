@@ -36,13 +36,13 @@ function CollegeEntranceClick() {
 	if (CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) CharacterSetCurrent(CollegeEntranceStudent);
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
-	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
-	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && CollegeEntranceCanGoTennis()) CommonSetScreen("Room", "CollegeTennis");
-	if (CommonIsClickAt(1885, 505, 1975-1885, 595-505) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeCafeteria");
-	if (CommonIsClickAt(1885, 625, 1975-1885, 715-625) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeTheater");
-	if (CommonIsClickAt(1885, 745, 1975-1885, 835-745) && CollegeEntranceCanGoDetention()) CommonSetScreen("Room", "CollegeDetention");
-	if (CommonIsClickAt(1885, 865, 1975-1885, 975-865) && CollegeEntranceCanGoTeacher()) CommonSetScreen("Room", "CollegeTeacher");
+	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 90, 355-265) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 385, 90, 475-385) && CollegeEntranceCanGoTennis()) CommonSetScreen("Room", "CollegeTennis");
+	if (CommonIsClickAt(1885, 505, 90, 595-505) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeCafeteria");
+	if (CommonIsClickAt(1885, 625, 90, 715-625) && CollegeEntranceCanGoInside()) CommonSetScreen("Room", "CollegeTheater");
+	if (CommonIsClickAt(1885, 745, 90, 835-745) && CollegeEntranceCanGoDetention()) CommonSetScreen("Room", "CollegeDetention");
+	if (CommonIsClickAt(1885, 865, 90, 975-865) && CollegeEntranceCanGoTeacher()) CommonSetScreen("Room", "CollegeTeacher");
 }
 
 // Changes the character into college student clothes

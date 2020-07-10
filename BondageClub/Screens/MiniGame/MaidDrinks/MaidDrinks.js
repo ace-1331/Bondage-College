@@ -249,13 +249,13 @@ function MaidDrinksKeyDown() {
 function MaidDrinksClick() {
 
 	// If the game is over, clicking on the image will end it
-	if (MiniGameEnded && CommonIsClickAt(350, 0, 849-350, 999-0))
+	if (MiniGameEnded && CommonIsClickAt(350, 0, 849-350, 999))
 		CommonDynamicFunction(MiniGameReturnFunction + "()");
 
 	// If the game has started, we check the click position and send it as a move
 	if ((MiniGameTimer > 5000) && (MiniGameProgress != -1) && !MiniGameEnded && CommonIsMobile) {
 		var MoveType = -1;
-		if (CommonIsClickAt(1200, 700, 1400-1200, 850-700)) MoveType = 0;
+		if (CommonIsClickAt(1200, 700, 200, 850-700)) MoveType = 0;
 		if (CommonIsClickAt(1400, 700, 1600-1400, 850-700)) MoveType = 1;
 		if (CommonIsClickAt(1600, 700, 1800-1600, 850-700)) MoveType = 2;
 		if (CommonIsClickAt(1800, 700, 2000-1800, 850-700)) MoveType = 3;

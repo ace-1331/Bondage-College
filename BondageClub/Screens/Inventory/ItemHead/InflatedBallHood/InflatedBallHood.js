@@ -26,13 +26,13 @@ function InventoryItemHeadInflatedBallHoodDraw() {
 function InventoryItemHeadInflatedBallHoodClick() {
 	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
-	if (CommonIsClickAt(1200, 650, 1400-1200, 705-650) && (DialogFocusItem.Property.PumpLevel > 0)) InventoryItemHeadInflatedBallHoodSetPump(0 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1550, 650, 1750-1550, 705-650) && (DialogFocusItem.Property.PumpLevel < 1)) InventoryItemHeadInflatedBallHoodSetPump(1 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1550, 650, 1750-1550, 705-650) && (DialogFocusItem.Property.PumpLevel > 1)) InventoryItemHeadInflatedBallHoodSetPump(1 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1200, 710, 1400-1200, 765-710) && (DialogFocusItem.Property.PumpLevel < 2)) InventoryItemHeadInflatedBallHoodSetPump(2 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1200, 710, 1400-1200, 765-710) && (DialogFocusItem.Property.PumpLevel > 2)) InventoryItemHeadInflatedBallHoodSetPump(2 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1550, 710, 1750-1550, 765-710) && (DialogFocusItem.Property.PumpLevel > 3)) InventoryItemHeadInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
-	if (CommonIsClickAt(1550, 710, 1750-1550, 765-710) && (DialogFocusItem.Property.PumpLevel < 3)) InventoryItemHeadInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1200, 650, 200, 705-650) && (DialogFocusItem.Property.PumpLevel > 0)) InventoryItemHeadInflatedBallHoodSetPump(0 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.PumpLevel < 1)) InventoryItemHeadInflatedBallHoodSetPump(1 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1550, 650, 200, 705-650) && (DialogFocusItem.Property.PumpLevel > 1)) InventoryItemHeadInflatedBallHoodSetPump(1 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1200, 710, 200, 765-710) && (DialogFocusItem.Property.PumpLevel < 2)) InventoryItemHeadInflatedBallHoodSetPump(2 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1200, 710, 200, 765-710) && (DialogFocusItem.Property.PumpLevel > 2)) InventoryItemHeadInflatedBallHoodSetPump(2 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1550, 710, 200, 765-710) && (DialogFocusItem.Property.PumpLevel > 3)) InventoryItemHeadInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
+	if (CommonIsClickAt(1550, 710, 200, 765-710) && (DialogFocusItem.Property.PumpLevel < 3)) InventoryItemHeadInflatedBallHoodSetPump(3 - DialogFocusItem.Property.PumpLevel);
 	if (CommonIsClickAt(1375, 770, 1575-1375, 825-770) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemHeadInflatedBallHoodSetPump(4 - DialogFocusItem.Property.PumpLevel);
 }
 

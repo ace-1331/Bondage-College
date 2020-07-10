@@ -40,9 +40,9 @@ function AsylumTherapyClick() {
 		if ((ReputationGet("Asylum") <= -50) && (LogValue("Committed", "Asylum") >= CurrentTime) && Player.CanInteract()) InventoryWear(Player, "StraitJacket", "ItemArms", "Default", 3);
 		CommonSetScreen("Room", "AsylumEntrance");
 	}
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
-	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) AsylumEntranceWearPatientClothes(Player);
-	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) CharacterNaked(Player);
+	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 90, 355-265) && Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) AsylumEntranceWearPatientClothes(Player);
+	if (CommonIsClickAt(1885, 385, 90, 475-385) && Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) CharacterNaked(Player);
 }
 
 // When the player gets ungagged by the nurse

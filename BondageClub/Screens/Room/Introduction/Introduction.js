@@ -81,7 +81,7 @@ function IntroductionClick() {
 	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(IntroductionMaid);
 	if (CommonIsClickAt(1250, 0, 1750-1250, 1000-0)) CharacterSetCurrent(IntroductionSub);
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
 }
 
 // The maid opinion will affect the global player Domme/sub reputation at the end of the first training

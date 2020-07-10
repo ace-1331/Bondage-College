@@ -58,10 +58,10 @@ function PhotographicClick() {
 		CharacterRefresh(Player);
 		CommonSetScreen("Room", "MainHall");
 	}
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
-	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && Player.CanInteract()) PhotographicCanvasToPng(750);
-	if (CommonIsClickAt(1885, 385, 1975-1885, 475-385)  && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
-	if (CommonIsClickAt(1885, 505, 1975-1885, 595-505) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 90, 355-265) && Player.CanInteract()) PhotographicCanvasToPng(750);
+	if (CommonIsClickAt(1885, 385, 90, 475-385)  && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if (CommonIsClickAt(1885, 505, 90, 595-505) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 }
 
 function PhotographicCanvasToPng(x) {

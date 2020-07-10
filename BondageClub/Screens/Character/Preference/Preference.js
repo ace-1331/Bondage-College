@@ -272,28 +272,28 @@ function PreferenceClick() {
 	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityClick();
 
 	// If the user clicks on "Exit"
-	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) PreferenceExit();
+	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) PreferenceExit();
 
 	// If the user clicks on the chat settings button
-	if (CommonIsClickAt(1815, 190, 1905-1815, 280-190) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 190, 90, 280-190) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Chat";
 	}
 
 	// If the user clicks on the audio settings button
-	if (CommonIsClickAt(1815, 305, 1905-1815, 395-305) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 305, 90, 395-305) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Audio";
 	}
 
 	// If the user clicks on the arousal settings button
-	if (CommonIsClickAt(1815, 420, 1905-1815, 510-420) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 420, 90, 510-420) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Arousal";
 	}
 
 	// If the user clicks on the security settings button
-	if (CommonIsClickAt(1815, 535, 1905-1815, 625-535) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 535, 90, 625-535) && (PreferenceColorPick == "")) {
 		PreferenceMainScreenExit();
 		ElementCreateInput("InputEmailOld", "text", "", "100");
 		ElementCreateInput("InputEmailNew", "text", "", "100");
@@ -309,7 +309,7 @@ function PreferenceClick() {
 
 	// If we must show/hide/use the color picker
 	if (CommonIsClickAt(1140, 187, 1205-1140, 252-187)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
-	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick != "")) PreferenceColorPick = "";
+	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick != "")) PreferenceColorPick = "";
 
     // If we must change audio gameplay or visual settings
 	if (CommonIsClickAt(500, 392, 750-500, 456-392)) {
@@ -468,7 +468,7 @@ function PreferenceSubscreenSecurityRun() {
 function PreferenceSubscreenAudioClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		PreferenceMainScreenLoad();
 	}
@@ -527,7 +527,7 @@ function PreferenceSubscreenChatClick() {
 	}
 
 	// If the user clicked the exit icon to return to the main screen
-	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		PreferenceMainScreenLoad();
 	}
@@ -538,7 +538,7 @@ function PreferenceSubscreenChatClick() {
 function PreferenceSubscreenArousalClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		Player.FocusGroup = null;
 		PreferenceMainScreenLoad();
@@ -626,7 +626,7 @@ function PreferenceSubscreenArousalClick() {
 function PreferenceSubscreenSecurityClick() {
 
 	// If the user clicked the exit icon to return to the main screen
-	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75) && (PreferenceColorPick == "")) {
+	if (CommonIsClickAt(1815, 75, 90, 165-75) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		ElementRemove("InputEmailOld");
 		ElementRemove("InputEmailNew");

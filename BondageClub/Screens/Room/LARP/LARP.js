@@ -30,8 +30,8 @@ function LARPClick() {
 	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(500, 0, 500, 1000)) CharacterSetCurrent(Player);
 	if (!DailyJobSubSearchIsActive() && CommonIsClickAt(1000, 0, 1500-1000, 1000-0)) CharacterSetCurrent(LARPOrganiser);	
 	if (CommonIsClickAt(1885, 25, 90, 90)) CommonSetScreen("Room", "MainHall");
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
-	if (CommonIsClickAt(1885, 265, 1975-1885, 355-265) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) {
+	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 265, 90, 355-265) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null) && Player.CanChange()) {
 		Player.Game.LARP.Team = "None";
 		ServerSend("AccountUpdate", { Game: Player.Game });
 		var BG = CommonBackgroundList.slice();

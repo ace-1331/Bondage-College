@@ -36,13 +36,13 @@ function CellRun() {
 function CellClick() {
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanKneel() && (CellOpenTimer > CurrentTime)) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(Player);
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
 	if (CellOpenTimer < CurrentTime) {
 		if (CommonIsClickAt(1885, 25, 90, 90)) CommonSetScreen("Room", "MainHall");
-		if (CommonIsClickAt(1885, 265, 1975-1885, 355-265)) CellLock(CellMinutes);
-		if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && (CellMinutes < 60)) CellMinutes = CellMinutes + 5;
-		if (CommonIsClickAt(1885, 505, 1975-1885, 595-505) && (CellMinutes > 5)) CellMinutes = CellMinutes - 5;
-		if (CommonIsClickAt(1885, 625, 1975-1885, 715-625)) CharacterSetCurrent(CellKeyDepositStaff);
+		if (CommonIsClickAt(1885, 265, 90, 355-265)) CellLock(CellMinutes);
+		if (CommonIsClickAt(1885, 385, 90, 475-385) && (CellMinutes < 60)) CellMinutes = CellMinutes + 5;
+		if (CommonIsClickAt(1885, 505, 90, 595-505) && (CellMinutes > 5)) CellMinutes = CellMinutes - 5;
+		if (CommonIsClickAt(1885, 625, 90, 715-625)) CharacterSetCurrent(CellKeyDepositStaff);
 	}
 }
 

@@ -199,7 +199,7 @@ function PrisonClick() {
 			Player.CurrentDialog = TextGet("LockKey");
 		} 
 	}
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
 }
 
 // Returns true if Appearance for Character available

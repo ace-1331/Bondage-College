@@ -222,7 +222,7 @@ function GameLARPClickProcess() {
 function GameLARPClick() {
 
 	// When the user exits
-	if (CommonIsClickAt(1815, 75, 1905-1815, 165-75)) GameLARPExit();
+	if (CommonIsClickAt(1815, 75, 90, 165-75)) GameLARPExit();
 
 	// When the user selects a new class
 	if (CommonIsClickAt(900, 193, 1300-900, 257-193) && (GameLARPStatus == "")) {

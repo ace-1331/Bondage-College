@@ -68,7 +68,7 @@ function CollegeDetentionRun() {
 function CollegeDetentionClick() {
 	if (CommonIsClickAt(1000, 0, 1500-1000, 1000-0) && (CollegeDetentionYuki != null) && !CollegeDetentionYuki.GoneAway) CharacterSetCurrent(CollegeDetentionYuki);
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
 }
 
 // When Yuki love towards the player changes, it can also trigger an event.  When a good or bad move is done, her expression will change quickly.

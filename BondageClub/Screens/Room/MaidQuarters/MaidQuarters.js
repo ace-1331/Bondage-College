@@ -70,7 +70,7 @@ function MaidQuartersClick() {
 		if (MaidQuartersMaid.Stage == "285") MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, (MaidQuartersOnlineDrinkCompleted()) ? "MaidDrinkOnlineComplete" : "MaidDrinkOnlineIncomplete");
 	}
 	if (CommonIsClickAt(1885, 25, 90, 90) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
-	if (CommonIsClickAt(1885, 145, 1975-1885, 235-145)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1885, 145, 90, 235-145)) InformationSheetLoadCharacter(Player);
 	DailyJobSubSearchClick();
 }
 

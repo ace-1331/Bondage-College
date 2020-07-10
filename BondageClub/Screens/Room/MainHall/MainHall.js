@@ -195,27 +195,27 @@ function MainHallClick() {
 
 		// Chat, Shop & Private Room
 		if (CommonIsClickAt(1765, 145, 1855-1765, 235-145)) MainHallWalk("Shop");
-		if (CommonIsClickAt(1885, 145, 1975-1885, 235-145) && !LogQuery("LockOutOfPrivateRoom", "Rule")) MainHallWalk("Private");
+		if (CommonIsClickAt(1885, 145, 90, 235-145) && !LogQuery("LockOutOfPrivateRoom", "Rule")) MainHallWalk("Private");
 
 		// Introduction, Maid & Management
 		if (CommonIsClickAt(1645, 265, 1735-1645, 355-265)) MainHallWalk("Introduction");
 		if (CommonIsClickAt(1765, 265, 1855-1765, 355-265)) MainHallWalk("MaidQuarters");
-		if (CommonIsClickAt(1885, 265, 1975-1885, 355-265)) MainHallWalk("Management");
+		if (CommonIsClickAt(1885, 265, 90, 355-265)) MainHallWalk("Management");
 
 		// Kidnap League, Dojo & Explore/Sarah
 		if (CommonIsClickAt(1645, 385, 1735-1645, 475-385)) MainHallWalk("KidnapLeague");
 		if (CommonIsClickAt(1765, 385, 1855-1765, 475-385)) MainHallWalk("Shibari");
-		if (CommonIsClickAt(1885, 385, 1975-1885, 475-385) && SarahRoomAvailable) MainHallWalk("Sarah");
+		if (CommonIsClickAt(1885, 385, 90, 475-385) && SarahRoomAvailable) MainHallWalk("Sarah");
 
 		// Cell, Slave Market & Look for trouble
 		if (CommonIsClickAt(1645, 505, 1735-1645, 595-505)) MainHallWalk("Trouble");
 		if (CommonIsClickAt(1765, 505, 1855-1765, 595-505)) MainHallWalk("SlaveMarket");
-		if (CommonIsClickAt(1885, 505, 1975-1885, 595-505)) MainHallWalk("Cell");
+		if (CommonIsClickAt(1885, 505, 90, 595-505)) MainHallWalk("Cell");
 
 		// Asylum & College
 		if (CommonIsClickAt(1645, 625, 1735-1645, 715-625) && !ManagementIsClubSlave()) MainHallWalk("LARP");
 		if (CommonIsClickAt(1765, 625, 1855-1765, 715-625) && !ManagementIsClubSlave()) MainHallWalk("CollegeEntrance");
-		if (CommonIsClickAt(1885, 625, 1975-1885, 715-625)) MainHallWalk("AsylumEntrance");
+		if (CommonIsClickAt(1885, 625, 90, 715-625)) MainHallWalk("AsylumEntrance");
 		
 		// Custom content rooms - Gambling, Prison & Photographic
 		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Gambling");
