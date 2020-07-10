@@ -50,7 +50,7 @@ function InventoryItemVulvaClitAndDildoVibratorbeltClick() {
 	if (CommonIsClickAt(1550, 835, 1750-1550, 890-835) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemVulvaClitAndDildoVibratorbeltIntensity(2 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 835, 1750-1550, 890-835) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemVulvaClitAndDildoVibratorbeltIntensity(2 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1375, 895, 1575-1375, 950-895) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaClitAndDildoVibratorbeltIntensity(3 - DialogFocusItem.Property.Intensity);
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1200, 550, 1400-1200, 605-550) && (DialogFocusItem.Property.Intensity > -1)) InventoryItemVulvaClitAndDildoVibratorbeltSetIntensity(-1 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 550, 1750-1550, 605-550) && (DialogFocusItem.Property.Intensity < 0)) InventoryItemVulvaClitAndDildoVibratorbeltSetIntensity(0 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 550, 1750-1550, 605-550) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemVulvaClitAndDildoVibratorbeltSetIntensity(0 - DialogFocusItem.Property.Intensity);

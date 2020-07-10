@@ -788,19 +788,19 @@ function AppearanceClick() {
 					}
 
 		// If we must set back the default outfit or set a random outfit
-		if (CommonIsClickAt(1300, 25, 1390-1300, 115-25) && (C.ID == 0) && !LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceSetDefault(C);
-		if (CommonIsClickAt(1300, 25, 1390-1300, 115-25) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
-		if (CommonIsClickAt(1417, 25, 1507-1417, 115-25) && (C.ID == 0)) CharacterAppearanceFullRandom(C);
-		if (CommonIsClickAt(1417, 25, 1507-1417, 115-25) && (C.ID != 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
-		if (CommonIsClickAt(1534, 25, 1624-1534, 115-25)) CharacterAppearanceStripLayer(C);
-		if (CommonIsClickAt(1651, 25, 1741-1651, 115-25)) CharacterAppearanceMoveOffset(C, CharacterAppearanceNumPerPage);
-		if (CommonIsClickAt(1768, 25, 1858-1768, 115-25)) CharacterAppearanceExit(C);
+		if (CommonIsClickAt(1300, 25, 1390-1300, 90) && (C.ID == 0) && !LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceSetDefault(C);
+		if (CommonIsClickAt(1300, 25, 1390-1300, 90) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
+		if (CommonIsClickAt(1417, 25, 1507-1417, 90) && (C.ID == 0)) CharacterAppearanceFullRandom(C);
+		if (CommonIsClickAt(1417, 25, 1507-1417, 90) && (C.ID != 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
+		if (CommonIsClickAt(1534, 25, 1624-1534, 90)) CharacterAppearanceStripLayer(C);
+		if (CommonIsClickAt(1651, 25, 1741-1651, 90)) CharacterAppearanceMoveOffset(C, CharacterAppearanceNumPerPage);
+		if (CommonIsClickAt(1768, 25, 1858-1768, 90)) CharacterAppearanceExit(C);
 		if (CommonIsClickAt(1885, 25, 90, 90)) CharacterAppearanceReady(C);
 
 	} else if (CharacterAppearanceWardrobeMode) {
 
 		// In warehouse mode, we draw the 12 possible warehouse slots for the character to save & load
-		if (CommonIsClickAt(1651, 25, 1741-1651, 115-25)) {
+		if (CommonIsClickAt(1651, 25, 1741-1651, 90)) {
 			CharacterAppearanceWardrobeOffset += 6;
 			if (CharacterAppearanceWardrobeOffset >= Player.Wardrobe.length) CharacterAppearanceWardrobeOffset = 0;
 		}
@@ -821,9 +821,9 @@ function AppearanceClick() {
 						CharacterAppearanceWardrobeText = TextGet("WardrobeNameError");
 					}
 				}
-		if (CommonIsClickAt(1417, 25, 1507-1417, 115-25)) { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); }
-		if (CommonIsClickAt(1534, 25, 1624-1534, 115-25)) CharacterAppearanceStripLayer(C);
-		if (CommonIsClickAt(1768, 25, 1858-1768, 115-25)) CharacterAppearanceExit(C);
+		if (CommonIsClickAt(1417, 25, 1507-1417, 90)) { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); }
+		if (CommonIsClickAt(1534, 25, 1624-1534, 90)) CharacterAppearanceStripLayer(C);
+		if (CommonIsClickAt(1768, 25, 1858-1768, 90)) CharacterAppearanceExit(C);
 		if (CommonIsClickAt(1885, 25, 90, 90)) CharacterAppearanceReady(C);
 
 	} else {
@@ -834,7 +834,7 @@ function AppearanceClick() {
 				CharacterAppearanceSetColorForGroup(C, ElementValue("InputColor").toLowerCase(), CharacterAppearanceColorPicker);
 
 		// Accepts the new color
-		if (CommonIsClickAt(1768, 25, 1858-1768, 115-25)) {
+		if (CommonIsClickAt(1768, 25, 1858-1768, 90)) {
 			CharacterAppearanceSetColorForGroup(C, CharacterAppearanceColorPickerBackup, CharacterAppearanceColorPicker);
 			CharacterAppearanceColorPicker = "";
 		}

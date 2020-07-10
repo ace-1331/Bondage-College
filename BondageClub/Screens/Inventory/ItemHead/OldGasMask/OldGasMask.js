@@ -41,8 +41,8 @@ function InventoryItemHeadOldGasMaskClick() {
 	var C = CharacterGetCurrent();
 	var itemBlocked = InventoryGet(C, "ItemAddon") != null;
 	
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
 	
 	if (CommonIsClickAt(1250, 650, 1450-1250, 705-650) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskLenses");
 	if (CommonIsClickAt(1550, 650, 1750-1550, 705-650) && !itemBlocked) InventoryItemHeadOldGasMaskSetItem("OldGasMaskTube1");

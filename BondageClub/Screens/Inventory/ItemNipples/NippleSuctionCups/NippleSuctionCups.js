@@ -24,7 +24,7 @@ function InventoryItemNipplesNippleSuctionCupsDraw() {
 
 // Catches the item extension clicks
 function InventoryItemNipplesNippleSuctionCupsClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1200, 650, 1400-1200, 705-650) && (DialogFocusItem.Property.SuctionLevel > 0)) InventoryItemNipplesNippleSuctionCupsIntensity(0 - DialogFocusItem.Property.SuctionLevel);
 	if (CommonIsClickAt(1550, 650, 1750-1550, 705-650) && (DialogFocusItem.Property.SuctionLevel < 1)) InventoryItemNipplesNippleSuctionCupsIntensity(1 - DialogFocusItem.Property.SuctionLevel);
 	if (CommonIsClickAt(1550, 650, 1750-1550, 705-650) && (DialogFocusItem.Property.SuctionLevel > 1)) InventoryItemNipplesNippleSuctionCupsIntensity(1 - DialogFocusItem.Property.SuctionLevel);

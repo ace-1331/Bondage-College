@@ -58,7 +58,7 @@ function InventoryItemMiscMistressTimerPadlockDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMiscMistressTimerPadlockClick() {
-    if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) InventoryItemMiscMistressTimerPadlockExit();
+    if (CommonIsClickAt(1885, 25, 1975-1885, 85)) InventoryItemMiscMistressTimerPadlockExit();
     if (!Player.CanInteract()) return;
 
     if (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) {

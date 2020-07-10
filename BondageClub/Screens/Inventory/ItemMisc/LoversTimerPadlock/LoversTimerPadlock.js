@@ -60,7 +60,7 @@ function InventoryItemMiscLoversTimerPadlockDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMiscLoversTimerPadlockClick() {
-    if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) InventoryItemMiscLoversTimerPadlockExit();
+    if (CommonIsClickAt(1885, 25, 1975-1885, 85)) InventoryItemMiscLoversTimerPadlockExit();
     if (!Player.CanInteract()) return;
     var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 

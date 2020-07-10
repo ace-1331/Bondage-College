@@ -74,8 +74,8 @@ function InventoryItemFeetHempRopeDraw() {
 function InventoryItemFeetHempRopeClick() {
 
 	// Menu buttons
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
-	if (CommonIsClickAt(1775, 25, 1865-1775, 110-25)) HempRopeFeetOptionOffset += 4;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1775, 25, 1865-1775, 85)) HempRopeFeetOptionOffset += 4;
 	if (HempRopeFeetOptionOffset >= HempRopeFeetOptions.length) HempRopeFeetOptionOffset = 0;
 
 	// Item buttons

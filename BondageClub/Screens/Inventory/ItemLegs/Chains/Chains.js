@@ -31,9 +31,9 @@ function InventoryItemLegsChainsDraw() {
 
 // Catches the item extension clicks
 function InventoryItemLegsChainsClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
-	if (CommonIsClickAt(1175, 550, 1400-1175, 775-550) && (DialogFocusItem.Property.Type != null)) InventoryItemLegsChainsSetType(null);
-	if (CommonIsClickAt(1600, 550, 1825-1600, 775-550) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Strict")) && (SkillGetLevelReal(Player, "Bondage") >= 2)) InventoryItemLegsChainsSetType("Strict");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1175, 550, 1400-1175, 225) && (DialogFocusItem.Property.Type != null)) InventoryItemLegsChainsSetType(null);
+	if (CommonIsClickAt(1600, 550, 1825-1600, 225) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Strict")) && (SkillGetLevelReal(Player, "Bondage") >= 2)) InventoryItemLegsChainsSetType("Strict");
 }
 
 // Sets the Chain bondage position (Basic or Strict)

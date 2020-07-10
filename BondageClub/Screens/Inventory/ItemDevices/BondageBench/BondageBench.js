@@ -44,7 +44,7 @@ function InventoryItemDevicesBondageBenchDraw() {
 
 // Catches the item extension clicks
 function InventoryItemDevicesBondageBenchClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (CommonIsClickAt(1389, 550, 225, 225) && InventoryGet(C, "ItemAddon") == null) InventoryItemDevicesBondageBenchSetPose("StrapUp");
 }

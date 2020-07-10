@@ -33,11 +33,11 @@ function InventoryItemFeetDuctTapeDraw() {
 
 // Catches the item extension clicks
 function InventoryItemFeetDuctTapeClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
-	if (CommonIsClickAt(1000, 550, 1225-1000, 775-550) && (DialogFocusItem.Property != null)) InventoryItemFeetDuctTapeSetPose(null);
-	if (CommonIsClickAt(1250, 550, 1475-1250, 775-550) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "HalfFeet"))) InventoryItemFeetDuctTapeSetPose("HalfFeet");
-	if (CommonIsClickAt(1500, 550, 1725-1500, 775-550) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "MostFeet"))) InventoryItemFeetDuctTapeSetPose("MostFeet");
-	if (CommonIsClickAt(1750, 550, 1975-1750, 775-550) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "CompleteFeet"))) InventoryItemFeetDuctTapeSetPose("CompleteFeet");
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
+	if (CommonIsClickAt(1000, 550, 1225-1000, 225) && (DialogFocusItem.Property != null)) InventoryItemFeetDuctTapeSetPose(null);
+	if (CommonIsClickAt(1250, 550, 1475-1250, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "HalfFeet"))) InventoryItemFeetDuctTapeSetPose("HalfFeet");
+	if (CommonIsClickAt(1500, 550, 1725-1500, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "MostFeet"))) InventoryItemFeetDuctTapeSetPose("MostFeet");
+	if (CommonIsClickAt(1750, 550, 1975-1750, 225) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "CompleteFeet"))) InventoryItemFeetDuctTapeSetPose("CompleteFeet");
 }
 
 // Sets the duct tape type (the wraps require no clothes)

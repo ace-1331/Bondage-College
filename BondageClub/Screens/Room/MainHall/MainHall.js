@@ -185,8 +185,8 @@ function MainHallClick() {
 
 	// Character, Dressing, Exit & Chat
 	if (CommonIsClickAt(750, 0, 1250-750, 1000-0)) CharacterSetCurrent(Player);
-	if (CommonIsClickAt(1645, 25, 1735-1645, 115-25)) InformationSheetLoadCharacter(Player);
-	if (CommonIsClickAt(1765, 25, 1855-1765, 115-25) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+	if (CommonIsClickAt(1645, 25, 1735-1645, 90)) InformationSheetLoadCharacter(Player);
+	if (CommonIsClickAt(1765, 25, 1855-1765, 90) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if (CommonIsClickAt(1885, 25, 90, 90)) window.location = window.location;
 	if (CommonIsClickAt(1645, 145, 1735-1645, 235-145)) ChatRoomStart("", "", "MainHall", "IntroductionDark", CommonBackgroundList.slice());
 

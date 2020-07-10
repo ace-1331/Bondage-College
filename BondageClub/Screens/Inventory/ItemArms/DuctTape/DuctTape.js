@@ -36,7 +36,7 @@ function InventoryItemArmsDuctTapeDraw() {
 
 // Catches the item extension clicks
 function InventoryItemArmsDuctTapeClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1000, 450, 1225-1000, 675-450) && (DialogFocusItem.Property != null)) InventoryItemArmsDuctTapeSetPose(null);
 	if (CommonIsClickAt(1375, 450, 1600-1375, 675-450) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Bottom"))) InventoryItemArmsDuctTapeSetPose("Bottom");
 	if (CommonIsClickAt(1750, 450, 1975-1750, 675-450) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "Top"))) InventoryItemArmsDuctTapeSetPose("Top");

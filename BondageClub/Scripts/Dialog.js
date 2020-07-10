@@ -781,7 +781,7 @@ function DialogItemClick(ClickItem) {
 function DialogClick() {
 
 	// If the user clicked the Up button, move the character up to the top of the screen
-	if ((CurrentCharacter.HeightModifier < -90) && (CurrentCharacter.FocusGroup != null) && CommonIsClickAt(510, 25, 600-510, 115-25)) {
+	if ((CurrentCharacter.HeightModifier < -90) && (CurrentCharacter.FocusGroup != null) && CommonIsClickAt(510, 25, 600-510, 90)) {
 		CharacterAppearanceForceUpCharacter = CurrentCharacter.MemberNumber;
 		CurrentCharacter.HeightModifier = 0;
 		return;
@@ -890,7 +890,7 @@ function DialogClick() {
 	} else {
 
 		// If we need to leave the dialog (only allowed when there's an entry point to the dialog, not in the middle of a conversation)
-		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT") && CommonIsClickAt(1885, 25, 1975-1885, 110-25))
+		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT") && CommonIsClickAt(1885, 25, 1975-1885, 85))
 			DialogLeave();
 
 		// If the user clicked on a text dialog option, we trigger it

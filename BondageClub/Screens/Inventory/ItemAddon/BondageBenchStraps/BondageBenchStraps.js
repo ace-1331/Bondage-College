@@ -37,7 +37,7 @@ function InventoryItemAddonBondageBenchStrapsDraw() {
 
 // Catches the item extension clicks
 function InventoryItemAddonBondageBenchStrapsClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1000, 550, 225, 225) && (DialogFocusItem.Property.Restrain != null)) InventoryItemAddonBondageBenchStrapsSetPose(null);
 	if (CommonIsClickAt(1250, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Normal"))) InventoryItemAddonBondageBenchStrapsSetPose("Normal");
 	if (CommonIsClickAt(1500, 550, 225, 225) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Heavy"))) InventoryItemAddonBondageBenchStrapsSetPose("Heavy");

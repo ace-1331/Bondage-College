@@ -37,7 +37,7 @@ function InventoryItemDevicesTeddyBearDraw() {
 
 // Catches the item extension clicks
 function InventoryItemDevicesTeddyBearClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1000, 450, 1225-1000, 675-450) && (DialogFocusItem.Property.Type != null)) InventoryItemDevicesTeddyBearSetType(null);
 	if (CommonIsClickAt(1375, 450, 1600-1375, 675-450) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Fox"))) InventoryItemDevicesTeddyBearSetType("Fox");
 	if (CommonIsClickAt(1750, 450, 1975-1750, 675-450) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Kitty"))) InventoryItemDevicesTeddyBearSetType("Kitty");

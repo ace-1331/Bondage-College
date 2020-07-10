@@ -84,7 +84,7 @@ function ExtendedItemDraw(Options, DialogPrefix) {
  */
 function ExtendedItemClick(Options) {
 	// Exit button
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) {
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) {
 		DialogFocusItem = null;
 		return;
 	}
@@ -216,7 +216,7 @@ function ExtendedItemClickTwo(Options, IsSelfBondage) {
  */
 function ExtendedItemClickGrid(Options, IsSelfBondage) {
 	// Pagination button
-	if (Options.length > 4 && CommonIsClickAt(1775, 25, 1865-1775, 110-25)) {
+	if (Options.length > 4 && CommonIsClickAt(1775, 25, 1865-1775, 85)) {
 		ExtendedItemNextPage(InventoryItemArmsWebOptions);
 	}
 

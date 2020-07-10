@@ -25,7 +25,7 @@ function InventoryItemVulvaPiercingsTapedClitEggDraw() {
 
 // Catches the item extension clicks
 function InventoryItemVulvaPiercingsTapedClitEggClick() {
-	if (CommonIsClickAt(1885, 25, 1975-1885, 110-25)) DialogFocusItem = null;
+	if (CommonIsClickAt(1885, 25, 1975-1885, 85)) DialogFocusItem = null;
 	if (CommonIsClickAt(1200, 650, 1400-1200, 705-650) && (DialogFocusItem.Property.Intensity > -1)) InventoryItemVulvaPiercingsTapedClitEggSetIntensity(-1 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 650, 1750-1550, 705-650) && (DialogFocusItem.Property.Intensity < 0)) InventoryItemVulvaPiercingsTapedClitEggSetIntensity(0 - DialogFocusItem.Property.Intensity);
 	if (CommonIsClickAt(1550, 650, 1750-1550, 705-650) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemVulvaPiercingsTapedClitEggSetIntensity(0 - DialogFocusItem.Property.Intensity);
