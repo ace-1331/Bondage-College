@@ -45,7 +45,7 @@ function ChatSearchRun() {
 
 			// Draw the room rectangle
 			var HasFriends = ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0;
-			var IsFull = ChatSearchResult[C].MemberCount == ChatSearchResult[C].Limit;
+			var IsFull = ChatSearchResult[C].MemberCount == ChatSearchResult[C].MemberLimit;
 			DrawButton(X, Y, 630, 85, "", (HasFriends && IsFull ? "#448855" : HasFriends ? "#CFFFCF" : IsFull ? "#666" : "White"));
 			DrawTextFit(ChatSearchResult[C].Name + " - " + ChatSearchResult[C].Creator + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 620, "black");
 			DrawTextFit(ChatSearchResult[C].Description, X + 315, Y + 62, 620, "black");
@@ -190,7 +190,7 @@ function ChatSearchQuerySort() {
 		ChatSearchResult = ChatSearchResult.filter(Room => Room.MemberCount < Room.MemberLimit);
 	
 	// Full rooms are sent at the back
-	ChatSearchResult.sort((Room1, Room2) => Room1.Limit == Room1.MemberCount ? 1 : Room2.Limit != Room2.MemberCount ? 0 : -1 );
+	ChatSearchResult.sort((Room1, Room2) => Room1.MemberLimit >= Room1.MemberCount ? 1 : Room2.MemberLimit != Room2.MemberCount ? 0 : -1 );
 
 	// Friendlist option overrides basic order
 	if (Player.ChatSettings.SearchFriendsFirst)
