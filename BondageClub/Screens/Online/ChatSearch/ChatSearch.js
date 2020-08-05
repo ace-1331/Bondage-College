@@ -209,12 +209,13 @@ function ChatSearchQuerySort() {
 	if (!Player.ChatSettings.SearchShowsFullRooms)
 		ChatSearchResult = ChatSearchResult.filter(Room => Room.MemberCount < Room.MemberLimit);
 	
-	// Full rooms are sent at the back
-	ChatSearchResult.sort((Room1, Room2) => Room2.MemberLimit / Room2.MemberCount - Room1.MemberLimit / Room1.MemberCount );
+	// Send full rooms to the back of the list and save the order of creation.
+	ChatSearchResult = ChatSearchResult.map((Room, Idx) => { Room.Order = Idx; return Room; });
+	ChatSearchResult.sort((R1, R2) => R1.MemberCount >= R1.MemberLimit ? 1 : (R2.MemberCount >= R2.MemberLimit ? -1 : (R2.Order > R1.Order ? -1 : R2.Order < R1.Order ? 1 : 0)));
 
-	// Friendlist option overrides basic order
+	// Friendlist option overrides basic order, but keeps full rooms at the back for each number of each different total of friends.
 	if (Player.ChatSettings.SearchFriendsFirst)
-		ChatSearchResult.sort((Room1, Room2) => Room2.Friends.length - Room1.Friends.length);
+		ChatSearchResult.sort((R1, R2) => R2.Friends.length - R1.Friends.length);
 	
 	ChatSearchQuerySorted = true;
 }
