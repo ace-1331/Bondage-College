@@ -2,6 +2,8 @@
 var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
 var ChatSearchQuerySorted = false;
+var ChatSearchLastQuery = "";
+var ChatSearchLastQueryTime = 0;
 var ChatSearchResultOffset = 0;
 var ChatSearchMessage = "";
 var ChatSearchLeaveRoom = "MainHall";
@@ -179,9 +181,15 @@ function ChatSearchResponse(data) {
  * @returns {void} - Nothing
  */
 function ChatSearchQuery() {
-	ChatSearchResult = [];
-	ChatSearchQuerySorted = false;
-	ServerSend("ChatRoomSearch", { Query: ElementValue("InputSearch").toUpperCase().trim(), Space: ChatRoomSpace });
+	var Query = ElementValue("InputSearch").toUpperCase().trim();
+	// Prevent spam searching the same thing.
+	if (ChatSearchLastQuery != Query || (ChatSearchLastQuery == Query && ChatSearchLastQueryTime + 2000 < CommonTime())) { 
+		ChatSearchLastQuery = Query;
+		ChatSearchLastQueryTime = CommonTime();
+		ChatSearchResult = [];
+		ChatSearchQuerySorted = false;
+		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace });
+	}
 }
 
 /**
