@@ -2,8 +2,10 @@
 var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
 var ChatSearchQuerySorted = false;
-var ChatSearchLastQuery = "";
-var ChatSearchLastQueryTime = 0;
+var ChatSearchLastQuerySearch = "";
+var ChatSearchLastQuerySearchTime = 0;
+var ChatSearchLastQueryJoin = "";
+var ChatSearchLastQueryJoinTime = 0;
 var ChatSearchResultOffset = 0;
 var ChatSearchMessage = "";
 var ChatSearchLeaveRoom = "MainHall";
@@ -137,7 +139,7 @@ function ChatSearchExit() {
  * @returns {void} - Nothing
  */
 function ChatSearchJoin() {
-
+	
 	// Scans up to 24 results
 	var X = 25;
 	var Y = 25;
@@ -145,8 +147,14 @@ function ChatSearchJoin() {
 
 		// If the player clicked on a valid room
 		if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
-			ChatRoomPlayerCanJoin = true;
-			ServerSend("ChatRoomJoin", { Name: ChatSearchResult[C].Name });
+			var RoomName = ChatSearchResult[C].Name;
+			if (ChatSearchLastQueryJoin != RoomName || (ChatSearchLastQueryJoin == RoomName && ChatSearchLastQueryJoinTime + 1000 < CommonTime())) {
+				ChatSearchLastQueryJoinTime = CommonTime();
+				ChatSearchLastQueryJoin = RoomName;
+				ChatRoomPlayerCanJoin = true;
+				ServerSend("ChatRoomJoin", { Name: RoomName });
+			}
+			
 		}
 
 		// Moves the next window position
@@ -183,9 +191,9 @@ function ChatSearchResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
-	if (ChatSearchLastQuery != Query || (ChatSearchLastQuery == Query && ChatSearchLastQueryTime + 2000 < CommonTime())) { 
-		ChatSearchLastQuery = Query;
-		ChatSearchLastQueryTime = CommonTime();
+	if (ChatSearchLastQuerySearch != Query || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
+		ChatSearchLastQuerySearch = Query;
+		ChatSearchLastQuerySearchTime = CommonTime();
 		ChatSearchResult = [];
 		ChatSearchQuerySorted = false;
 		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace });
