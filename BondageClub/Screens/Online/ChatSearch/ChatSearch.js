@@ -1,8 +1,10 @@
 "use strict";
 var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
-var ChatSearchQuerySorted = false;
-var ChatSearchLastQuerySearch = "";
+var ChatSearchRoomPerPage = 24;
+var ChatSearchResultTotal = 0;
+var ChatSearchLastQueryOffSet = null;
+var ChatSearchLastQuerySearch = null;
 var ChatSearchLastQuerySearchTime = 0;
 var ChatSearchLastQueryJoin = "";
 var ChatSearchLastQueryJoinTime = 0;
@@ -36,16 +38,11 @@ function ChatSearchRun() {
 
 	// If we can show the chat room search result
 	if (Array.isArray(ChatSearchResult) && (ChatSearchResult.length >= 1)) {
-
-		// Sort the rooms according to the user settings
-		if (!ChatSearchQuerySorted) { 
-			ChatSearchQuerySort();
-		}
 		
 		// Show up to 24 results
 		var X = 25;
 		var Y = 25;
-		for (var C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + 24); C++) {
+		for (var C = 0; C < ChatSearchResult.length && C < ChatSearchRoomPerPage; C++) {
 
 			// Draw the room rectangle
 			var HasFriends = ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0;
@@ -68,7 +65,7 @@ function ChatSearchRun() {
 			// Finds the room where the mouse is hovering
 			X = 25;
 			Y = 25;
-			for (var C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + 24); C++) {
+			for (var C = 0; C < ChatSearchResult.length && C < ChatSearchRoomPerPage; C++) {
 
 				// Builds the friend list and shows it
 				if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85) && (ChatSearchResult[C].Friends != null) && (ChatSearchResult[C].Friends.length > 0)) {
@@ -95,7 +92,7 @@ function ChatSearchRun() {
 	ElementPosition("InputSearch", 590, 926, 500);
 	DrawButton(845, 898, 320, 64, TextGet("SearchRoom"), "White");
 	DrawButton(1195, 898, 320, 64, TextGet("CreateRoom"), "White");
-	if (ChatSearchResult.length > 24) DrawButton(1545, 885, 90, 90, "", "White", "Icons/Next.png");
+	if (ChatSearchResultTotal > ChatSearchRoomPerPage) DrawButton(1545, 885, 90, 90, "", "White", "Icons/Next.png");
 	DrawButton(1765, 885, 90, 90, "", "White", "Icons/FriendList.png");
 	DrawButton(1885, 885, 90, 90, "", "White", "Icons/Exit.png");
 }
@@ -109,8 +106,9 @@ function ChatSearchClick() {
 	if (MouseIn(845, 898, 320, 64)) ChatSearchQuery();
 	if (MouseIn(1195, 898, 320, 64)) CommonSetScreen("Online", "ChatCreate");
 	if (MouseIn(1545, 885, 90, 90)) { 
-		ChatSearchResultOffset += 24;
-		if (ChatSearchResultOffset >= ChatSearchResult.length) ChatSearchResultOffset = 0;
+		ChatSearchResultOffset += ChatSearchRoomPerPage;
+		if (ChatSearchResultOffset >= ChatSearchResultTotal) ChatSearchResultOffset = 0;
+		ChatSearchQuery();
 	}
 	if (MouseIn(1765, 885, 90, 90)) { ElementRemove("InputSearch"); CommonSetScreen("Character", "FriendList"); FriendListReturn = "ChatSearch"; }
 	if (MouseIn(1885, 885, 90, 90)) ChatSearchExit();
@@ -143,7 +141,7 @@ function ChatSearchJoin() {
 	// Scans up to 24 results
 	var X = 25;
 	var Y = 25;
-	for (var C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + 24); C++) {
+	for (var C = 0; C < ChatSearchResult.length && C < ChatSearchRoomPerPage; C++) {
 
 		// If the player clicked on a valid room
 		if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
@@ -191,31 +189,24 @@ function ChatSearchResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
-	if (ChatSearchLastQuerySearch != Query || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
+	if (ChatSearchLastQueryOffSet != ChatSearchResultOffset || ChatSearchLastQuerySearch != Query || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
+		ChatSearchLastQueryOffSet = ChatSearchResultOffset;
 		ChatSearchLastQuerySearch = Query;
 		ChatSearchLastQuerySearchTime = CommonTime();
 		ChatSearchResult = [];
-		ChatSearchQuerySorted = false;
-		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace });
+		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace, ShowFullRooms: (Player.ChatSettings && Player.ChatSettings.SearchShowsFullRooms), NbRooms: ChatSearchRoomPerPage, StartingRoom: ChatSearchResultOffset });
 	}
 }
 
 /**
- * Sorts the room result based on a player's settings
+ * Handles the reception of chat room list data.
+ * @param {object} data - Data object containing the full list of rooms found and the total rooms
  * @returns {void} - Nothing
  */
-function ChatSearchQuerySort() { 
-	// A player can choose to hide full rooms
-	if (!Player.ChatSettings.SearchShowsFullRooms)
-		ChatSearchResult = ChatSearchResult.filter(Room => Room.MemberCount < Room.MemberLimit);
-	
-	// Send full rooms to the back of the list and save the order of creation.
-	ChatSearchResult = ChatSearchResult.map((Room, Idx) => { Room.Order = Idx; return Room; });
-	ChatSearchResult.sort((R1, R2) => R1.MemberCount >= R1.MemberLimit ? 1 : (R2.MemberCount >= R2.MemberLimit ? -1 : (R1.Order - R2.Order)));
-
-	// Friendlist option overrides basic order, but keeps full rooms at the back for each number of each different total of friends.
-	if (Player.ChatSettings.SearchFriendsFirst)
-		ChatSearchResult.sort((R1, R2) => R2.Friends.length - R1.Friends.length);
-	
-	ChatSearchQuerySorted = true;
+function ChatSearchQueryResponse(data) { 
+	//ChatSearchResult = data.Result;
+	//ChatSearchResultTotal = data.Total;
+	ChatSearchResult = data;
+	ChatSearchResultTotal = 24;
+	if (ChatSearchResultTotal < ChatSearchResultOffset) ChatSearchResultOffset = 0;
 }
