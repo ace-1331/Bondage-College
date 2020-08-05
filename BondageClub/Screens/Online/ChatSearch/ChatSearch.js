@@ -204,7 +204,9 @@ function ChatSearchQuery() {
  * @returns {void} - Nothing
  */
 function ChatSearchQueryResponse(data) { 
-	ChatSearchResult = data.Result;
-	ChatSearchResultTotal = data.Total;
+	//ChatSearchResult = data.Result;
+	//ChatSearchResultTotal = data.Total;
+	ChatSearchResult = data;
+	ChatSearchResultTotal = 24;
 	if (ChatSearchResultTotal < ChatSearchResultOffset) ChatSearchResultOffset = 0;
 }
