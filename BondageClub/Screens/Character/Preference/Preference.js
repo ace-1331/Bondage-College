@@ -505,7 +505,7 @@ function PreferenceSubscreenChatRun() {
 	DrawCheckbox(1200, 492, 64, 64, TextGet("AutoBanBlackList"), Player.ChatSettings.AutoBanBlackList);
 	DrawCheckbox(1200, 572, 64, 64, TextGet("AutoBanGhostList"), Player.ChatSettings.AutoBanGhostList);
 	DrawCheckbox(1200, 652, 64, 64, TextGet("SearchShowsFullRooms"), Player.ChatSettings.SearchShowsFullRooms);
-	DrawCheckbox(1200, 732, 64, 64, TextGet("SearchFriendsFirst"), !Player.ChatSettings.SearchFriendsFirst);
+	DrawCheckbox(1200, 732, 64, 64, TextGet("SearchFriendsFirst"), Player.ChatSettings.SearchFriendsFirst);
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
 		() => TextGet((PreferenceChatColorThemeIndex == 0) ? PreferenceChatColorThemeList[PreferenceChatColorThemeList.length - 1] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex - 1]),
