@@ -2,7 +2,7 @@
 Kein Chatraum gefunden. Du kannst einen neuen erstellen.
 Search by name:
 Raum per Name suchen:
-Search for a room
+Search for a room by name:
 Raum suchen
 Create your room
 Raum erstellen
