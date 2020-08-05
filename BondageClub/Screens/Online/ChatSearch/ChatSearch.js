@@ -92,12 +92,12 @@ function ChatSearchRun() {
 
 	// Draw the bottom controls
 	if (ChatSearchMessage == "") ChatSearchMessage = "EnterName";
-	DrawText(TextGet(ChatSearchMessage), 160, 935, "White", "Gray");
-	ElementPosition("InputSearch", 590, 926, 500);
-	DrawButton(845, 898, 320, 64, TextGet("SearchRoom"), "White");
-	DrawButton(1195, 898, 320, 64, TextGet("CreateRoom"), "White");
-	if (ChatSearchResult.length > ChatSearchRoomsPerPage) DrawButton(1545, 885, 90, 90, "", "White", "Icons/Next.png");
-	DrawButton(1765, 885, 90, 90, "", "White", "Icons/FriendList.png");
+	DrawText(TextGet(ChatSearchMessage), 255, 935, "White", "Gray");
+	ElementPosition("InputSearch", 760, 926, 500);
+	DrawButton(1005, 898, 320, 64, TextGet("SearchRoom"), "White");
+	DrawButton(1345, 898, 320, 64, TextGet("CreateRoom"), "White");
+	if (ChatSearchResult.length > ChatSearchRoomsPerPage) DrawButton(1685, 885, 90, 90, "", "White", "Icons/Next.png");
+	DrawButton(1785, 885, 90, 90, "", "White", "Icons/FriendList.png");
 	DrawButton(1885, 885, 90, 90, "", "White", "Icons/Exit.png");
 }
 
@@ -107,13 +107,13 @@ function ChatSearchRun() {
  */
 function ChatSearchClick() {
 	if ((MouseX >= 25) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 875) && Array.isArray(ChatSearchResult) && (ChatSearchResult.length >= 1)) ChatSearchJoin();
-	if (MouseIn(845, 898, 320, 64)) ChatSearchQuery();
-	if (MouseIn(1195, 898, 320, 64)) CommonSetScreen("Online", "ChatCreate");
-	if (MouseIn(1545, 885, 90, 90)) { 
+	if (MouseIn(1005, 898, 320, 64)) ChatSearchQuery();
+	if (MouseIn(1345, 898, 320, 64)) CommonSetScreen("Online", "ChatCreate");
+	if (MouseIn(1685, 885, 90, 90)) { 
 		ChatSearchResultOffset += ChatSearchRoomsPerPage;
 		if (ChatSearchResultOffset >= ChatSearchResult.length) ChatSearchResultOffset = 0;
 	}
-	if (MouseIn(1765, 885, 90, 90)) { ElementRemove("InputSearch"); CommonSetScreen("Character", "FriendList"); FriendListReturn = "ChatSearch"; }
+	if (MouseIn(1785, 885, 90, 90)) { ElementRemove("InputSearch"); CommonSetScreen("Character", "FriendList"); FriendListReturn = "ChatSearch"; }
 	if (MouseIn(1885, 885, 90, 90)) ChatSearchExit();
 }
 
