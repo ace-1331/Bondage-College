@@ -35,11 +35,7 @@ function ChatSearchRun() {
 
 		// Sort the rooms according to the user settings
 		if (!ChatSearchQuerySorted) { 
-			ChatSearchQuerySorted = true;
-			if (!Player.ChatSettings.SearchShowsFullRooms)
-				ChatSearchResult = ChatSearchResult.filter(Room => Room.MemberCount < Room.MemberLimit);
-			if (Player.ChatSettings.SearchFriendsFirst)
-				ChatSearchResult.sort((Room1, Room2) => Room2.Friends.length - Room1.Friends.length);
+			ChatSearchQuerySort();
 		}
 		
 		// Show up to 24 results
@@ -48,7 +44,9 @@ function ChatSearchRun() {
 		for (var C = ChatSearchResultOffset; C < ChatSearchResult.length && C < (ChatSearchResultOffset + 24); C++) {
 
 			// Draw the room rectangle
-			DrawButton(X, Y, 630, 85, "", ((ChatSearchResult[C].Friends != null) && (ChatSearchResult[C].Friends.length > 0)) ? "#CFFFCF" : "White");
+			var HasFriends = ChatSearchResult[C].Friends != null && ChatSearchResult[C].Friends.length > 0;
+			var IsFull = ChatSearchResult[C].MemberCount == ChatSearchResult[C].Limit;
+			DrawButton(X, Y, 630, 85, "", (HasFriends && IsFull ? "#448855" : HasFriends ? "#CFFFCF" : IsFull ? "#666" : "White")));
 			DrawTextFit(ChatSearchResult[C].Name + " - " + ChatSearchResult[C].Creator + " " + ChatSearchResult[C].MemberCount + "/" + ChatSearchResult[C].MemberLimit + "", X + 315, Y + 25, 620, "black");
 			DrawTextFit(ChatSearchResult[C].Description, X + 315, Y + 62, 620, "black");
 
@@ -184,4 +182,19 @@ function ChatSearchQuery() {
 	ChatSearchResult = [];
 	ChatSearchQuerySorted = false;
 	ServerSend("ChatRoomSearch", { Query: ElementValue("InputSearch").toUpperCase().trim(), Space: ChatRoomSpace });
+}
+
+function ChatSearchQuerySort() { 
+	// A player can choose to hide full rooms
+	if (!Player.ChatSettings.SearchShowsFullRooms)
+		ChatSearchResult = ChatSearchResult.filter(Room => Room.MemberCount < Room.MemberLimit);
+	
+	// Full rooms are sent at the back
+	ChatSearchResult.sort((Room1, Room2) => Room1.Limit == Room1.MemberCount ? 1 : Room2.Limit != Room2.MemberCount ? 0 : -1 );
+
+	// Friendlist option overrides basic order
+	if (Player.ChatSettings.SearchFriendsFirst)
+		ChatSearchResult.sort((Room1, Room2) => Room2.Friends.length - Room1.Friends.length);
+	
+	ChatSearchQuerySorted = true;
 }
