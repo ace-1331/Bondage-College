@@ -1,8 +1,8 @@
 ﻿No chat room found.  You can create a new one.
 Kein Chatraum gefunden. Du kannst einen neuen erstellen.
-Search by name:
-Raum per Name suchen:
 Search for a room by name:
+Raum per Name suchen:
+Search for a room
 Raum suchen
 Create your room
 Raum erstellen
