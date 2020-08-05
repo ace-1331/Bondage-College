@@ -1,6 +1,6 @@
 ﻿No chat room found.  You can create a new one.
 Чат не найден.  Вы можете создать новый.
-Search for a room by name:
+Search by name:
 Поиск комнаты по имени:
 Search for a room
 Поиск комнаты
