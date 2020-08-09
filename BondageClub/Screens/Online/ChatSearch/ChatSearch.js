@@ -3,6 +3,7 @@ var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
 var ChatSearchLastQuerySearch = "";
 var ChatSearchLastQuerySearchTime = 0;
+var ChatSearchLastQuerySearchHiddenRooms = 0;
 var ChatSearchLastQueryJoin = "";
 var ChatSearchLastQueryJoinTime = 0;
 var ChatSearchResultOffset = 0;
@@ -213,11 +214,12 @@ function ChatSearchResultResponse(data) {
 function ChatSearchQuery() {
 	var Query = ElementValue("InputSearch").toUpperCase().trim();
 	// Prevent spam searching the same thing.
-	if (ChatSearchLastQuerySearch != Query || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
+	if (ChatSearchLastQuerySearch != Query || ChatSearchLastQuerySearchHiddenRooms != ChatSearchIgnoredRooms.length || (ChatSearchLastQuerySearch == Query && ChatSearchLastQuerySearchTime + 2000 < CommonTime())) { 
 		ChatSearchLastQuerySearch = Query;
 		ChatSearchLastQuerySearchTime = CommonTime();
+		ChatSearchLastQuerySearchHiddenRooms = ChatSearchIgnoredRooms.length;
 		ChatSearchResult = [];
-		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace, FullRooms: (Player.ChatSettings && Player.ChatSettings.SearchShowsFullRooms), Ignore: (Array.isArray(ChatSearchIgnoredRooms) ? ChatSearchIgnoredRooms : []) });
+		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace, FullRooms: (Player.ChatSettings && Player.ChatSettings.SearchShowsFullRooms), Ignore: ChatSearchIgnoredRooms });
 	}
 }
 
