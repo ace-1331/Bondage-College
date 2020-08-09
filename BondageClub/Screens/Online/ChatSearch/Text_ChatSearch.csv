@@ -1,5 +1,5 @@
 NoChatRoomFound,No chat room found.  You can create a new one.
-EnterName,Room name:
+EnterName,Search by room name:
 "SearchRoom	",Search for a room
 "CreateRoom	",Create your room
 FriendsInRoom,Friends in room:
@@ -11,6 +11,5 @@ ResponseCannotFindRoom,Room doesn't exist anymore
 ResponseAccountError,Account Error
 ResponseInvalidRoomData,Invalid Room Data
 ResponseJoinedRoom,Entering the room...
-ClearFilter,Clear hidden rooms
-HideRoom, Hide room
-RoomHidden, Room succesfully hidden
+FilterMode,Filter Rooms
+NormalMode,Return to room view

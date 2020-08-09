@@ -1,7 +1,7 @@
 No chat room found.  You can create a new one.
 Aucun salon trouvé. Vous pouvez en créer un.
-Room name:
-Nom du salon:
+Search by room name:
+Recherche de salon par nom:
 Search for a room
 Rechercher un salon
 Create your room
