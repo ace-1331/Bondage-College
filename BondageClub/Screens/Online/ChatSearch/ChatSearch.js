@@ -1,7 +1,6 @@
 "use strict";
 var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
-var ChatSearchQuerySorted = false;
 var ChatSearchLastQuerySearch = "";
 var ChatSearchLastQuerySearchTime = 0;
 var ChatSearchLastQueryJoin = "";
@@ -38,11 +37,6 @@ function ChatSearchRun() {
 
 	// If we can show the chat room search result
 	if (Array.isArray(ChatSearchResult) && (ChatSearchResult.length >= 1)) {
-
-		// Sort the rooms according to the user settings
-		if (!ChatSearchQuerySorted) { 
-			ChatSearchQuerySort();
-		}
 		
 		// Show up to 24 results
 		var X = 25;
@@ -203,6 +197,16 @@ function ChatSearchResponse(data) {
 }
 
 /**
+ * Handles the reception of the server data when it responds to the search query
+ * @param {string} data - Response from the server, contains the room list matching the query
+ * @returns {void} - Nothing
+ */
+function ChatSearchResultResponse(data) { 
+	ChatSearchResult = data;
+	ChatSearchQuerySort();
+}
+
+/**
  * Sends the search query data to the server. The response will be handled by ChatSearchResponse once it is received
  * @returns {void} - Nothing
  */
@@ -213,8 +217,7 @@ function ChatSearchQuery() {
 		ChatSearchLastQuerySearch = Query;
 		ChatSearchLastQuerySearchTime = CommonTime();
 		ChatSearchResult = [];
-		ChatSearchQuerySorted = false;
-		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace, FullRooms: (Player.ChatSettings && Player.ChatSettings.SearchShowsFullRooms), Ignore: (Query != "" ? ChatSearchIgnoredRooms : []) });
+		ServerSend("ChatRoomSearch", { Query: Query, Space: ChatRoomSpace, FullRooms: (Player.ChatSettings && Player.ChatSettings.SearchShowsFullRooms), Ignore: (Array.isArray(ChatSearchIgnoredRooms) ? ChatSearchIgnoredRooms : []) });
 	}
 }
 
@@ -230,6 +233,4 @@ function ChatSearchQuerySort() {
 	// Friendlist option overrides basic order, but keeps full rooms at the back for each number of each different total of friends.
 	if (Player.ChatSettings && Player.ChatSettings.SearchFriendsFirst)
 		ChatSearchResult.sort((R1, R2) => R2.Friends.length - R1.Friends.length);
-	
-	ChatSearchQuerySorted = true;
 }
