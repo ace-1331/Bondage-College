@@ -1014,7 +1014,7 @@ ItemDevices,WoodenStocks,Wooden Stocks
 ItemDevices,Vacbed,Vacbed
 ItemDevices,Crib,Crib
 ItemDevices,Bed,Bed
-ItemDevices,X-Cross,St. Andrews Cross
+ItemDevices,XCross,St. Andrews Cross
 ItemDevices,ChangingTable,Changing Table
 ItemDevices,Locker,Locker
 ItemDevices,SmallLocker,Small Locker
@@ -1036,6 +1036,7 @@ ItemAddon,BedRopes,Bed Ropes
 ItemAddon,BedStraps,Bed Straps
 ItemAddon,BedTape,Bed Tape
 ItemAddon,BedChains,Bed Chains
+ItemAddon,XCrossChains,St. Andrews Cross links
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels
