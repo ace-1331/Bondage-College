@@ -362,7 +362,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 
 		// Flags "refresh" if we need to redraw the character
 		if (!Refresh)
-			if ((Char.ActivePose != data.ActivePose) || (Char.Description != data.Description) || (Char.Title != data.Title) || (Char.LabelColor != data.LabelColor) || (ChatRoomData == null) || (ChatRoomData.Character == null))
+			if ((Char.Description != data.Description) || (Char.Title != data.Title) || (Char.LabelColor != data.LabelColor) || (ChatRoomData == null) || (ChatRoomData.Character == null))
 				Refresh = true;
 			else
 				for (let C = 0; C < ChatRoomData.Character.length; C++)
@@ -379,6 +379,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 							}
 
 		// Flags "refresh" if the ownership or lovership or inventory or blockitems or limiteditems has changed
+		if (!Refresh && (JSON.stringify(Char.ActivePose) !== JSON.stringify(data.ActivePose))) Refresh = true;
 		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
 		if (!Refresh && (JSON.stringify(Char.Lovership) !== JSON.stringify(data.Lovership))) Refresh = true;
 		if (!Refresh && (JSON.stringify(Char.ArousalSettings) !== JSON.stringify(data.ArousalSettings))) Refresh = true;
@@ -439,7 +440,11 @@ function CharacterAddPose(C, NewPose) {
  */
 function CharacterLoadPose(C) {
 	C.Pose = [];
-	if (C.ActivePose != null) C.Pose.push(C.ActivePose);
+	if (C.ActivePose != null && typeof C.ActivePose == "string") C.Pose.push(C.ActivePose);
+	if (C.ActivePose != null && Array.isArray(C.ActivePose)) {
+		for (let P = 0; P < C.ActivePose.length; P++)
+			C.Pose.push(C.ActivePose[P]);
+	}
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null))
 			CharacterAddPose(C, C.Appearance[A].Property.SetPose);
@@ -768,10 +773,30 @@ function CharacterFullRandomRestrain(C, Ratio) {
  * Sets a new pose for the character
  * @param {Character} C - Character for which to set the pose
  * @param {string} NewPose - Name of the pose to set as active
+ * @param {boolean} ForceChange - TRUE if the set pose(s) should overwrite current active pose(s)
  * @returns {void} - Nothing
  */
-function CharacterSetActivePose(C, NewPose) {
-	C.ActivePose = NewPose;
+function CharacterSetActivePose(C, NewPose, ForceChange) {
+	if (NewPose == null || ForceChange || C.ActivePose == null) {
+		C.ActivePose = NewPose;
+		CharacterRefresh(C, false);
+		return;
+	}
+	
+	if (typeof C.ActivePose == null) C.ActivePose = [];
+	if (typeof C.ActivePose == "string") C.ActivePose = [C.ActivePose];
+		
+	const PreviousPoses = C.ActivePose.map(AP => PoseFemale3DCG.find(P => P.Name == AP)).filter(AP => typeof AP == "object");
+	const Pose = PoseFemale3DCG.find(P => P.Name == NewPose);
+	
+	// We only allow poses of different categories to be matched together
+	if (Pose && Pose.Category) { 
+		C.ActivePose = PreviousPoses
+			.filter(PP => Pose.Category !== "BodyFull" && PP.Category !== "BodyFull" && PP.Category !== Pose.Category)
+			.map(AP => AP.Name);
+		C.ActivePose.push(Pose.Name);
+	}
+	
 	CharacterRefresh(C, false);
 }
 

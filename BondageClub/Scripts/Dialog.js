@@ -217,7 +217,7 @@ function DialogCanInteract(C) { return ((C.toUpperCase().trim() == "PLAYER") ? P
  * Can be omitted to bring the character back to the standing position.
  * @returns {void} - Nothing
  */
-function DialogSetPose(C, NewPose) { CharacterSetActivePose((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter, ((NewPose != null) && (NewPose != "")) ? NewPose : null) }
+function DialogSetPose(C, NewPose) { CharacterSetActivePose((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter, ((NewPose != null) && (NewPose != "")) ? NewPose : null, true) }
 
 /**
  * CHecks, wether a given skill of the player is greater or equal a given value

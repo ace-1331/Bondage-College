@@ -112,7 +112,7 @@ function ManagementLoad() {
 		InventoryWear(ManagementSub, "TailButtPlug", "ItemButt");
 		InventoryWear(ManagementSub, "MetalChastityBelt", "ItemPelvis");
 		InventoryWear(ManagementSub, "MetalChastityBra", "ItemBreast");
-		CharacterSetActivePose(ManagementSub, "Kneel");
+		CharacterSetActivePose(ManagementSub, "Kneel", true);
 		ManagementSub.AllowItem = false;
 	}
 }
@@ -148,7 +148,7 @@ function ManagementClick() {
 	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000) && !ManagementEmpty) CharacterSetCurrent(ManagementSub);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 }
 
 // Releases the player and dress her back

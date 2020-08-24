@@ -2608,6 +2608,7 @@ var PoseFemale3DCG = [
 
 	{
 		Name: "Kneel",
+		Category: "BodyLower",
 		OverrideHeight: -250,
 		Hide: ["ItemFeet"]
 	},
@@ -2618,21 +2619,25 @@ var PoseFemale3DCG = [
 	},
 	{
 		Name: "KneelingSpread",
+		Category: "BodyLower",
 		OverrideHeight: -250,
 		Hide: ["ItemFeet"]
 	},
 	{
 		Name: "Yoked",
+		Category: "BodyUpper",
 		Hide: ["Hands"]
 	},
 	{
 		Name: "OverTheHead",
+		Category: "BodyFull",
 		OverrideHeight: -25,
 		Hide: ["Hands"],
 		MovePosition: [{ Group: "Pussy", X: 0, Y: -5 }, { Group: "ItemVulva", X: 0, Y: -5 }, { Group: "ItemButt", X: 0, Y: -5 }, { Group: "TailStraps", X: 0, Y: -5 }, { Group: "ItemVulvaPiercings", X: 0, Y: -5 }]
 	},
 	{
 		Name: "Hogtied",
+		Category: "BodyFull",
 		OverrideHeight: -575,
 		Hide: ["BodyLower", "Hands", "ClothLower", "Wings", "TailStraps", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemLegs", "ItemFeet", "SuitLower"],
 		MovePosition: [{ Group: "Socks", X: 0, Y: -400 }, { Group: "Shoes", X: 0, Y: -500 }, { Group: "ItemBoots", X: 0, Y: -500 }]
@@ -2649,10 +2654,23 @@ var PoseFemale3DCG = [
 	},
 	{
 		Name: "AllFours",
+		Category: "BodyFull",
 		OverrideHeight: -560,
 		Hide: ["ItemFeet", "ClothLower", "SuitLower", "Nipples", "Pussy", "BodyLower", "Wings", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemLegs", "ItemBoots", "Suit", "Panties", "Bra", "Socks", "Shoes"],
 		MovePosition: [{ Group: "TailStraps", X: 0, Y: -300 }, { Group: "ItemButt", X: 0, Y: -300 }]
-	}
+	},
+	{
+		Name: "BackBoxTie",
+		Category: "BodyUpper"
+	},
+	{
+		Name: "LegsClosed",
+		Category: "BodyLower"
+	},
+	{
+		Name: "Spread",
+		Category: "BodyLower"
+	},
 
 ];
 

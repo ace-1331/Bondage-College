@@ -420,7 +420,7 @@ function ChatRoomClick() {
 	// When the user character kneels
 	if ((MouseX >= 1353) && (MouseX < 1473) && (MouseY >= 0) && (MouseY <= 62) && Player.CanKneel()) {
 		ServerSend("ChatRoomChat", { Content: (Player.ActivePose == null) ? "KneelDown" : "StandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }] });
-		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null, true);
 		ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 	}
 
@@ -1137,7 +1137,7 @@ function ChatRoomStruggleAssist() {
  */
 function ChatRoomKneelStandAssist() { 
 	ServerSend("ChatRoomChat", { Content: (CurrentCharacter.ActivePose == null) ? "HelpKneelDown" : "HelpStandUp", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber }, { Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber }] });
-	CharacterSetActivePose(CurrentCharacter, (CurrentCharacter.ActivePose == null) ? "Kneel" : null);
+	CharacterSetActivePose(CurrentCharacter, (CurrentCharacter.ActivePose == null) ? "Kneel" : null, true);
 	ChatRoomCharacterUpdate(CurrentCharacter);
 }
 
@@ -1400,7 +1400,7 @@ function ChatRoomSafewordChatCommand() {
 function ChatRoomSafewordRevert() {
 	if (ChatSearchSafewordAppearance != null) {
 		Player.Appearance = ChatSearchSafewordAppearance.slice(0);
-		CharacterSetActivePose(Player, ChatSearchSafewordPose);
+		Player.ActivePose = ChatSearchSafewordPose;
 		CharacterRefresh(Player);
 		ChatRoomCharacterUpdate(Player);
 		ServerSend("ChatRoomChat", { Content: "ActionActivateSafewordRevert", Type: "Action", Dictionary: [{ Tag: "SourceCharacter", Text: Player.Name }] });
