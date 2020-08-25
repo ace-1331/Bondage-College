@@ -1804,7 +1804,7 @@ function DialogDrawPoseMenu() {
 			if (Array.isArray(Player.ActivePose) && Player.ActivePose.includes(PoseGroup[P].Name))
 				IsActive = true;
 			
-			DrawButton(OffsetX, OffsetY, 90, 90, "", IsActive ? "Pink" : "White", "Icons/ActivePose" + PoseGroup[P].Name + ".png");
+			DrawButton(OffsetX, OffsetY, 90, 90, "", IsActive ? "Pink" : "White", "Icons/Poses/" + PoseGroup[P].Name + ".png");
 		}
 	}
 }
