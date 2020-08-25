@@ -26,6 +26,7 @@ var DialogAllowBlush = false;
 var DialogAllowEyebrows = false;
 var DialogAllowFluids = false;
 var DialogFacialExpressions = [];
+var DialogActivePoses = [];
 var DialogItemPermissionMode = false;
 var DialogExtendedMessage = "";
 var DialogActivityMode = false;
@@ -35,6 +36,26 @@ var DialogSortOrderEquipped = 2;
 var DialogSortOrderUsable = 3;
 var DialogSortOrderUnusable = 4;
 var DialogSortOrderBlocked = 5;
+var DialogSelfMenuSelected = null;
+/**
+ * The list of menu types available when clicking on yourself
+ * @const
+ * @type {Array.<object>}
+ */
+var DialogSelfMenuOptions = [
+	{
+		Name: "Expression",
+		IsAvailable: () => true,
+		Draw: DialogDrawExpressionMenu,
+		Click: DialogClickExpressionMenu,
+	},	
+	{
+		Name: "Pose",
+		IsAvailable: () => CurrentScreen == "ChatRoom",
+		Draw: DialogDrawPoseMenu,
+		Click: DialogClickPoseMenu,
+	},	
+];
 
 /**
  * Compares the player's reputation with a given value 
@@ -331,6 +352,7 @@ function DialogLeave() {
 	CurrentCharacter.FocusGroup = null;
 	DialogInventory = null;
 	CurrentCharacter = null;
+	DialogSelfMenuSelected = null;
 }
 
 /**
@@ -660,6 +682,22 @@ function DialogFacialExpressionsBuild() {
 	DialogFacialExpressions = DialogFacialExpressions.sort(function (a, b) {
 		return a.Appearance.Asset.Group.Name < b.Appearance.Asset.Group.Name ? -1 : a.Appearance.Asset.Group.Name > b.Appearance.Asset.Group.Name ? 1 : 0;
 	});
+}
+
+/**
+ * Build the initial state of the pose menu
+ * @returns {void} - Nothing
+ */
+function DialogActivePoseMenuBuild() {
+	DialogActivePoses = [];
+	
+	PoseFemale3DCG
+		.filter(P => P.AllowMenu)
+		.map(P => P.Category)
+		.filter((C, I, Categories) => C && Categories.indexOf(C) === I)
+		.forEach(Category => { 
+			DialogActivePoses.push(PoseFemale3DCG.filter(P =>  P.AllowMenu && P.Category == Category));
+		});
 }
 
 /**
@@ -1257,65 +1295,32 @@ function DialogClick() {
 
 	// If the user clicked in the facial expression menu
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
-		if (MouseIn(20, 50, 90, 90)) {
-			DialogFacialExpressions.forEach(FE => {
-				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name);
-				FE.CurrentExpression = null;
-			});
-		} else if (MouseIn(120, 50, 90, 90)) { 
-			var EyesExpression = WardrobeGetExpression(Player);
-			var CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
-			CharacterSetFacialExpression(Player, "Eyes1", (EyesExpression.Eyes !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
-		} else if (MouseIn(220, 50, 90, 90)) { 
-			var EyesExpression = WardrobeGetExpression(Player);
-			var CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
-			CharacterSetFacialExpression(Player, "Eyes2", (EyesExpression.Eyes2 !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
-		} else for (let I = 0; I < DialogFacialExpressions.length; I++) {
-			var FE = DialogFacialExpressions[I];
-			if ((MouseY >= 160 + 120 * I) && (MouseY <= (160 + 120 * I) + 90)) {
-
-				// Left arrow button
-				if (MouseX >= 0 && MouseX <= 45) {
-					FE.MenuExpression4 = FE.MenuExpression3;
-					FE.MenuExpression3 = FE.MenuExpression2;
-					FE.MenuExpression2 = FE.MenuExpression1;
-					var ExpressionList = FE.Appearance.Asset.Group.AllowExpression;
-					var Index = ExpressionList.indexOf(FE.MenuExpression1);
-					FE.MenuExpression1 = (Index < 0) ? ExpressionList[ExpressionList.length - 1] : (Index == 0) ? null : ExpressionList[Index - 1];
-				}
-
-				// Right arrow button
-				if (MouseX >= 455 && MouseX <= 500) {
-					FE.MenuExpression1 = FE.MenuExpression2;
-					FE.MenuExpression2 = FE.MenuExpression3;
-					FE.MenuExpression3 = FE.MenuExpression4;
-					var ExpressionList = FE.Appearance.Asset.Group.AllowExpression;
-					var Index = ExpressionList.indexOf(FE.MenuExpression4);
-					FE.MenuExpression4 = (Index < 0) ? ExpressionList[0] : (Index == ExpressionList.length - 1) ? null : ExpressionList[Index + 1];
-				}
-
-				// Expression choice
-				if (MouseX >= 55 && MouseX <= 145) {
-					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression1);
-					FE.CurrentExpression = FE.MenuExpression1;
-				}
-				if (MouseX >= 155 && MouseX <= 245) {
-					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression2);
-					FE.CurrentExpression = FE.MenuExpression2;
-				}
-				if (MouseX >= 255 && MouseX <= 345) {
-					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression3);
-					FE.CurrentExpression = FE.MenuExpression3;
-				}
-				if (MouseX >= 355 && MouseX <= 445) {
-					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression4);
-					FE.CurrentExpression = FE.MenuExpression4;
-				}
-
-			}
-		}
+		if (MouseIn(410, 50, 90, 90) && DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DialogFindNextSubMenu();
+		if (!DialogSelfMenuSelected)
+			DialogClickExpressionMenu();
+		else
+			DialogSelfMenuSelected.Click();
 	}
 
+}
+
+/**
+ * Finds and sets the next available character sub menu.
+ * @returns {void} - Nothing
+ */
+function DialogFindNextSubMenu() { 
+	var CurrentIndex = DialogSelfMenuOptions.indexOf(DialogSelfMenuSelected);
+	if (CurrentIndex == -1) CurrentIndex = 0;
+	
+	var NextIndex = CurrentIndex + 1 == DialogSelfMenuOptions.length ? 0 : CurrentIndex + 1;
+	
+	for (let SM = NextIndex; SM < DialogSelfMenuOptions.length; SM++) { 
+		if (DialogSelfMenuOptions[SM].IsAvailable()) { 
+			DialogSelfMenuSelected = DialogSelfMenuOptions[SM];
+			return;
+		}
+		if (SM + 1 == DialogSelfMenuOptions.length) SM = 0;
+	}
 }
 
 /**
@@ -1608,7 +1613,13 @@ function DialogDraw() {
 	DrawCharacter(CurrentCharacter, 500, 0, 1);
 
 	// Draw the menu for facial expressions if the player clicked on herself
-	if (CurrentCharacter.ID == 0) DialogDrawExpressionMenu();
+	if (CurrentCharacter.ID == 0) {
+		if (DialogSelfMenuOptions.filter(SMO => SMO.IsAvailable()).length > 1) DrawButton(410, 50, 90, 90, "", "White", "Icons/Next.png", DialogFind(Player, "NextPage"));
+		if (!DialogSelfMenuSelected)
+			DialogDrawExpressionMenu();
+		else
+			DialogSelfMenuSelected.Draw();
+	}
 
 	// If we must show the item/inventory menu
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
@@ -1702,6 +1713,126 @@ function DialogDrawExpressionMenu() {
 		DrawButton(255, OffsetY, 90, 90, "", (FE.MenuExpression3 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression3 ? "/" + FE.MenuExpression3 : "") + "/Icon.png");
 		DrawButton(355, OffsetY, 90, 90, "", (FE.MenuExpression4 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression4 ? "/" + FE.MenuExpression4 : "") + "/Icon.png");
 
+	}
+}
+
+/**
+ * Handles clicks in the dialog expression menu.
+ * @returns {void} - Nothing
+ */
+function DialogClickExpressionMenu() { 
+	if (MouseIn(20, 50, 90, 90)) {
+		DialogFacialExpressions.forEach(FE => {
+			CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name);
+			FE.CurrentExpression = null;
+		});
+	} else if (MouseIn(120, 50, 90, 90)) { 
+		var EyesExpression = WardrobeGetExpression(Player);
+		var CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
+		CharacterSetFacialExpression(Player, "Eyes1", (EyesExpression.Eyes !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
+	} else if (MouseIn(220, 50, 90, 90)) { 
+		var EyesExpression = WardrobeGetExpression(Player);
+		var CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
+		CharacterSetFacialExpression(Player, "Eyes2", (EyesExpression.Eyes2 !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
+	} else for (let I = 0; I < DialogFacialExpressions.length; I++) {
+		var FE = DialogFacialExpressions[I];
+		if ((MouseY >= 160 + 120 * I) && (MouseY <= (160 + 120 * I) + 90)) {
+
+			// Left arrow button
+			if (MouseX >= 0 && MouseX <= 45) {
+				FE.MenuExpression4 = FE.MenuExpression3;
+				FE.MenuExpression3 = FE.MenuExpression2;
+				FE.MenuExpression2 = FE.MenuExpression1;
+				var ExpressionList = FE.Appearance.Asset.Group.AllowExpression;
+				var Index = ExpressionList.indexOf(FE.MenuExpression1);
+				FE.MenuExpression1 = (Index < 0) ? ExpressionList[ExpressionList.length - 1] : (Index == 0) ? null : ExpressionList[Index - 1];
+			}
+
+			// Right arrow button
+			if (MouseX >= 455 && MouseX <= 500) {
+				FE.MenuExpression1 = FE.MenuExpression2;
+				FE.MenuExpression2 = FE.MenuExpression3;
+				FE.MenuExpression3 = FE.MenuExpression4;
+				var ExpressionList = FE.Appearance.Asset.Group.AllowExpression;
+				var Index = ExpressionList.indexOf(FE.MenuExpression4);
+				FE.MenuExpression4 = (Index < 0) ? ExpressionList[0] : (Index == ExpressionList.length - 1) ? null : ExpressionList[Index + 1];
+			}
+
+			// Expression choice
+			if (MouseX >= 55 && MouseX <= 145) {
+				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression1);
+				FE.CurrentExpression = FE.MenuExpression1;
+			}
+			if (MouseX >= 155 && MouseX <= 245) {
+				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression2);
+				FE.CurrentExpression = FE.MenuExpression2;
+			}
+			if (MouseX >= 255 && MouseX <= 345) {
+				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression3);
+				FE.CurrentExpression = FE.MenuExpression3;
+			}
+			if (MouseX >= 355 && MouseX <= 445) {
+				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression4);
+				FE.CurrentExpression = FE.MenuExpression4;
+			}
+
+		}
+	}
+}
+
+/**
+ * Draws the pose sub menu
+ * @returns {void} - Nothing
+ */
+function DialogDrawPoseMenu() { 
+	// Draw the pose groups
+	DrawText(DialogFind(Player, "PoseMenu"), 70, 25, "White", "Black");
+	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearActivePoses"));
+
+	if (!DialogActivePoses || !DialogActivePoses.length) DialogActivePoseMenuBuild();
+	
+	for (let I = 0; I < DialogActivePoses.length; I++) { 
+		var OffsetX = 140 + 140 * I;
+		var PoseGroup = DialogActivePoses[I];
+		
+		for (let P = 0; P < PoseGroup.length; P++) { 
+			var OffsetY = 180 + 100 * P;
+			var IsActive = false;
+			
+			if (typeof Player.ActivePose == "string" && Player.ActivePose == PoseGroup[P].Name)
+				IsActive = true;
+			if (Array.isArray(Player.ActivePose) && Player.ActivePose.includes(PoseGroup[P].Name))
+				IsActive = true;
+			
+			DrawButton(OffsetX, OffsetY, 90, 90, "", IsActive ? "Pink" : "White", "Icons/ActivePose" + PoseGroup[P].Name + ".png");
+		}
+	}
+}
+
+/**
+ * Handles clicks in the pose sub menu
+ * @returns {void} - Nothing
+ */
+function DialogClickPoseMenu() {
+	if (MouseIn(20, 50, 90, 90)) CharacterSetActivePose(Player, null);
+	
+	for (let I = 0; I < DialogActivePoses.length; I++) { 
+		var OffsetX = 140 + 140 * I;
+		var PoseGroup = DialogActivePoses[I];
+		for (let P = 0; P < PoseGroup.length; P++) { 
+			var OffsetY = 180 + 100 * P;
+			var IsActive = false;
+			
+			if (typeof Player.ActivePose == "string" && Player.ActivePose == PoseGroup[P].Name)
+				IsActive = true;
+			if (Array.isArray(Player.ActivePose) && Player.ActivePose.includes(PoseGroup[P].Name))
+				IsActive = true;
+			
+			if (MouseIn(OffsetX, OffsetY, 90, 90) && !IsActive) { 
+				CharacterSetActivePose(Player, PoseGroup[P].Name);
+				ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
+			}
+		}
 	}
 }
 

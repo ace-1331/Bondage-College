@@ -41,7 +41,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HasHiddenItems: false,
 		CanTalk: function () { return ((this.Effect.indexOf("GagVeryLight") < 0) && (this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagEasy") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagMedium") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagVeryHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0) && (this.Effect.indexOf("GagTotal2") < 0) && (this.Effect.indexOf("GagTotal3") < 0) && (this.Effect.indexOf("GagTotal4") < 0)) },
 		CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
-		CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || ((this.Pose.indexOf("LegsClosed") < 0) && (this.Pose.indexOf("Supension") < 0) && (this.Pose.indexOf("Hogtied") < 0)))) },
+		CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || ((!CharacterItemsHavePose(this, "LegsClosed")) && (this.Pose.indexOf("Supension") < 0) && (this.Pose.indexOf("Hogtied") < 0)))) },
 		CanInteract: function () { return (this.Effect.indexOf("Block") < 0) },
 		CanChange: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !ManagementIsClubSlave() && !LogQuery("BlockChange", "Rule") && (!LogQuery("BlockChange", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1))) },
 		IsProne: function () { return (this.Effect.indexOf("Prone") >= 0) },
@@ -434,17 +434,33 @@ function CharacterAddPose(C, NewPose) {
 }
 
 /**
+ * Checks if a character has a pose from items (not active pose)
+ * @param {Character} C - Character to check for the pose 
+ * @param {string} Pose - Pose to check for within items
+ * @returns {boolean} - TRUE if the character has the pose
+ */
+function CharacterItemsHavePose(C, Pose) { 
+	for (let A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null) && (C.Appearance[A].Property.SetPose.includes(Pose)))
+			return true;
+		else
+			if (C.Appearance[A].Asset.SetPose != null && (C.Appearance[A].Asset.SetPose.includes(Pose)))
+				return true;
+			else
+				if (C.Appearance[A].Asset.Group.SetPose != null && (C.Appearance[A].Asset.Group.SetPose.includes(Pose)))
+					return true;
+	}
+	return false;
+}
+
+/**
  * Refreshes the list of poses for a character. Each pose can only be found once in the pose array
  * @param {Character} C - Character for which to refresh the pose list
  * @returns {void} - Nothing 
  */
 function CharacterLoadPose(C) {
 	C.Pose = [];
-	if (C.ActivePose != null && typeof C.ActivePose == "string") C.Pose.push(C.ActivePose);
-	if (C.ActivePose != null && Array.isArray(C.ActivePose)) {
-		for (let P = 0; P < C.ActivePose.length; P++)
-			C.Pose.push(C.ActivePose[P]);
-	}
+	
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null))
 			CharacterAddPose(C, C.Appearance[A].Property.SetPose);
@@ -454,6 +470,26 @@ function CharacterLoadPose(C) {
 			else
 				if (C.Appearance[A].Asset.Group.SetPose != null)
 					CharacterAddPose(C, C.Appearance[A].Asset.Group.SetPose);
+	}
+	
+	// Add possible active poses (Bodyfull can only be alone, and cannot have two of upperbody or bodylower)
+	var Poses = C.Pose.map(CP => PoseFemale3DCG.find(P => P.Name == CP)).filter(P => P);
+	if (C.ActivePose != null && typeof C.ActivePose == "string") C.ActivePose = [C.ActivePose];
+	
+	if (C.ActivePose != null && Array.isArray(C.ActivePose)) {
+		var ActivePoses = C.ActivePose
+			.map(CP => PoseFemale3DCG.find(P => P.Name == CP))
+			.filter(P => P);
+		
+		for (let P = 0; P < ActivePoses.length; P++) {
+			if (
+				!C.Pose.includes(ActivePoses[P].Name) &&
+				!Poses.find(Pose => Pose.Category == "BodyFull") &&
+				!Poses.find(Pose => Pose.Category == ActivePoses[P].Category) &&
+				!(C.Pose.length > 0 && ActivePoses[P].Category == "BodyFull")
+			)
+				C.Pose.push(ActivePoses[P].Name);
+		}
 	}
 }
 
@@ -792,7 +828,7 @@ function CharacterSetActivePose(C, NewPose, ForceChange) {
 	// We only allow poses of different categories to be matched together
 	if (Pose && Pose.Category) { 
 		C.ActivePose = PreviousPoses
-			.filter(PP => Pose.Category !== "BodyFull" && PP.Category !== "BodyFull" && PP.Category !== Pose.Category)
+			.filter(PP => PP.AllowMenu && Pose.Category !== "BodyFull" && PP.Category !== "BodyFull" && PP.Category !== Pose.Category)
 			.map(AP => AP.Name);
 		C.ActivePose.push(Pose.Name);
 	}

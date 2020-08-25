@@ -2459,7 +2459,7 @@ var AssetFemale3DCG = [
 			{ Name: "Crib", Fetish: ["ABDL"], Priority: 1, Value: 100, Difficulty: 0, SelfBondage: 1, Time: 15, RemoveTime: 10, IsRestraint: true, AllowLock: true, Left: -30, Top: -235, Effect: ["Freeze"], RemoveAtLogin: true, Prerequisite: ["CannotUseWithAlphaHood", "AllFours", "NotSuspended", "NotHogtied", "NoFeetSpreader"], HideItem: ["ShoesMistressBoots", "ShoesPonyBoots", "ThighHighLatexHeels", "Shoes", "ItemBootsPonyBoots", "ItemBootsBalletHeels", "ItemBootsBalletWedges", "ItemBootsThighHighLatexHeels"], Extended: true, AllowType: ["Open", "Closed", "Stuffed"] },
 			{ Name: "Bed", Value: 100, Priority: 1, Difficulty: -20, SelfBondage: 0, Time: 5, RemoveTime: 5, Effect: ["Freeze", "Mounted"], Prerequisite: ["NotKneeling", "AllFours", "NotSuspended", "NotHogtied", "NoFeetSpreader", "CannotUseWithAlphaHood"], HideItem: ["ShoesMistressBoots", "ShoesPonyBoots", "ShoesThighHighLatexHeels", "ItemBootsPonyBoots", "ItemBootsBalletHeels", "ItemBootsBalletWedges", "ItemBootsThighHighLatexHeels"], BuyGroup: "Bed", RemoveItemOnRemove: [{ Name: "Covers", Group: "ItemAddon" }] },
 			{
-				Name: "X-Cross", Priority: 1, Value: 200, Left: 0, Top: -50, Difficulty: 9, SelfBondage: 1, Time: 15, Prerequisite: ["CuffedArms", "CuffedFeet", "AllFours", "NotSuspended", "NotHogtied", "LegsOpen", "NotKneeling", "CannotUseWithAlphaHood"], SetPose: ["OverTheHead", "Spread"], Hide: ["ItemBoots"], HideItem: ["PencilSkirt", "Gown2Skirt", "ShoesMistressBoots", "ShoesPonyBoots", "ShoesThighHighLatexHeels"], Effect: ["Prone", "Freeze", "Block", "Mounted"], Block: ["ItemArms", "ItemFeet", "ItemLegs", "ItemBoots"], Layer: [
+				Name: "X-Cross", Priority: 1, Value: 200, Left: 0, Top: -50, Difficulty: 9, SelfBondage: 1, Time: 15, Prerequisite: ["NotKneeling", "CuffedArms", "CuffedFeet", "AllFours", "NotSuspended", "NotHogtied", "LegsOpen", "CannotUseWithAlphaHood"], SetPose: ["OverTheHead", "Spread"], Hide: ["ItemBoots"], HideItem: ["PencilSkirt", "Gown2Skirt", "ShoesMistressBoots", "ShoesPonyBoots", "ShoesThighHighLatexHeels"], Effect: ["Prone", "Freeze", "Block", "Mounted"], Block: ["ItemArms", "ItemFeet", "ItemLegs", "ItemBoots"], Layer: [
 					{ Name: "Cross", AllowColorize: false },
 					{ Name: "Padding", AllowColorize: true }
 				],
@@ -2605,15 +2605,26 @@ var AssetFemale3DCG = [
 /* eslint-disable */
 // 3D Custom Girl based pose
 var PoseFemale3DCG = [
-
+	{
+		Name: "BaseUpper",
+		Category: "BodyUpper",
+		AllowMenu: true,
+	},
+	{
+		Name: "BaseLower",
+		Category: "BodyLower",
+		AllowMenu: true,
+	},
 	{
 		Name: "Kneel",
 		Category: "BodyLower",
+		AllowMenu: true,
 		OverrideHeight: -250,
 		Hide: ["ItemFeet"]
 	},
 	{
 		Name: "Horse",
+		Category: "BodyLower",
 		OverrideHeight: -75,
 		Hide: ["ItemFeet"]
 	},
@@ -2626,11 +2637,12 @@ var PoseFemale3DCG = [
 	{
 		Name: "Yoked",
 		Category: "BodyUpper",
+		AllowMenu: true,
 		Hide: ["Hands"]
 	},
 	{
 		Name: "OverTheHead",
-		Category: "BodyFull",
+		Category: "BodyUpper",
 		OverrideHeight: -25,
 		Hide: ["Hands"],
 		MovePosition: [{ Group: "Pussy", X: 0, Y: -5 }, { Group: "ItemVulva", X: 0, Y: -5 }, { Group: "ItemButt", X: 0, Y: -5 }, { Group: "TailStraps", X: 0, Y: -5 }, { Group: "ItemVulvaPiercings", X: 0, Y: -5 }]
@@ -2644,11 +2656,13 @@ var PoseFemale3DCG = [
 	},
 	{
 		Name: "Suspension",
+		Category: "BodyFull",
 		OverrideHeight: 150,
 		Hide: []
 	},
 	{
 		Name: "SuspensionHogtied",
+		Category: "BodyFull",
 		OverrideHeight: 0,
 		Hide: ["BodyLower", "Hands", "ClothLower", "Wings", "TailStraps", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemLegs", "ItemFeet", "SuitLower", "ItemDevices"]
 	},
@@ -2661,17 +2675,44 @@ var PoseFemale3DCG = [
 	},
 	{
 		Name: "BackBoxTie",
-		Category: "BodyUpper"
+		Category: "BodyUpper",
+		AllowMenu: true,
 	},
 	{
 		Name: "LegsClosed",
-		Category: "BodyLower"
+		Category: "BodyLower",
+		AllowMenu: true,
 	},
 	{
 		Name: "Spread",
-		Category: "BodyLower"
+		Category: "BodyLower",
+		AllowMenu: true,
 	},
-
+	{
+		Name: "BackElbowTouch",
+		Category: "BodyUpper",
+		AllowMenu: true,
+	},
+	{
+		Name: "BackCuffs",
+		Category: "BodyUpper",
+	},
+	{
+		Name: "TapedHands",
+		Category: "BodyUpper",
+	},
+	{
+		Name: "StraitDressOpen",
+		Category: "BodyFull",
+	},
+	{
+		Name: "LegsOpen",
+		Category: "BodyLower",
+	},
+	{
+		Name: "Bolero",
+		Category: "BodyUpper",
+	},
 ];
 
 // 3D Custom Girl based activities
