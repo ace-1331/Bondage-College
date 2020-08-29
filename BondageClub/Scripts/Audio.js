@@ -36,12 +36,9 @@ var AudioActions = [
 	{ Action: "TimerRelease", Sound: "Unlock" },
 	{ Action: "ActionUnlock", Sound: "Unlock" },
 	{ Action: "ActionUnlockAndRemove", Sound: "Unlock" },
-	{ Action: "ActionLock", Modifier: 3, PlayAudio: AudioPlayAssetSound },
-	{ Action: "ActionUse", Modifier: 3, PlayAudio: AudioPlayAssetSound },
-	{ Action: "ActionSwap", Modifier: 3, PlayAudio: AudioPlayAssetSound },
-];
-
-var AudioCustomActions = [
+	{ Action: "ActionLock", GetAudioInfo: AudioPlayAssetSound },
+	{ Action: "ActionUse", GetAudioInfo: AudioPlayAssetSound },
+	{ Action: "ActionSwap", GetAudioInfo: AudioPlayAssetSound },
 	{
 		IsAction: (data) => ["pumps", "Suctightens", "InflatableBodyBagRestrain"].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
@@ -121,33 +118,22 @@ function AudioPlayContent(data) {
 
 	// Activities can trigger sounds
 	if (data.Content.indexOf("ActionActivity") == 0) {
-		NoiseModifier += 3;
-		FileName = AudioGetFileName(AudioPlayAssetSound(data));
+		var Result = AudioPlayAssetSound(data);
+		FileName = AudioGetFileName(Result[0]);
+		NoiseModifier += Result[1] || 0;
 	}
 
 	// Instant actions can trigger a sound depending on the action. It can be a string or custom function, and it can alter the sound level.
+	// Custom Actions can trigger sounds based on a function which is a condition to give a Sound name.
 	if (!FileName) {
-		var ActionSound = AudioActions.find(A => A.Action == data.Content);
-		if (ActionSound) {
-			if (ActionSound.Modifier) NoiseModifier += ActionSound.Modifier;
-			if (ActionSound.PlayAudio)
-				FileName = AudioGetFileName(ActionSound.PlayAudio(data));
-			else
-				FileName = AudioGetFileName(ActionSound.Sound);
-		}
-	}
-
-	// Custom Actions can trigger sounds based on a function or a Sound name.
-	if (!FileName) {
-		var CustomActionSound = AudioCustomActions.find(CA => CA.IsAction(data));
-		if (CustomActionSound) {
-			if (CustomActionSound.Modifier) NoiseModifier += CustomActionSound.Modifier;
-			if (CustomActionSound.GetAudioInfo) {
-				var Result = CustomActionSound.GetAudioInfo(data);
+		var Action = AudioActions.find(A => A.Action && A.Action == data.Content) ||AudioActions.find(CA => CA.IsAction && CA.IsAction(data));
+		if (Action) {
+			if (Action.GetAudioInfo) {
+				var Result = Action.GetAudioInfo(data);
 				FileName = AudioGetFileName(Result[0]);
 				NoiseModifier += Result[1] || 0;
 			} else
-				FileName = AudioGetFileName(CustomActionSound.Sound);
+				FileName = AudioGetFileName(Action.Sound);
 		}
 	}
 
@@ -177,22 +163,25 @@ function AudioGetFileName(sound) {
 /**
  * Processes which sound should be played for items
  * @param {object} data - Data content triggering the potential sound
- * @returns {string} - Filename to use
+ * @returns {[string, number]} - he name of the sound to play, followed by the noise modifier 
  */
 function AudioPlayAssetSound(data) {
 	var NextAsset = data.Dictionary.find((el) => el.Tag == "NextAsset");
 	var NextAssetGroup = data.Dictionary.find((el) => el.Tag == "FocusAssetGroup");
+	var FileName = "";
 
-	if (!NextAsset || !NextAsset.AssetName || !NextAssetGroup || !NextAssetGroup.AssetGroupName) return "";
+	if (!NextAsset || !NextAsset.AssetName || !NextAssetGroup || !NextAssetGroup.AssetGroupName) return [FileName, 0];
 
 	var Asset = AssetGet("Female3DCG", NextAssetGroup.AssetGroupName, NextAsset.AssetName);
-
-	if (Asset && Asset.DynamicAudio) {
+	
+	if (!Asset) return [FileName, 0];
+	
+	if (Asset.DynamicAudio) {
 		var Char = ChatRoomCharacter.find((C) => C.MemberNumber == data.Sender);
-		return Char ? Asset.DynamicAudio(Char) : "";
+		FileName = Char ? Asset.DynamicAudio(Char) : "";
 	}
 
-	return Asset && Asset.Audio ? Asset.Audio : "";
+	return [(FileName || Asset.Audio), 3];
 }
 
 /**
