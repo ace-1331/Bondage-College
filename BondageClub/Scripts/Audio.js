@@ -36,10 +36,10 @@ var AudioActions = [
 	{ Action: "TimerRelease", Sound: "Unlock" },
 	{ Action: "ActionUnlock", Sound: "Unlock" },
 	{ Action: "ActionUnlockAndRemove", Sound: "Unlock" },
-	{ Action: "ActionLock", Modifier: 3, PlayAudio: AudioPlayAssetSound},
-	{ Action: "ActionUse", Modifier: 3, PlayAudio: AudioPlayAssetSound},
-	{ Action: "SlaveCollarChangeType", Modifier: 3, PlayAudio: AudioPlayAssetSound},
-	{ Action: "ActionSwap", Modifier: 3, PlayAudio: AudioPlayAssetSound},
+	{ Action: "ActionLock", Modifier: 3, PlayAudio: AudioPlayAssetSound },
+	{ Action: "ActionUse", Modifier: 3, PlayAudio: AudioPlayAssetSound },
+	{ Action: "SlaveCollarChangeType", Modifier: 3, PlayAudio: AudioPlayAssetSound },
+	{ Action: "ActionSwap", Modifier: 3, PlayAudio: AudioPlayAssetSound },
 ];
 
 var AudioCustomActions = [
@@ -119,13 +119,13 @@ function AudioPlayContent(data) {
 	if (!Player.AudioSettings || !Player.AudioSettings.PlayItem || (Player.AudioSettings.Volume == 0) || !data.Dictionary || !data.Dictionary.length) return;
 	var NoiseModifier = 0;
 	var FileName = "";
-	
+
 	// Activities can trigger sounds
-	if (data.Content.indexOf("ActionActivity") == 0) { 
+	if (data.Content.indexOf("ActionActivity") == 0) {
 		NoiseModifier += 3;
-		AudioPlayAssetSound(data);
+		FileName = AudioGetFileName(AudioPlayAssetSound(data));
 	}
-	
+
 	// Instant actions can trigger a sound depending on the action. It can be a string or custom function, and it can alter the sound level.
 	if (!FileName) {
 		var ActionSound = AudioActions.find(A => A.Action == data.Content);
@@ -137,7 +137,7 @@ function AudioPlayContent(data) {
 				FileName = AudioGetFileName(ActionSound.Sound);
 		}
 	}
-	
+
 	// Custom Actions can trigger sounds based on a function or a Sound name.
 	if (!FileName) {
 		var CustomActionSound = AudioCustomActions.find(CA => CA.IsAction(data));
@@ -151,27 +151,27 @@ function AudioPlayContent(data) {
 				FileName = AudioGetFileName(CustomActionSound.Sound);
 		}
 	}
-	
-	
+
+
 	// Update noise level depending on who the interaction took place between.  Sensory isolation increases volume for self, decreases for others.
 	var Target = data.Dictionary.find((el) => el.Tag == "DestinationCharacter" || el.Tag == "DestinationCharacterName" || el.Tag == "TargetCharacter");
-	
+
 	if (!FileName || !Target || !Target.MemberNumber) return;
 
 	if (Target.MemberNumber == Player.MemberNumber) NoiseModifier += 3;
 	else if (data.Sender != Player.MemberNumber) NoiseModifier -= 3;
-	
+
 	if (Player.Effect.indexOf("BlindHeavy") >= 0) NoiseModifier += 4;
 	else if (Player.Effect.indexOf("BlindNormal") >= 0) NoiseModifier += 2;
 	else if (Player.Effect.indexOf("BlindLight") >= 0) NoiseModifier += 1;
-	
+
 	NoiseModifier -= (3 * Player.GetDeafLevel());
 
 	// Sends the audio file to be played
 	AudioPlayInstantSound("Audio/" + FileName + ".mp3", Player.AudioSettings.Volume * (.2 + NoiseModifier / 40));
 }
 
-function AudioGetFileName(sound) { 
+function AudioGetFileName(sound) {
 	var AssetSound = AudioList.find(A => A.Name == sound);
 	return AssetSound ? AssetSound.File : "";
 }
@@ -184,21 +184,17 @@ function AudioGetFileName(sound) {
 function AudioPlayAssetSound(data) {
 	var NextAsset = data.Dictionary.find((el) => el.Tag == "NextAsset");
 	var NextAssetGroup = data.Dictionary.find((el) => el.Tag == "FocusAssetGroup");
-	
+
 	if (!NextAsset || !NextAsset.AssetName || !NextAssetGroup || !NextAssetGroup.AssetGroupName) return "";
-	
+
 	var Asset = AssetGet("Female3DCG", NextAssetGroup.AssetGroupName, NextAsset.AssetName);
-	
-	if (Asset && Asset.DynamicAudio) { 
+
+	if (Asset && Asset.DynamicAudio) {
 		var Char = ChatRoomCharacter.find((C) => C.MemberNumber == data.Sender);
-		return Char ? AudioGetFileName(Asset.DynamicAudio(Char)) : "";
+		return Char ? Asset.DynamicAudio(Char) : "";
 	}
-	
-	if (Asset && Asset.Audio) { 
-		return AudioGetFileName(Asset.Audio);
-	}
-	
-	return ""; 
+
+	return Asset && Asset.Audio ? Asset.Audio : "";
 }
 
 /**
@@ -206,10 +202,12 @@ function AudioPlayAssetSound(data) {
  * @param {object} data - Represents the chat message received
  * @returns {[string, number]} - The name of the sound to play, followed by the noise modifier 
  */
-function AudioVibratorSounds(data) { 
+function AudioVibratorSounds(data) {
+	var Sound = "";
+
 	var Level = parseInt(data.Content.substr(data.Content.length - 1));
 	if (isNaN(Level)) Level = 0;
-	
+
 	var AssetName = data.Content.substring(0, data.Content.length - "IncreaseToX".length);
 	switch (AssetName) {
 		case "Vibe":
@@ -218,21 +216,21 @@ function AudioVibratorSounds(data) {
 		case "Nipple":
 		case "NippleEgg":
 		case "TapedClitEgg":
-			case "ClitStimulator":
-		case "Egg": FileName = "Audio/VibrationTone4ShortLoop.mp3"; break;
+		case "ClitStimulator":
+		case "Egg": Sound = "VibrationShort"; break;
 		case "LoveChastityBeltVibe":
 		case "Belt":
-		case "Panties": FileName = "Audio/VibrationTone4Long3.mp3"; break;
+		case "Panties": Sound = "VibrationLong1"; break;
 		case "Buttplug":
 		case "InflVibeButtPlug_Vibe":
 		case "InflVibeDildo_Vibe":
-			case "HempRopeBelt":
-				case "SpreaderVibratingDildoBar":
-					case "BunnyTailVibe":
-						case "EggVibePlugXXL":
-		case "Dildo": FileName = "Audio/VibrationTone4Long6.mp3"; break;
-		case "Sybian": FileName = "Audio/Sybian.mp3"; break;
+		case "HempRopeBelt":
+		case "SpreaderVibratingDildoBar":
+		case "BunnyTailVibe":
+		case "EggVibePlugXXL":
+		case "Dildo": Sound = "VibrationLong2"; break;
+		case "Sybian": Sound = "Sybian"; break;
 	}
-	
-	return [ , Level *  3];
+
+	return [Sound, Level * 3];
 }
