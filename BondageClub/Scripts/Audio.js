@@ -38,7 +38,6 @@ var AudioActions = [
 	{ Action: "ActionUnlockAndRemove", Sound: "Unlock" },
 	{ Action: "ActionLock", Modifier: 3, PlayAudio: AudioPlayAssetSound },
 	{ Action: "ActionUse", Modifier: 3, PlayAudio: AudioPlayAssetSound },
-	{ Action: "SlaveCollarChangeType", Modifier: 3, PlayAudio: AudioPlayAssetSound },
 	{ Action: "ActionSwap", Modifier: 3, PlayAudio: AudioPlayAssetSound },
 ];
 
@@ -151,7 +150,6 @@ function AudioPlayContent(data) {
 				FileName = AudioGetFileName(CustomActionSound.Sound);
 		}
 	}
-
 
 	// Update noise level depending on who the interaction took place between.  Sensory isolation increases volume for self, decreases for others.
 	var Target = data.Dictionary.find((el) => el.Tag == "DestinationCharacter" || el.Tag == "DestinationCharacterName" || el.Tag == "TargetCharacter");
