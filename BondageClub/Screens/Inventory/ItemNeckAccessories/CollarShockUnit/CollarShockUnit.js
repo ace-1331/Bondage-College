@@ -90,6 +90,6 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
 
 function InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data) { 
 	var Modifier = parseInt(data.Content.substr(data.Content.length - 1));
-	if (isNaN(shockLevel)) Modifier = 0;
+	if (isNaN(Modifier)) Modifier = 0;
 	return ["Shocks", Modifier * 3];
 }
