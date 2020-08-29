@@ -44,31 +44,31 @@ var AudioActions = [
 
 var AudioCustomActions = [
 	{
-		IsAction: (data) => ["pumps", "Suctightens", "InflatableBodyBagRestrain"].find(data.Content.includes),
+		IsAction: (data) => ["pumps", "Suctightens", "InflatableBodyBagRestrain"].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
 	},
 	{
-		IsAction: (data) => ["deflates", "Sucloosens"].find(data.Content.includes),
+		IsAction: (data) => ["deflates", "Sucloosens"].find(A => data.Content.includes(A)),
 		Sound: "Deflation"
 	},
 	{
-		IsAction: (data) => ["ChainSet"].find(data.Content.includes),
+		IsAction: (data) => ["ChainSet"].find(A => data.Content.includes(A)),
 		Sound: "ChainLong"
 	},
 	{
-		IsAction: (data) => ["RopeSet"].find(data.Content.includes),
+		IsAction: (data) => ["RopeSet"].find(A => data.Content.includes(A)),
 		Sound: "RopeShort"
 	},
 	{
-		IsAction: (data) => ["ShacklesRestrain", "Ornate"].find(data.Content.includes),
+		IsAction: (data) => ["ShacklesRestrain", "Ornate"].find(A => data.Content.includes(A)),
 		Sound: "CuffsMetal"
 	},
 	{
-		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "TriggerShock"].find(data.Content.includes),
-		GetAudioInfo: () => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio()
+		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "TriggerShock"].find(A => data.Content.includes(A)),
+		GetAudioInfo: (data) => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio(data)
 	},
 	{
-		IsAction: (data) => ["Decrease", "Increase"].find(data.Content.includes) && !data.Content.endsWith("-1"),
+		IsAction: (data) => ["Decrease", "Increase"].find(A => data.Content.includes(A)) && !data.Content.endsWith("-1"),
 		GetAudioInfo: AudioVibratorSounds
 	},
 ];
