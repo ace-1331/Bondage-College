@@ -65,7 +65,7 @@ var AudioCustomActions = [
 	},
 	{
 		IsAction: (data) => ["CollarShockUnitTrigger", "ShockCollarTrigger", "LoveChastityBeltShockTrigger", "TriggerShock"].find(data.Content.includes),
-		GetAudioInfo: InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio
+		GetAudioInfo: () => InventoryItemNeckAccessoriesCollarShockUnitDynamicAudio()
 	},
 	{
 		IsAction: (data) => ["Decrease", "Increase"].find(data.Content.includes) && !data.Content.endsWith("-1"),
