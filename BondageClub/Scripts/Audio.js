@@ -40,6 +40,10 @@ var AudioActions = [
 	{ Action: "ActionUse", GetAudioInfo: AudioPlayAssetSound },
 	{ Action: "ActionSwap", GetAudioInfo: AudioPlayAssetSound },
 	{
+		IsAction: (data) => data.Content.indexOf("ActionActivity") == 0,
+		GetAudioInfo: AudioPlayAssetSound
+	},
+	{
 		IsAction: (data) => ["pumps", "Suctightens", "InflatableBodyBagRestrain"].find(A => data.Content.includes(A)),
 		Sound: "Inflation"
 	},
@@ -116,25 +120,16 @@ function AudioPlayContent(data) {
 	var NoiseModifier = 0;
 	var FileName = "";
 
-	// Activities can trigger sounds
-	if (data.Content.indexOf("ActionActivity") == 0) {
-		var Result = AudioPlayAssetSound(data);
-		FileName = AudioGetFileName(Result[0]);
-		NoiseModifier += Result[1] || 0;
-	}
-
-	// Instant actions can trigger a sound depending on the action. It can be a string or custom function, and it can alter the sound level.
-	// Custom Actions can trigger sounds based on a function which is a condition to give a Sound name.
-	if (!FileName) {
-		var Action = AudioActions.find(A => A.Action && A.Action == data.Content) ||AudioActions.find(CA => CA.IsAction && CA.IsAction(data));
-		if (Action) {
-			if (Action.GetAudioInfo) {
-				var Result = Action.GetAudioInfo(data);
-				FileName = AudioGetFileName(Result[0]);
-				NoiseModifier += Result[1] || 0;
-			} else
-				FileName = AudioGetFileName(Action.Sound);
-		}
+	// Instant actions can trigger a sound depending on the action. It can be a specific string or custom function to determine if a sound should be played, it can also alter the sound level.
+	// The sound can be a specific one or the result of a function
+	var Action = AudioActions.find(A => A.Action && A.Action == data.Content) || AudioActions.find(CA => CA.IsAction && CA.IsAction(data));
+	if (Action) {
+		if (Action.GetAudioInfo) {
+			var Result = Action.GetAudioInfo(data);
+			FileName = AudioGetFileName(Result[0]);
+			NoiseModifier += Result[1] || 0;
+		} else
+			FileName = AudioGetFileName(Action.Sound);
 	}
 
 	// Update noise level depending on who the interaction took place between.  Sensory isolation increases volume for self, decreases for others.
