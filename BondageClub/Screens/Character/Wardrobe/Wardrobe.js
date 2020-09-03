@@ -4,6 +4,7 @@
  * An object defining a optional filter properties for the WardrobeGroupAccessible function.
  * @typedef {object} FilterObject
  * @property {boolean} [ExcludeNonCloth] - If the non-clothing items should be excluded from the check
+ * @property {boolean} [BlockLocks] - If a locked item should be excluded 
  */
 
 var WardrobeBackground = "PrivateDark";
@@ -188,9 +189,10 @@ function WardrobeSetCharacterName(W, Name, Push) {
  * @returns {string} - bundle.Name - The name of the asset in the bundle
  * @returns {string} - bundle.Group - The name of the asste group, the bundled asset belongs to
  * @returns {string} - bundle.Color - The string representation of the color in the format "#rrggbb"
+ * @returns {Object} - bundle.Property - The asset property object
  */
 function WardrobeAssetBundle(A) {
-	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color };
+	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color, Property: A.Property };
 }
 
 /**
@@ -204,7 +206,6 @@ function WardrobeFastLoad(C, W, Update) {
 	var savedExpression = {};
 	if (C == Player) savedExpression = WardrobeGetExpression(Player);
 	if ((Player.Wardrobe != null) && (Player.Wardrobe[W] != null) && (Player.Wardrobe[W].length > 0)) {
-		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		C.Appearance = C.Appearance
 			.filter(a => a.Asset.Group.Category != "Appearance" || !WardrobeGroupAccessible(C, a.Asset.Group, { ExcludeNonCloth: true }))
 		Player.Wardrobe[W]
@@ -217,7 +218,14 @@ function WardrobeFastLoad(C, W, Update) {
 					&& WardrobeGroupAccessible(C, a.Group, { ExcludeNonCloth: true })
 					&& a.Name == w.Name
 					&& (a.Value == 0 || InventoryAvailable(Player, a.Name, a.Group.Name)));
-				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, null, false);
+				if (A != null) {
+					CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, null, false);
+					if (w.Property && InventoryGet(C, w.Group)) { 
+						var item = InventoryGet(C, w.Group);
+						if (item.Property == null) item.Property = {};
+						for (const key in w.Property) item.Property[key] = w.Property[key];
+					}
+				}
 			});
 		// Adds any critical appearance asset that could be missing, adds the default one
 		AssetGroup
@@ -262,7 +270,7 @@ function WardrobeFastSave(C, W, Push) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		Player.Wardrobe[W] = C.Appearance
 			.filter(a => a.Asset.Group.Category == "Appearance")
-			.filter(a => AddAll || a.Asset.Group.Clothing)
+			.filter(a => WardrobeGroupAccessible(C, a.Asset.Group, { BlockLocks: true, ExcludeNonCloth: AddAll }))
 			.map(WardrobeAssetBundle);
 		if (!AddAll) {
 			// Using Player's body as base
@@ -289,7 +297,7 @@ function WardrobeGetExpression(C) {
 }
 
 /**
- * Checks if a given group of a character can be altered.
+ * Checks if a given group of a character can be accessed.
  * @param {Character} C - The character in the wardrobe
  * @param {object} Group - The group to check for accessibility 
  * @param {FilterObject} [Options] - Optional filter properties.
@@ -297,11 +305,14 @@ function WardrobeGetExpression(C) {
  */
 function WardrobeGroupAccessible(C, Group, Options) { 
 	
+	// An unaccessible lock prevents access to anyone, even yourself
+	var Item = InventoryGet(C, Group.Name);
+	if (Item && InventoryItemHasEffect(Item, "Lock", true) && ((Options && Options.BlockLocks) || !DialogCanUnlock(C, Item))) return false;
+	
 	// You can always edit yourself.
 	if (C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0) return true;
 	
 	// If the player does not want her body cosplay touched
-	// var Item = InventoryGet(C, Group.Name);
 	// if (C.OnlineSettings && C.OnlineSettings.BlockEarTailAccess && (Group.BodyCosplay || (Item && Item.Asset.BodyCosplay))) return false;
 	
 	// Clothes can always be edited
@@ -315,8 +326,6 @@ function WardrobeGroupAccessible(C, Group, Options) {
 		// Owners and lovers have more access
 		if (Group.RestrainedAccess && (C.IsLoverOfPlayer() || C.IsOwnedByPlayer())) return true;
 	}
-	
-	//TODO: add toggle for allow all UI, think about ears( Block ears in strip fn and add ui toggle if added)
 	
 	return false;
 }
