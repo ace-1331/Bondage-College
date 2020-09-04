@@ -1,11 +1,4 @@
 "use strict";
-
-/**
- * An object defining a optional filter properties for the WardrobeGroupAccessible function.
- * @typedef {object} FilterObject
- * @property {boolean} [ExcludeNonCloth] - If the non-clothing items should be excluded from the check
- */
-
 var WardrobeBackground = "PrivateDark";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
@@ -299,31 +292,15 @@ function WardrobeGetExpression(C) {
  * Checks if a given group of a character can be accessed.
  * @param {Character} C - The character in the wardrobe
  * @param {object} Group - The group to check for accessibility 
- * @param {FilterObject} [Options] - Optional filter properties.
  * @returns {boolean} - Whether the zone can be altered or not.
  */
 function WardrobeGroupAccessible(C, Group, Options) { 
-	// When you cannot change, nothing is accessible
-	if (!Player.CanChange()) return false;
 	
 	// You can always edit yourself.
 	if (C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0) return true;
 	
-	// If the player does not want her body cosplay touched
-	// var Item = InventoryGet(C, Group.Name);
-	// if (C.OnlineSettings && C.OnlineSettings.BlockEarTailAccess && (Group.BodyCosplay || (Item && Item.Asset.BodyCosplay))) return false;
-	
 	// Clothes can always be edited
 	if (Group.Clothing) return true;
-	
-	// You can filter out non-clothing options
-	if (!Options || !Options.ExcludeNonCloth) { 
-		// If the player allows all
-		if (C.OnlineSettings && C.OnlineSettings.AllowFullWardrobeAccess) return true;
 		
-		// Owners and lovers have more access
-		if (Group.RestrainedAccess && (C.IsLoverOfPlayer() || C.IsOwnedByPlayer())) return true;
-	}
-	
 	return false;
 }

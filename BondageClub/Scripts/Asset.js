@@ -68,8 +68,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		DrawingTop: (NewAsset.Top == null) ? 0 : NewAsset.Top,
 		DrawingFullAlpha: (NewAsset.FullAlpha == null) ? true : NewAsset.FullAlpha,
 		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink,
-		InheritColor: NewAsset.InheritColor,
-		RestrainedAccess: (NewAsset.RestrainedAccess == null) ? false : NewAsset.RestrainedAccess
+		InheritColor: NewAsset.InheritColor
 	}
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
