@@ -539,9 +539,9 @@ function AppearanceRun() {
 
 		// Draw 6 wardrobe options
 		for (let W = CharacterAppearanceWardrobeOffset; W < Player.Wardrobe.length && W < CharacterAppearanceWardrobeOffset + 6; W++) {
-			DrawButton(1300, 430 + (W - CharacterAppearanceWardrobeOffset) * 95, 500, 65, "", (Player.CanChange() && OnlineGameAllowChange()) ? "White" : "#888", "");
+			DrawButton(1300, 430 + (W - CharacterAppearanceWardrobeOffset) * 95, 500, 65, "", (Player.CanChange() && OnlineGameAllowChange()) ? "White" : "#888", null, null, !(Player.CanChange() && OnlineGameAllowChange()));
 			DrawTextFit((W + 1).toString() + (W < 9 ? ":  " : ": ") + Player.WardrobeCharacterNames[W], 1550, 463 + (W - CharacterAppearanceWardrobeOffset) * 95, 496, "Black");
-			DrawButton(1820, 430 + (W - CharacterAppearanceWardrobeOffset) * 95, 160, 65, "Save", "White", null, null, !(Player.CanChange() && OnlineGameAllowChange()));
+			DrawButton(1820, 430 + (W - CharacterAppearanceWardrobeOffset) * 95, 160, 65, "Save", "White");
 		}
 
 	}
