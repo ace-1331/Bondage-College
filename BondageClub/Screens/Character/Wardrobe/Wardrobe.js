@@ -302,9 +302,9 @@ function WardrobeGetExpression(C) {
  * @param {FilterObject} [Options] - Optional filter properties.
  * @returns {boolean} - Whether the zone can be altered or not.
  */
-function WardrobeGroupAccessible(C, Group, Options) {
+function WardrobeGroupAccessible(C, Group, Options) { 
 	// When you cannot change, nothing is accessible
-	if (!Player.CanChange() || !OnlineGameAllowChange()) return false;
+	if (!Player.CanChange()) return false;
 	
 	// You can always edit yourself.
 	if (C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0) return true;
