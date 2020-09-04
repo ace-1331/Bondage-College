@@ -481,8 +481,8 @@ function AppearanceRun() {
 		if (C.ID == 0) CharacterAppearanceHeaderText = TextGet("SelectYourAppearance");
 		else CharacterAppearanceHeaderText = TextGet("SelectSomeoneAppearance").replace("TargetCharacterName", C.Name);
 	}
-	DrawCharacter(C, -600, (C.IsKneeling()) ? -1100 : -100, 4, false);
-	DrawCharacter(C, 750, 0, 1);
+	DrawCharacter(C, -650, (C.IsKneeling()) ? -1100 : -100, 4, false);
+	DrawCharacter(C, 700, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 400, 40, "White", "Black");
 
 	
@@ -508,8 +508,17 @@ function AppearanceRun() {
 		for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 			if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && AssetGroup[A].AllowCustomize) {
 				var ButtonColor = WardrobeGroupAccessible(C, AssetGroup[A], { BlockLocks: true }) ? "White" : "#888";
-				if (AssetGroup[A].AllowNone && !AssetGroup[A].KeepNaked && (AssetGroup[A].Category == "Appearance") && (InventoryGet(C, AssetGroup[A].Name) != null) && WardrobeGroupAccessible(C, AssetGroup[A]))
-					DrawButton(1210, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", ButtonColor, "Icons/Small/Naked.png", TextGet("StripItem"));
+				var Item = InventoryGet(C, AssetGroup[A].Name);
+				var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
+				if (AssetGroup[A].AllowNone && !AssetGroup[A].KeepNaked && (AssetGroup[A].Category == "Appearance") && (InventoryGet(C, AssetGroup[A].Name) != null) && WardrobeGroupAccessible(C, AssetGroup[A])) {
+					DrawButton(1220, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", ButtonColor, "Icons/Small/Naked.png", TextGet("StripItem"));
+					if ((Item != null) && Item.Asset.AllowLock && !IsItemLocked && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite))
+						DrawButton(1140, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", "Icons/Small/Lock.png", TextGet("LockItem"));
+				}
+				if ((Item != null) && IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite))
+						DrawButton(1140, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", "Icons/Small/Unlock.png", TextGet("Unlock"));
+				if (IsItemLocked && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
+						DrawButton(1220, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", "Icons/Small/InspectLock.png", TextGet("InspectLock"));
 				if (!AssetGroup[A].AllowNone)
 					DrawBackNextButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Description"), ButtonColor, "",
 						() => WardrobeGroupAccessible(C, AssetGroup[A], { BlockLocks: true }) ? CharacterAppearanceNextItem(C, AssetGroup[A].Name, false, true) : "",
@@ -774,7 +783,7 @@ function AppearanceClick() {
 	if (CharacterAppearanceMode == "") {
 
 		// If we must remove/restore to default the item
-		if ((MouseX >= 1210) && (MouseX < 1275) && (MouseY >= 145) && (MouseY < 975))
+		if ((MouseX >= 1220) && (MouseX < 1285) && (MouseY >= 145) && (MouseY < 975))
 			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && WardrobeGroupAccessible(C, AssetGroup[A], { BlockLocks: true }) && AssetGroup[A].AllowNone && !AssetGroup[A].KeepNaked && (InventoryGet(C, AssetGroup[A].Name) != null))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
@@ -814,7 +823,58 @@ function AppearanceClick() {
 						ElementCreateInput("InputColor", "text", ((CharacterAppearanceColorPickerBackup == "Default") || (CharacterAppearanceColorPickerBackup == "None")) ? "#" : CharacterAppearanceColorPickerBackup, "7");
 
 					}
-
+		
+		// If we must inspect the lock
+		if ((MouseX >= 1220) && (MouseX < 1285) && (MouseY >= 145) && (MouseY < 975))
+			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++) {
+				var Item = InventoryGet(C, AssetGroup[A].Name);
+				var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
+				if (IsItemLocked && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != ""))
+					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95)) { 
+						var Lock = InventoryGetLock(Item);
+						if (Lock != null) DialogExtendItem(Lock, Item);
+					}
+			}
+		
+		// if we must lock a group
+		if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 145) && (MouseY < 975))
+			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++) {
+				var Item = InventoryGet(C, AssetGroup[A].Name);
+				var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
+				if (AssetGroup[A].AllowNone && !AssetGroup[A].KeepNaked && (AssetGroup[A].Category == "Appearance") && (InventoryGet(C, AssetGroup[A].Name) != null) && WardrobeGroupAccessible(C, AssetGroup[A]) && (Item != null) && Item.Asset.AllowLock && !IsItemLocked && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite))
+					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95)) { 
+						if (DialogItemToLock == null) {
+							if ((Item != null) && (Item.Asset.AllowLock != null)) {
+								DialogInventoryOffset = 0;
+								DialogInventory = [];
+								DialogItemToLock = Item;
+								for (let A = 0; A < Player.Inventory.length; A++)
+									if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
+										DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
+								DialogInventorySort();
+								C.FocusGroup = AssetGroup[A];
+								CharacterAppearanceMode = "Cloth";
+							}
+						} else {
+							DialogItemToLock = null;
+							C.FocusGroup = null;
+							CharacterAppearanceMode = "";
+						}
+					}
+			}
+		
+		// If we must unlock a group
+		if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 145) && (MouseY < 975))
+			for (let A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++) {
+				var Item = InventoryGet(C, AssetGroup[A].Name);
+				var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
+				if ((Item != null) && IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite))
+					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95)) { 
+						if (!InventoryItemHasEffect(Item, "Lock", false) && InventoryItemHasEffect(Item, "Lock", true) && ((C.ID != 0) || C.CanInteract()))
+							InventoryUnlock(C, AssetGroup[A].Name);
+					}
+			}
+		
 		// If we must set back the default outfit or set a random outfit
 		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && !LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceSetDefault(C);
 		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);

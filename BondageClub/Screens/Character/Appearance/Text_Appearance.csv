@@ -7,6 +7,9 @@ ResetClothes,Reset character
 Random,Randomize character
 Naked,Strip clothes
 StripItem,Strip item
+LockItem,Lock item
+Unlock,Unlock item
+InspectLock,Inspect lock
 Next,Next
 Prev,Previous
 Cancel,Cancel changes
