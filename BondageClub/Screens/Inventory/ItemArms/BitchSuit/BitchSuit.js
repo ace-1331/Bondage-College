@@ -54,3 +54,13 @@ function InventoryItemArmsBitchSuitPublishAction(C, Option) {
 	];
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 }
+
+/**
+ * Sets a character dialog.
+ * @param {Character} C - Character being changed.
+ * @param {object} Option - The option used.
+ * @returns {void} - Nothing
+ */
+function InventoryItemArmsBitchSuitNpcDialog(C, Option) {
+	C.CurrentDialog = DialogFind(C, "BitchSuitType" + Option.Name, "ItemArms");
+}
