@@ -501,7 +501,7 @@ function PreferenceExit() {
 			AudioSettings: Player.AudioSettings,
 			GameplaySettings: Player.GameplaySettings,
 			ArousalSettings: Player.ArousalSettings,
-			OnlineSettings: OnlineSettings,
+			OnlineSettings: Player.OnlineSettings,
 		};
 		ServerSend("AccountUpdate", P);
 		PreferenceMessage = "";
