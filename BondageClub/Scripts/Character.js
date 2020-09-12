@@ -26,6 +26,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		Reputation: [],
 		Skill: [],
 		Pose: [],
+		AllowedActivePose: [],
 		Effect: [],
 		FocusGroup: null,
 		Canvas: null,
@@ -90,7 +91,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked: function () { return CharacterIsNaked(this); },
 		IsDeaf: function () { return this.GetDeafLevel() > 0 },
-		HasNoItem: function () { return CharacterHasNoItem(this); }
+		HasNoItem: function () { return CharacterHasNoItem(this); },
+		IsEdged: function () { return CharacterIsEdged(this); },
 	};
 
 	// If the character doesn't exist, we create it
@@ -343,11 +345,8 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
 		Char.AllowItem = false;
-		var BackupCurrentScreen = CurrentScreen;
-		CurrentScreen = "ChatRoom";
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
 		CharacterOnlineRefresh(Char, data, SourceMemberNumber);
-		CurrentScreen = BackupCurrentScreen;
 
 	} else {
 
@@ -406,6 +405,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 function CharacterDelete(NPCType) {
 	for (let C = 0; C < Character.length; C++)
 		if (Character[C].AccountName == NPCType) {
+			AnimationPurge(Character[C], true);
 			Character.splice(C, 1);
 			return;
 		}
@@ -434,12 +434,13 @@ function CharacterAddPose(C, NewPose) {
 }
 
 /**
- * Checks if a character has a pose from items (not active pose)
+ * Checks if a character has a pose from items (not active pose unless an item lets it through)
  * @param {Character} C - Character to check for the pose 
  * @param {string} Pose - Pose to check for within items
  * @returns {boolean} - TRUE if the character has the pose
  */
 function CharacterItemsHavePose(C, Pose) { 
+	if (C.ActivePose != null && C.AllowedActivePose.includes(Pose) && (typeof C.ActivePose == "string" && C.ActivePose == Pose || Array.isArray(C.ActivePose) && C.ActivePose.includes(Pose))) return true;
 	for (let A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null) && (C.Appearance[A].Property.SetPose.includes(Pose)))
 			return true;
@@ -454,14 +455,41 @@ function CharacterItemsHavePose(C, Pose) {
 }
 
 /**
+ * Checks if a character has a pose type from items (not active pose unless an item lets it through)
+ * @param {Character} C - Character to check for the pose type
+ * @param {string} Type - Pose type to check for within items
+ * @returns {boolean} - TRUE if the character has the pose type active
+ */
+function CharacterItemsHavePoseType(C, Type) { 
+	var PossiblePoses = PoseFemale3DCG.filter(P => P.Category == Type || P.Category == "BodyFull").map(P => P.Name);
+	
+	for (let A = 0; A < C.Appearance.length; A++) {
+		if (C.Appearance[A].Asset.AllowActivePose != null && (C.Appearance[A].Asset.AllowActivePose.find(P => PossiblePoses.includes(P) && C.AllowedActivePose.includes(P))))
+			return true;
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null) && (C.Appearance[A].Property.SetPose.find(P => PossiblePoses.includes(P))))
+			return true;
+		else
+			if (C.Appearance[A].Asset.SetPose != null && (C.Appearance[A].Asset.SetPose.find(P => PossiblePoses.includes(P))))
+				return true;
+			else
+				if (C.Appearance[A].Asset.Group.SetPose != null  && (C.Appearance[A].Asset.Group.SetPose.find(P => PossiblePoses.includes(P))))
+					return true;
+	}
+	return false;
+}
+
+/**
  * Refreshes the list of poses for a character. Each pose can only be found once in the pose array
  * @param {Character} C - Character for which to refresh the pose list
  * @returns {void} - Nothing 
  */
 function CharacterLoadPose(C) {
 	C.Pose = [];
+	C.AllowedActivePose = [];
 	
 	for (let A = 0; A < C.Appearance.length; A++) {
+		if (C.Appearance[A].Asset.AllowActivePose != null)
+			C.Appearance[A].Asset.AllowActivePose.forEach(Pose => C.AllowedActivePose.push(Pose));
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null))
 			CharacterAddPose(C, C.Appearance[A].Property.SetPose);
 		else
@@ -482,12 +510,11 @@ function CharacterLoadPose(C) {
 			.filter(P => P);
 		
 		for (let P = 0; P < ActivePoses.length; P++) {
-			if (
-				!C.Pose.includes(ActivePoses[P].Name) &&
-				!Poses.find(Pose => Pose.Category == "BodyFull") &&
-				!Poses.find(Pose => Pose.Category == ActivePoses[P].Category) &&
-				!(C.Pose.length > 0 && ActivePoses[P].Category == "BodyFull")
-			)
+			var HasPose = C.Pose.includes(ActivePoses[P].Name);
+			var IsAllowed = C.AllowedActivePose.includes(ActivePoses[P].Name);
+			var MissingGroup = !Poses.find(Pose => Pose.Category == "BodyFull") && !Poses.find(Pose => Pose.Category == ActivePoses[P].Category);
+			var IsFullBody = C.Pose.length > 0 && ActivePoses[P].Category == "BodyFull";
+			if (!HasPose && (IsAllowed || (MissingGroup && !IsFullBody)))
 				C.Pose.push(ActivePoses[P].Name);
 		}
 	}
@@ -583,6 +610,7 @@ function CharacterChangeMoney(C, Value) {
  * @returns {void} - Nothing
  */
 function CharacterRefresh(C, Push) {
+	AnimationPurge(C, false);
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);
 	CharacterLoadCanvas(C);
@@ -833,15 +861,19 @@ function CharacterSetActivePose(C, NewPose, ForceChange) {
 		C.ActivePose.push(Pose.Name);
 	}
 	
+	// If we reset to base, we remove the poses
+	if (C.ActivePose.length == 2 && C.ActivePose.includes("BaseUpper") && C.ActivePose.includes("BaseLower")) C.ActivePose = null;
+	
 	CharacterRefresh(C, false);
 }
 
 /**
- * Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a timed expression cannot override another one.
+ * Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a
+ * timed expression cannot override another one.
  * @param {Character} C - Character for which to set the expression of
  * @param {group} AssetGroup - Asset group for the expression
  * @param {string} Expression - Name of the expression to use
- * @param {number} [Timer] - Optional: time the expression will last 
+ * @param {number} [Timer] - Optional: time the expression will last
  * @returns {void} - Nothing
  */
 function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
@@ -909,7 +941,8 @@ function CharacterCompressWardrobe(Wardrobe) {
 }
 
 /**
- * Decompresses a character wardrobe from a LZ String to an array if it was previously compressed (For backward compatibility with old wardrobes)
+ * Decompresses a character wardrobe from a LZ String to an array if it was previously compressed (For backward compatibility with old
+ * wardrobes)
  * @param {Array.<Array.<*>> | string} Wardrobe - The current wardrobe
  * @returns {Array.<Array.<*>>} - The array of wardrobe items decompressed
  */
@@ -941,4 +974,24 @@ function CharacterHasItemForActivity(C, Activity) {
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.AllowActivity != null) && (C.Appearance[A].Asset.AllowActivity.indexOf(Activity) >= 0))
 			return true;
 	return false;
+}
+
+/**
+ * Checks if the character is edged or not. The character is edged if every equipped vibrating item on an orgasm zone has the "Edged" effect
+ * @param {Character} C - The character to check
+ * @returns {boolean} - TRUE if the character is edged, FALSE otherwise
+ */
+function CharacterIsEdged(C) {
+	if (C.ID !== 0 || !C.Effect.includes("Edged")) {
+		return false;
+	}
+
+	// Get every vibrating item on an orgasm zone
+	const VibratingItems = C.ArousalSettings.Zone
+		.filter(Zone => Zone.Orgasm)
+		.map(Zone => InventoryGet(C, Zone.Name))
+		.filter(Item => Item && Item.Property && typeof Item.Property.Intensity === "number" && Item.Property.Intensity >= 0);
+
+	// Return true if every vibrating item on an orgasm zone has the "Edged" effect
+	return !!VibratingItems.length && VibratingItems.every(Item => Item.Property.Effect && Item.Property.Effect.includes("Edged"));
 }

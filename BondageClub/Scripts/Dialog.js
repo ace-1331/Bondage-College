@@ -55,6 +55,12 @@ var DialogSelfMenuOptions = [
 		Draw: DialogDrawPoseMenu,
 		Click: DialogClickPoseMenu,
 	},	
+	{
+		Name: "OwnerRules",
+		IsAvailable: () => DialogSelfMenuSelected && DialogSelfMenuSelected.Name == "OwnerRules",
+		Draw: DialogDrawOwnerRulesMenu,
+		Click: () => {},
+	},
 ];
 
 /**
@@ -267,6 +273,12 @@ function DialogChatRoomPlayerIsAdmin() { return (ChatRoomPlayerIsAdmin() && (Cur
  * @returns {boolean} - Returns true, if the player is currently within a chat room
  */
 function DialogChatRoomCanSafeword() { return (CurrentScreen == "ChatRoom" && Player.GameplaySettings.EnableSafeword) }
+
+/**
+ * Checks if the player is currently owned.
+ * @returns {boolean} - Returns true, if the player is currently owned by an online player (not in trial)
+ */
+function DialogCanViewRules() { return (Player.Ownership != null) && (Player.Ownership.Stage == 1) }
 
 /**
  * Checks the prerequisite for a given dialog
@@ -559,7 +571,7 @@ function DialogMenuButtonBuild(C) {
 		if ((Player.CanInteract()) || DialogAlwaysAllowRestraint()) DialogMenuButton.push("ColorPick");
 
 		// Make sure the target player zone is allowed for an activity
-		if ((C.FocusGroup.Activity != null) && (!C.IsEnclose() || C.ID == 0) && ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Zone != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive"))
+		if ((C.FocusGroup.Activity != null) && ((!C.IsEnclose() && !Player.IsEnclose()) || C.ID == 0) && ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Zone != null) && (C.ArousalSettings.Active != null) && (C.ArousalSettings.Active != "Inactive"))
 			for (let Z = 0; Z < C.ArousalSettings.Zone.length; Z++)
 				if ((C.ArousalSettings.Zone[Z].Name == C.FocusGroup.Name) && (C.ArousalSettings.Zone[Z].Factor != null) && (C.ArousalSettings.Zone[Z].Factor > 0)) {
 					ActivityDialogBuild(C);
@@ -731,7 +743,7 @@ function DialogProgressGetOperation(C, PrevItem, NextItem) {
 function DialogStruggle(Reverse) {
 
 	// Progress calculation
-	var P = TimerRunInterval * 2.5 / (DialogProgressSkill * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
+	var P = 42 / (DialogProgressSkill * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
 	P = P * (100 / (DialogProgress + 50));  // Faster when the dialog starts, longer when it ends	
 	if ((DialogProgressChallenge > 6) && (DialogProgress > 50) && (DialogProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
 	P = P * (Reverse ? -1 : 1); // Reverses the progress if the user pushed the same key twice
@@ -1068,7 +1080,7 @@ function DialogItemClick(ClickItem) {
 
 	// In permission mode, the player can allow or block items for herself
 	if ((C.ID == 0) && DialogItemPermissionMode) {
-		if (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name)) return;
+		if (ClickItem.Worn || (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name))) return;
 		if (InventoryIsPermissionBlocked(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name)) {
 			Player.BlockItems = Player.BlockItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
 			Player.LimitedItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
@@ -1319,7 +1331,7 @@ function DialogFindNextSubMenu() {
 			DialogSelfMenuSelected = DialogSelfMenuOptions[SM];
 			return;
 		}
-		if (SM + 1 == DialogSelfMenuOptions.length) SM = 0;
+		if (SM + 1 == DialogSelfMenuOptions.length) SM = -1;
 	}
 }
 
@@ -1786,8 +1798,7 @@ function DialogClickExpressionMenu() {
  */
 function DialogDrawPoseMenu() { 
 	// Draw the pose groups
-	DrawText(DialogFind(Player, "PoseMenu"), 70, 25, "White", "Black");
-	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearActivePoses"));
+	DrawText(DialogFind(Player, "PoseMenu"), 250, 100, "White", "Black");
 
 	if (!DialogActivePoses || !DialogActivePoses.length) DialogActivePoseMenuBuild();
 	
@@ -1801,10 +1812,18 @@ function DialogDrawPoseMenu() {
 			
 			if (typeof Player.ActivePose == "string" && Player.ActivePose == PoseGroup[P].Name)
 				IsActive = true;
-			if (Array.isArray(Player.ActivePose) && Player.ActivePose.includes(PoseGroup[P].Name))
+			else if (Array.isArray(Player.ActivePose)) {
+				if (Player.ActivePose.includes(PoseGroup[P].Name))
+					IsActive = true;
+				else if (PoseGroup[P].Name == "BaseUpper" && !Player.ActivePose.map(Pose => PoseFemale3DCG.find(PP => PP.Name == Pose)).filter(Pose => Pose).find(Pose => Pose.Category == "BodyUpper" || Pose.Category == "BodyFull"))
+					IsActive = true;
+				else if (PoseGroup[P].Name == "BaseLower" && !Player.ActivePose.map(Pose => PoseFemale3DCG.find(PP => PP.Name == Pose)).filter(Pose => Pose).find(Pose => Pose.Category == "BodyLower" || Pose.Category == "BodyFull"))
+					IsActive = true;
+			}
+			else if ((PoseGroup[P].Name == "BaseUpper" || PoseGroup[P].Name == "BaseLower") && Player.ActivePose == null)
 				IsActive = true;
 			
-			DrawButton(OffsetX, OffsetY, 90, 90, "", IsActive ? "Pink" : "White", "Icons/Poses/" + PoseGroup[P].Name + ".png");
+			DrawButton(OffsetX, OffsetY, 90, 90, "", CharacterItemsHavePoseType(Player, PoseGroup[0].Category) ? "#888" : IsActive ? "Pink" : "White", "Icons/Poses/" + PoseGroup[P].Name + ".png");
 		}
 	}
 }
@@ -1814,8 +1833,6 @@ function DialogDrawPoseMenu() {
  * @returns {void} - Nothing
  */
 function DialogClickPoseMenu() {
-	if (MouseIn(20, 50, 90, 90)) CharacterSetActivePose(Player, null);
-	
 	for (let I = 0; I < DialogActivePoses.length; I++) { 
 		var OffsetX = 140 + 140 * I;
 		var PoseGroup = DialogActivePoses[I];
@@ -1828,11 +1845,44 @@ function DialogClickPoseMenu() {
 			if (Array.isArray(Player.ActivePose) && Player.ActivePose.includes(PoseGroup[P].Name))
 				IsActive = true;
 			
-			if (MouseIn(OffsetX, OffsetY, 90, 90) && !IsActive) { 
+			if (MouseIn(OffsetX, OffsetY, 90, 90) && !IsActive && !CharacterItemsHavePoseType(Player, PoseGroup[0].Category)) { 
 				CharacterSetActivePose(Player, PoseGroup[P].Name);
 				ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 			}
 		}
+	}
+}
+
+
+/**
+ * Sets the current character sub menu to the owner rules
+ * @returns {void} - Nothing
+ */
+function DialogViewOwnerRules() { 
+	DialogSelfMenuSelected = DialogSelfMenuOptions.find(M => M.Name == "OwnerRules");
+}
+
+/**
+ * Draws the owner rules sub menu
+ * @returns {void} - Nothing
+ */
+function DialogDrawOwnerRulesMenu() { 
+	// Draw the pose groups
+	DrawText(DialogFind(Player, "OwnerRulesMenu"), 230, 100, "White", "Black");
+
+	var ToDisplay = [];
+	
+	if (LogQuery("BlockOwnerLockSelf", "OwnerRule")) ToDisplay.push({ Tag: "BlockOwnerLockSelf" });
+	if (LogQuery("BlockChange", "OwnerRule")) ToDisplay.push({ Tag: "BlockChange", Value: LogValue("BlockChange", "OwnerRule") });
+	if (LogQuery("BlockWhisper", "OwnerRule")) ToDisplay.push({ Tag: "BlockWhisper" });
+	if (LogQuery("BlockKey", "OwnerRule")) ToDisplay.push({ Tag: "BlockKey" });
+	if (LogQuery("BlockRemote", "OwnerRule")) ToDisplay.push({ Tag: "BlockRemote" });
+	if (LogQuery("BlockRemoteSelf", "OwnerRule")) ToDisplay.push({ Tag: "BlockRemoteSelf" });
+	if (ToDisplay.length == 0) ToDisplay.push({ Tag: "Empty" });
+	
+	for (let I = 0; I < ToDisplay.length; I++) { 
+		var OffsetY = 230 + 100 * I;
+		DrawText(DialogFind(Player, "OwnerRulesMenu" + ToDisplay[I].Tag) + (ToDisplay[I].Value ?  " " + TimerToString(ToDisplay[I].Value - CurrentTime) : ""), 250, OffsetY, "White", "Black");
 	}
 }
 
