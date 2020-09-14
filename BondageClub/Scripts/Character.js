@@ -644,6 +644,7 @@ function CharacterRefresh(C, Push) {
 					if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
 						DialogInventoryAdd(C, Player.Inventory[A], false, DialogSortOrderUsable);
 				DialogInventorySort();
+				DialogMenuButtonBuild(C);
 			} else {
 				DialogInventoryBuild(C, DialogInventoryOffset);
 			}
