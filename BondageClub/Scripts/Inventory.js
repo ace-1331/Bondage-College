@@ -494,7 +494,7 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
  * @returns {any} - The value of the requested property for the given item.
  */
 function InventoryGetItemProperty(Item, PropertyName) {
-    if (!Item || !PropertyName) return null;
+    if (!Item || !PropertyName || !Item.Asset) return null;
     return (Item.Property && typeof Item.Property[PropertyName] !== "undefined" ? Item.Property : Item.Asset)[PropertyName];
 }
 
