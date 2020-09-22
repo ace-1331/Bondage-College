@@ -216,7 +216,7 @@ function ExtendedItemClick(Options, IsCloth, OptionsPerPage, ShowImages = true) 
 		}
 		var Option = Options[I];
 		var Height = (ShowImages) ? 275 : 55;
-		if (MouseIn(X, Y, 225, Height) && DialogFocusItem.Property.Type !== Option.Property.Type) {
+		if (MouseIn(X, Y, 225, Height)) {
 			ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsCloth);
 		}
 	}
@@ -310,7 +310,7 @@ function ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsCloth) 
 	} else {
 		var Blocked = InventoryIsPermissionBlocked(C, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
 		var Limited = !InventoryCheckLimitedPermission(C, DialogFocusItem, Option.Property.Type);
-		if (Blocked || Limited) return;
+		if (DialogFocusItem.Property.Type === Option.Property.Type || Blocked || Limited) return;
 		
 		var requirementMessage = ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
 		if (requirementMessage) {
