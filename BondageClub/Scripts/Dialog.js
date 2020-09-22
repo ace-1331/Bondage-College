@@ -1080,15 +1080,7 @@ function DialogItemClick(ClickItem) {
 	// In permission mode, the player can allow or block items for herself
 	if ((C.ID == 0) && DialogItemPermissionMode) {
 		if (ClickItem.Worn || (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name))) return;
-		if (InventoryIsPermissionBlocked(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name)) {
-			Player.BlockItems = Player.BlockItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
-			Player.LimitedItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
-		}
-		else if (InventoryIsPermissionLimited(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name))
-			Player.LimitedItems = C.LimitedItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
-		else
-			Player.BlockItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
-		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems, LimitedItems: Player.LimitedItems });
+		InventoryTogglePermission(ClickItem, null);
 		return;
 	}
 

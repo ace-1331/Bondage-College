@@ -42,6 +42,12 @@ const ExtendedXY = [
 ];
 
 /**
+ * The current display mode
+ * @type {boolean}
+ */
+var ExtendedItemPermissionMode = false;
+
+/**
  * Loads the item extension properties
  * @param {ExtendedItemOption[]} Options - An Array of type definitions for each allowed extended type. The first item in the array should
  *     be the default option.
@@ -94,13 +100,13 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage) {
 	var Asset = DialogFocusItem.Asset;
 	var ItemOptionsOffset = ExtendedItemGetOffset();
 	OptionsPerPage = OptionsPerPage || Math.min(Options.length, 8);
-
+	
 	// If we have to paginate, draw the back/next buttons
 	if (ItemOptionsOffset >= OptionsPerPage) {
-		DrawButton(1665, 25, 90, 90, "", "White", "Icons/Prev.png");
+		DrawButton(1555, 25, 90, 90, "", "White", "Icons/Prev.png");
 	}
 	if (Options.length > OptionsPerPage && ItemOptionsOffset < OptionsPerPage * Math.floor(Options.length / OptionsPerPage)) {
-		DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
+		DrawButton(1665, 25, 90, 90, "", "White", "Icons/Next.png");
 	}
 	
 	// Draw the header and item
@@ -111,17 +117,28 @@ function ExtendedItemDraw(Options, DialogPrefix, OptionsPerPage) {
 
 	// Draw the possible variants and their requirements, arranged based on the number per page
 	for (let I = ItemOptionsOffset; I < Options.length && I < ItemOptionsOffset + OptionsPerPage; I++) {
+		var C = CharacterGetCurrent();
 		var PageOffset = I - ItemOptionsOffset;
 		var X = ExtendedXY[OptionsPerPage][PageOffset][0];
 		var Y = ExtendedXY[OptionsPerPage][PageOffset][1];
 		var Option = Options[I];
+		var Hover = (MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile;
 		var FailSkillCheck = !!ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
 		var IsSelected = DialogFocusItem.Property.Type == Option.Property.Type;
+		var Blocked = InventoryIsPermissionBlocked(C, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
+		var Limited = !InventoryCheckLimitedPermission(C, DialogFocusItem, Option.Property.Type);
+		var PlayerBlocked = InventoryIsPermissionBlocked(Player, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
+		var PlayerLimited = InventoryIsPermissionLimited(Player, DialogFocusItem.Asset.Name, DialogFocusItem.Asset.Group.Name, Option.Property.Type);
+		var Color = ExtendedItemPermissionMode ? ((C.ID == 0 && IsSelected) || Option.Property.Type == null ? "#888888" : PlayerBlocked ? Hover ? "red" : "pink" : PlayerLimited ? Hover ? "orange" : "#fed8b1" : Hover ? "green" : "lime") : (IsSelected ? "#888888" : (Blocked || Limited) ? "Red" : FailSkillCheck ? "Pink" : Hover ? "Cyan" : "White");
 		
-		DrawButton(X, Y, 225, 275, "", IsSelected ? "#888888" : FailSkillCheck ? "Pink" : "White", null, null, IsSelected);
+			
+		DrawButton(X, Y, 225, 275, "", Color, null, null, true);
 		DrawImage("Screens/Inventory/" + Asset.Group.Name + "/" + Asset.Name + "/" + Option.Name + ".png", X+2, Y);
 		DrawTextFit(DialogFind(Player, DialogPrefix + Option.Name), X + 112, Y + 250, 225, "black");
 	}
+	
+	// Permission mode toggle is always available
+	DrawButton(1775, 25, 90, 90, "", "White", ExtendedItemPermissionMode ? "Icons/DialogNormalMode.png" : "Icons/DialogPermissionMode.png", DialogFind(Player, ExtendedItemPermissionMode ? "DialogNormalMode" : "DialogPermissionMode"));
 }
 
 /**
@@ -140,14 +157,20 @@ function ExtendedItemClick(Options, IsCloth, OptionsPerPage) {
 	// Exit button
 	if (MouseIn(1885, 25, 90, 85)) {
 		DialogFocusItem = null;
+		ExtendedItemPermissionMode = null;
 		return;
 	}
 
+	// Permission toggle button
+	if (MouseIn(1775, 25, 90, 90)) { 
+		ExtendedItemPermissionMode = !ExtendedItemPermissionMode;
+	}
+	
 	// Pagination buttons
-	if (MouseIn(1665, 25, 90, 90) && ItemOptionsOffset >= OptionsPerPage) {
+	if (MouseIn(1555, 25, 90, 90) && ItemOptionsOffset >= OptionsPerPage) {
 		ExtendedItemSetOffset(ItemOptionsOffset - OptionsPerPage);
 	}
-	if (MouseIn(1775, 25, 90, 90) && Options.length > OptionsPerPage && ItemOptionsOffset < OptionsPerPage * Math.floor(Options.length / OptionsPerPage)) {
+	if (MouseIn(1665, 25, 90, 90) && Options.length > OptionsPerPage && ItemOptionsOffset < OptionsPerPage * Math.floor(Options.length / OptionsPerPage)) {
 		ExtendedItemSetOffset(ItemOptionsOffset + OptionsPerPage);
 	}
 	
@@ -244,11 +267,21 @@ function ExtendedItemSetType(Options, Option, IsCloth) {
  * @returns {void} Nothing
  */
 function ExtendedItemHandleOptionClick(Options, Option, IsSelfBondage, IsCloth) {
-	var requirementMessage = ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
-	if (requirementMessage) {
-		DialogExtendedMessage = requirementMessage;
+	var C = CharacterGetCurrent();
+	if (ExtendedItemPermissionMode) {
+		if (Option.Property.Type == null || (C.ID == 0 && DialogFocusItem.Property.Type == Option.Property.Type)) return;
+		InventoryTogglePermission(DialogFocusItem, Option.Property.Type);
 	} else {
-		ExtendedItemSetType(Options, Option, IsCloth);
+		var Blocked = InventoryIsPermissionBlocked(C, DialogFocusItem.Asset.DynamicName(Player), DialogFocusItem.Asset.DynamicGroupName, Option.Property.Type);
+		var Limited = !InventoryCheckLimitedPermission(C, DialogFocusItem, Option.Property.Type);
+		if (Blocked || Limited) return;
+		
+		var requirementMessage = ExtendedItemRequirementCheckMessage(Option, IsSelfBondage);
+		if (requirementMessage) {
+			DialogExtendedMessage = requirementMessage;
+		} else {
+			ExtendedItemSetType(Options, Option, IsCloth);
+		}
 	}
 }
 
