@@ -76,7 +76,11 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
 	Dictionary.push({ AssetGroupName: DialogFocusItem.Asset.Group.Name });
 		
 	ChatRoomPublishCustomAction("TriggerShock" + DialogFocusItem.Property.Intensity, true, Dictionary);
-		
+	
+	AnimationPersistentDataGet(C, DialogFocusItem.Asset).Triggered = true;
+	AnimationPersistentDataGet(C, DialogFocusItem.Asset).ChangeTime = 0;
+	AnimationRequestRefreshRate(C, 0);
+	
 	if (C.ID == Player.ID) {
 		// The Player shocks herself
 		ActivityArousalItem(C, C, DialogFocusItem.Asset);
@@ -88,20 +92,34 @@ function InventoryItemNeckAccessoriesCollarShockUnitTrigger() {
 }
 
 function AssetsItemNeckAccessoriesCollarShockUnitBeforeDraw(data) {
-	return data.L === "_Light" ? { Color: "#2f0" } : null;
+	if (data.L === "_Light") {
+		var PersistentData = data.PersistentData();
+		var Triggered = PersistentData.Triggered;
+		var property = data.Property || {};
+		var intensity = property.Intensity ? property.Intensity : 0;
+		if (Triggered) PersistentData.DisplayCount++;
+		if (PersistentData.DisplayCount >= intensity + 1) { 
+			PersistentData.DisplayCount = 0;
+			PersistentData.Triggered = false;
+		}
+		return { Color: Triggered ? "#f00" : "#2f0" };
+	}
 }
 
 function AssetsItemNeckAccessoriesCollarShockUnitScriptDraw(data) {
 	var persistentData = data.PersistentData();
 	var property = (data.Item.Property = data.Item.Property || {});
 	if (typeof persistentData.ChangeTime !== "number") persistentData.ChangeTime = CommonTime() + 4000;
+	if (typeof persistentData.DisplayCount !== "number") persistentData.DisplayCount = 0;
 
 	if (persistentData.ChangeTime < CommonTime()) {
 		var wasBlinking = property.Type === "Blink";
 		property.Type = wasBlinking ? null : "Blink";
-		var timeToNextRefresh = wasBlinking ? 4000 : 1000;
+		var timeFactor = persistentData.Triggered ? 12 : 1;
+		var timeToNextRefresh = (wasBlinking ? 4000 : 1000) / timeFactor;
+		timeToNextRefresh
 		persistentData.ChangeTime = CommonTime() + timeToNextRefresh;
-		AnimationRequestRefreshRate(data.C, 5000 - timeToNextRefresh);
+		AnimationRequestRefreshRate(data.C, (5000 / timeFactor) - timeToNextRefresh);
 		AnimationRequestDraw(data.C);
 	}
 }
