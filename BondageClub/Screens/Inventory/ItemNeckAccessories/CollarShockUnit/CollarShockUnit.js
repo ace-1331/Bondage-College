@@ -117,7 +117,6 @@ function AssetsItemNeckAccessoriesCollarShockUnitScriptDraw(data) {
 		property.Type = wasBlinking ? null : "Blink";
 		var timeFactor = persistentData.Triggered ? 12 : 1;
 		var timeToNextRefresh = (wasBlinking ? 4000 : 1000) / timeFactor;
-		timeToNextRefresh
 		persistentData.ChangeTime = CommonTime() + timeToNextRefresh;
 		AnimationRequestRefreshRate(data.C, (5000 / timeFactor) - timeToNextRefresh);
 		AnimationRequestDraw(data.C);
