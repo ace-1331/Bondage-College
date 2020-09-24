@@ -1,12 +1,13 @@
 "use strict";
 var InventoryItemNeckAccessoriesWoodenSignAllowedChars = /^[a-zA-Z0-9 ~\!\$#%\*\+]*$/gm;
+
 // Loads the item extension properties
 function InventoryItemNeckAccessoriesWoodenSignLoad() {
     var C = CharacterGetCurrent();
 	var MustRefresh = false;
 	
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
-	if (DialogFocusItem.Property.Text == null) {
+	if (DialogFocusItem.Property.Text == null && DialogFocusItem.Property.Text2 == null) {
 		DialogFocusItem.Property.Text = "This is a";
 		DialogFocusItem.Property.Text2 = "Sign";
 		MustRefresh = true;
@@ -15,7 +16,6 @@ function InventoryItemNeckAccessoriesWoodenSignLoad() {
 		CharacterRefresh(C);
 		ChatRoomCharacterItemUpdate(C, DialogFocusItem.Asset.Group.Name);
 	}
-	
 	
     ElementCreateInput("WoodenSignText1", "text", DialogFocusItem.Property.Text, "12");
     ElementCreateInput("WoodenSignText2", "text", DialogFocusItem.Property.Text2, "12");
@@ -69,16 +69,6 @@ function InventoryItemNeckAccessoriesWoodenSignChange() {
     }
 }
 
-// Drawing function for the pre-render
-function AssetsItemNeckAccessoriesWoodenSignBeforeDraw({
-    C, A, X, Y, Property, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData, L
-}) { 
-    // The text grid is hidden
-    if (L === "_Text") { 
-        return { AlphaMasks: [[0, 0, 280, 80]].concat(AlphaMasks)};
-    }
-}
-
 // Drawing function for the after-render
 function AssetsItemNeckAccessoriesWoodenSignAfterDraw({
     C, A, X, Y, L, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color
@@ -91,7 +81,7 @@ function AssetsItemNeckAccessoriesWoodenSignAfterDraw({
         
         // We draw the desired info on that canvas
         let context = TempCanvas.getContext('2d');
-        context.font = "28px serif";
+        context.font = "28px Calligraffitti";
         context.fillStyle = Color; // Takes the layer color
         context.textAlign = "center";
         
@@ -101,7 +91,7 @@ function AssetsItemNeckAccessoriesWoodenSignAfterDraw({
         context.fillText((Property && Property.Text.match(InventoryItemNeckAccessoriesWoodenSignAllowedChars) ? Property.Text : "This is a"), Width / 2, Height / (isAlone ? 2 : 2.25), Width);
         context.fillText((Property && Property.Text2.match(InventoryItemNeckAccessoriesWoodenSignAllowedChars) ? Property.Text2 : "sign"), Width / 2, Height / (isAlone ? 2 : 1.75), Width);
         
-        // We print the canvas to the character based on the asset position
+        // We print the canvas on the character based on the asset position
         drawCanvas(TempCanvas, X + 170, Y + 200, AlphaMasks);
         drawCanvasBlink(TempCanvas, X + 170, Y + 200, AlphaMasks);
     }
