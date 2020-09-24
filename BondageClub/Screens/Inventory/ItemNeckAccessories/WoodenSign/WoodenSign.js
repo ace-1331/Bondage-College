@@ -75,21 +75,28 @@ function AssetsItemNeckAccessoriesWoodenSignAfterDraw({
 }) {
     if (L === "_Text") { 
         // We set up a canvas
-        const Height = 200;
+        const Height = 210;
         const Width = 155;
         const TempCanvas = AnimationGenerateTempCanvas(C, A, Width, Height);
         
-        // We draw the desired info on that canvas
-        let context = TempCanvas.getContext('2d');
-        context.font = "28px Calligraffitti";
-        context.fillStyle = Color; // Takes the layer color
-        context.textAlign = "center";
-        
         // One line of text will be centered
         const isAlone = Property && (Property.Text == "" || Property.Text2 == "");
+        const Text1 = (Property && Property.Text.match(InventoryItemNeckAccessoriesWoodenSignAllowedChars) ? Property.Text : "This is a");
+        const Text2 = (Property && Property.Text2.match(InventoryItemNeckAccessoriesWoodenSignAllowedChars) ? Property.Text2 : "sign");
         
-        context.fillText((Property && Property.Text.match(InventoryItemNeckAccessoriesWoodenSignAllowedChars) ? Property.Text : "This is a"), Width / 2, Height / (isAlone ? 2 : 2.25), Width);
-        context.fillText((Property && Property.Text2.match(InventoryItemNeckAccessoriesWoodenSignAllowedChars) ? Property.Text2 : "sign"), Width / 2, Height / (isAlone ? 2 : 1.75), Width);
+        // We draw the desired info on that canvas twice to have a burnt look
+        let context = TempCanvas.getContext('2d');
+        context.textAlign = "center";
+        context.font = "28px Calligraffitti";
+        
+        
+        context.fillStyle = "#000"; // Initial burnt look
+        context.fillText(Text1, (Width / 2) - 0.5, Height / (isAlone ? 2 : 2.25) - 0.5, Width);
+        context.fillText(Text2, (Width / 2) - 0.5, Height / (isAlone ? 2 : 1.75) - 0.5, Width);
+        
+        context.fillStyle = Color; // Takes the layer color
+        context.fillText(Text1, (Width / 2) + 0.5, Height / (isAlone ? 2 : 2.25) + 0.5, Width);
+        context.fillText(Text2, (Width / 2) + 0.5, Height / (isAlone ? 2 : 1.75) + 0.5, Width);
         
         // We print the canvas on the character based on the asset position
         drawCanvas(TempCanvas, X + 170, Y + 200, AlphaMasks);
