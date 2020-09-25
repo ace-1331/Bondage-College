@@ -1,8 +1,8 @@
 "use strict";
-var InventoryItemNeckAccessoriesWoodenSignAllowedChars = /^[a-zA-Z0-9 ~\!\$#%\*\+]*$/gm;
+var InventoryItemMiscWoodenSignAllowedChars = /^[a-zA-Z0-9 ~\!\$#%\*\+]*$/gm;
 
 // Loads the item extension properties
-function InventoryItemNeckAccessoriesWoodenSignLoad() {
+function InventoryItemMiscWoodenSignLoad() {
     var C = CharacterGetCurrent();
 	var MustRefresh = false;
 	
@@ -22,7 +22,7 @@ function InventoryItemNeckAccessoriesWoodenSignLoad() {
 }
 
 // Draw the extension screen
-function InventoryItemNeckAccessoriesWoodenSignDraw() {
+function InventoryItemMiscWoodenSignDraw() {
     // Draw the header and item
     DrawRect(1387, 125, 225, 275, "white");
     DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
@@ -30,25 +30,25 @@ function InventoryItemNeckAccessoriesWoodenSignDraw() {
 
     ElementPosition("WoodenSignText1", 1505, 600, 350);
     ElementPosition("WoodenSignText2", 1505, 680, 350);
-    DrawButton(1330, 731, 340, 64, DialogFind(Player, "WoodenSignSaveText"), (ElementValue("WoodenSignText1") + ElementValue("WoodenSignText2")).match(InventoryItemNeckAccessoriesWoodenSignAllowedChars) ? "White" : "#888", "");
+    DrawButton(1330, 731, 340, 64, DialogFind(Player, "WoodenSignSaveText"), (ElementValue("WoodenSignText1") + ElementValue("WoodenSignText2")).match(InventoryItemMiscWoodenSignAllowedChars) ? "White" : "#888", "");
 }
 
 // Catches the item extension clicks
-function InventoryItemNeckAccessoriesWoodenSignClick() {
+function InventoryItemMiscWoodenSignClick() {
 	// Exits the screen
 	if (MouseIn(1885, 25, 90, 90)) {
-		InventoryItemNeckAccessoriesWoodenSignExit();
+		InventoryItemMiscWoodenSignExit();
     }
     
-    if (MouseIn(1330, 731, 340, 64) && (ElementValue("WoodenSignText1") + ElementValue("WoodenSignText2")).match(InventoryItemNeckAccessoriesWoodenSignAllowedChars)) {
+    if (MouseIn(1330, 731, 340, 64) && (ElementValue("WoodenSignText1") + ElementValue("WoodenSignText2")).match(InventoryItemMiscWoodenSignAllowedChars)) {
         DialogFocusItem.Property.Text = ElementValue("WoodenSignText1");
         DialogFocusItem.Property.Text2 = ElementValue("WoodenSignText2");
-        InventoryItemNeckAccessoriesWoodenSignChange();
+        InventoryItemMiscWoodenSignChange();
     }
 }
 
 // Leaves the extended screen
-function InventoryItemNeckAccessoriesWoodenSignExit() {
+function InventoryItemMiscWoodenSignExit() {
 	ElementRemove("WoodenSignText1");
 	ElementRemove("WoodenSignText2");
 	PreferenceMessage = "";
@@ -57,7 +57,7 @@ function InventoryItemNeckAccessoriesWoodenSignExit() {
 }
 
 // When the text is changed
-function InventoryItemNeckAccessoriesWoodenSignChange() { 
+function InventoryItemMiscWoodenSignChange() { 
     var C = CharacterGetCurrent();
     CharacterRefresh(C);
     if (CurrentScreen == "ChatRoom") {
@@ -65,29 +65,29 @@ function InventoryItemNeckAccessoriesWoodenSignChange() {
         Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
         Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
         ChatRoomPublishCustomAction("WoodenSignChange", true, Dictionary);
-		InventoryItemNeckAccessoriesWoodenSignExit();
+		InventoryItemMiscWoodenSignExit();
     }
 }
-
+ 
 // Drawing function for the after-render
-function AssetsItemNeckAccessoriesWoodenSignAfterDraw({
+function AssetsItemMiscWoodenSignAfterDraw({
     C, A, X, Y, L, Property, drawCanvas, drawCanvasBlink, AlphaMasks, Color
 }) {
     if (L === "_Text") { 
         // We set up a canvas
-        const Height = 210;
+        const Height = 200;
         const Width = 155;
         const TempCanvas = AnimationGenerateTempCanvas(C, A, Width, Height);
         
         // One line of text will be centered
         const isAlone = Property && (Property.Text == "" || Property.Text2 == "");
-        const Text1 = (Property && Property.Text.match(InventoryItemNeckAccessoriesWoodenSignAllowedChars) ? Property.Text : "This is a");
-        const Text2 = (Property && Property.Text2.match(InventoryItemNeckAccessoriesWoodenSignAllowedChars) ? Property.Text2 : "sign");
+        const Text1 = (Property && Property.Text.match(InventoryItemMiscWoodenSignAllowedChars) ? Property.Text : "This is a");
+        const Text2 = (Property && Property.Text2.match(InventoryItemMiscWoodenSignAllowedChars) ? Property.Text2 : "sign");
         
         // We draw the desired info on that canvas twice to have a burnt look
         let context = TempCanvas.getContext('2d');
         context.textAlign = "center";
-        context.font = "28px Calligraffitti";
+        context.font = "30px Calligraffitti";
         
         
         context.fillStyle = "#000"; // Initial burnt look
