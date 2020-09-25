@@ -8,8 +8,8 @@ function InventoryItemMiscWoodenSignLoad() {
 	
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {};
 	if (DialogFocusItem.Property.Text == null && DialogFocusItem.Property.Text2 == null) {
-		DialogFocusItem.Property.Text = "This is a";
-		DialogFocusItem.Property.Text2 = "Sign";
+		DialogFocusItem.Property.Text = "";
+		DialogFocusItem.Property.Text2 = "";
 		MustRefresh = true;
 	}
 	if (MustRefresh) {
@@ -81,8 +81,8 @@ function AssetsItemMiscWoodenSignAfterDraw({
         
         // One line of text will be centered
         const isAlone = Property && (Property.Text == "" || Property.Text2 == "");
-        const Text1 = (Property && Property.Text.match(InventoryItemMiscWoodenSignAllowedChars) ? Property.Text : "This is a");
-        const Text2 = (Property && Property.Text2.match(InventoryItemMiscWoodenSignAllowedChars) ? Property.Text2 : "sign");
+        const Text1 = (Property && Property.Text.match(InventoryItemMiscWoodenSignAllowedChars) ? Property.Text : "♠");
+        const Text2 = (Property && Property.Text2.match(InventoryItemMiscWoodenSignAllowedChars) ? Property.Text2 : "");
         
         // We draw the desired info on that canvas twice to have a burnt look
         let context = TempCanvas.getContext('2d');
