@@ -130,7 +130,14 @@ ItemNeckHighCollarLeather,Leather
 ItemNeckHighCollarRings,Rings
 ItemNeckOrnateCollarCollar,Collar
 ItemNeckOrnateCollarGem,Gems
+ItemMiscWoodenSignSign,Sign
+ItemMiscWoodenSignRope,Rope
+ItemMiscWoodenSignText,Text
 ItemDevicesBedPillow,Pillow
+ItemDevicesBedCoverOuter,Cover Outer Layer
+ItemDevicesBedCoverInner,Cover Inner Layer
+ItemDevicesBedTopPillow,Top Pillow
+ItemDevicesBedBottomPillow,Bottom Pillow
 ItemDevicesBedMattress,Mattress
 ItemDevicesBedBedFrame,Frame
 ItemAddonCoversOuter,Outer
