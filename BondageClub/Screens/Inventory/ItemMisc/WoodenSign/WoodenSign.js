@@ -82,7 +82,7 @@ function AssetsItemMiscWoodenSignAfterDraw({
         // One line of text will be centered
         const isAlone = Property && (Property.Text == "" || Property.Text2 == "");
         const Text1 = (Property && Property.Text.match(InventoryItemMiscWoodenSignAllowedChars) ? Property.Text : "♠");
-        const Text2 = (Property && Property.Text2.match(InventoryItemMiscWoodenSignAllowedChars) ? Property.Text2 : "");
+        const Text2 = (Property && Property.Text2.match(InventoryItemMiscWoodenSignAllowedChars) ? Property.Text2 : "♠");
         
         // We draw the desired info on that canvas twice to have a burnt look
         let context = TempCanvas.getContext('2d');
