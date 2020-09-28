@@ -63,7 +63,7 @@ function InventoryItemMiscWoodenSignChange() {
     if (CurrentScreen == "ChatRoom") {
         var Dictionary = [];
         Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-        Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
+        Dictionary.push({ Tag: "TargetCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
         ChatRoomPublishCustomAction("WoodenSignChange", true, Dictionary);
 		InventoryItemMiscWoodenSignExit();
     }
