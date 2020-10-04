@@ -73,7 +73,7 @@ function AssetsItemDevicesKennelBeforeDraw({ PersistentData, L, Property, LayerT
         if (Data.DrawRequested) Data.DoorState += Type.startsWith("Closed") ? 1 : -1;
         Data.MustChange = true;
         Data.DrawRequested = false;
-        return { LayerType: "A" + Data.DoorState };
+        if (Data.DoorState < 11 || Data.DoorState > 1) return { LayerType: "A" + Data.DoorState };
     }
 }
 
@@ -81,7 +81,7 @@ function AssetsItemDevicesKennelScriptDraw({ C, PersistentData, Item }) {
     const Data = PersistentData();
     const Properties = Item.Property || {};
     const Type = Properties.Type ? Properties.Type : "Open";
-    const FrameTime = 150;
+    const FrameTime = 200;
     
     if (typeof Data.DoorState !== "number") Data.DoorState =  Type.startsWith("Closed") ? 11 : 1;
 	if (typeof Data.ChangeTime !== "number") Data.ChangeTime = CommonTime() + FrameTime;
