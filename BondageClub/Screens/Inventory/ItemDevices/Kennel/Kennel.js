@@ -73,7 +73,7 @@ function AssetsItemDevicesKennelBeforeDraw({ PersistentData, L, Property, LayerT
         if (Data.DrawRequested) Data.DoorState += Type.startsWith("Closed") ? 1 : -1;
         Data.MustChange = true;
         Data.DrawRequested = false;
-        if (Data.DoorState < 11 || Data.DoorState > 1) return { LayerType: "A" + Data.DoorState };
+        if (Data.DoorState < 11 && Data.DoorState > 1) return { LayerType: "A" + Data.DoorState };
     }
 }
 
