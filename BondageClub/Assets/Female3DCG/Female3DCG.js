@@ -2955,7 +2955,14 @@ var AssetFemale3DCG = [
 					{ Name: "Back", Priority: 3, CopyLayerColor: "Front" },
 					{ Name: "Strap", Priority: 52 }
 				]
-			}
+			},
+			{
+				Name: "Kennel", Fetish: ["Metal", "Pet"], Left: -550, Value: 150, Difficulty: 6, Time: 15, RemoveTime: 10, AllowLock: true, Audio: "LockLarge", DefaultColor: ["#2E2E29", "#780E0E", "#2E2E29"], Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], SetPose: ["Kneel"], AllowType: ["OpenPadding", "Closed", "ClosedPadding"] ,Effect: ["ForceKneel", "Prone", "Enclose", "Freeze"], Alpha: [{ Masks: [[1, 80, 75, 900], [400, 80, 100, 900]] }], RemoveAtLogin: true, Extended: true, DynamicBeforeDraw: true, DynamicScriptDraw: true, Layer: [
+					{ Name: "Kennel", Priority: 1, HasType: false},
+					{ Name: "Padding", Priority: 1, AllowTypes: ["OpenPadding", "ClosedPadding"], HasType: false},
+					{ Name: "Door" },
+				]
+			},
 		],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"]
 	},
