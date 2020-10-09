@@ -163,8 +163,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "CannotHaveWand") return ((InventoryGet(C, "ItemArms") != null) && (InventoryGet(C, "ItemArms").Asset.Name == "FullLatexSuit")) ? "CannotHaveWand" : "";
 	if (Prerequisite == "CannotBeSuited") return ((InventoryGet(C, "ItemVulva") != null) && (InventoryGet(C, "ItemVulva").Asset.Name == "WandBelt")) ? "CannotHaveWand" : "";
 	if (Prerequisite == "CannotBeHogtiedWithAlphaHood") return ((InventoryGet(C, "ItemHood") != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite != null) && (InventoryGet(C, "ItemHood").Asset.Prerequisite.indexOf("CanUseAlphaHood") >= 0)) ? Prerequisite : "";
-	if (Prerequisite == "StraitDressOpen") return (C.Pose.indexOf("StraitDressOpen") >= 0) ? "StraitDressOpen" : "";
-	if (Prerequisite == "AllFours") return CharacterItemsHavePose(C, "AllFours") ? "StraitDressOpen" : "";
+	if (Prerequisite == "AllFours") return CharacterItemsHavePose(C, "AllFours") ? "CannotUse" : "";
 	if (Prerequisite == "OnBed") return ((InventoryGet(C, "ItemDevices") == null) || (InventoryGet(C, "ItemDevices").Asset.Name != "Bed")) ? "MustBeOnBed" : "";
 	if (Prerequisite == "CuffedArms") return  (C.Effect.indexOf("CuffedArms") <= -1) ? "MustBeArmCuffedFirst" : "";
 	if (Prerequisite == "CuffedFeet") return (C.Effect.indexOf("CuffedFeet") <= -1) ? "MustBeFeetCuffedFirst" : "";
@@ -208,25 +207,34 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	
 	// Blocked remotes on self
 	if (Prerequisite == "RemotesAllowed" && LogQuery("BlockRemoteSelf", "OwnerRule") && C.ID == 0) return "OwnerBlockedRemotes";
-		
-	// Layered Gags, Prevent gags marked with "GagUnique" from being equipped over gags with "GagFlat" and "GagCorset"
-	if (Prerequisite == "GagUnique" && C.FocusGroup) {
-		// Index of the gag we're trying to add (1-indexed)
-		var GagIndex = Number(C.FocusGroup.Name.replace("ItemMouth", "") || 1);
-		var MouthItems = [InventoryGet(C, "ItemMouth"), InventoryGet(C, "ItemMouth2"), InventoryGet(C, "ItemMouth3")];
-		var MinBlockingIndex = 0;
-		for (let i = 0; i < MouthItems.length && !MinBlockingIndex; i++) {
-			// Find the lowest indexed slot in which there is a "GagFlat" or "GagCorset" item, drop out of the loop if we find one
-			var AssetPrerequisite = MouthItems[i] && MouthItems[i].Asset.Prerequisite;
-			if (AssetPrerequisite === "GagFlat" || AssetPrerequisite === "GagCorset") MinBlockingIndex = i + 1;
-		}
-		// Not allowed to add a "GagUnique" if there is a "GagFlat"/"GagCorset" anywhere below it
-		if (MinBlockingIndex && GagIndex > MinBlockingIndex) return "CannotBeUsedOverFlatGag";
-	}
+	
+	// Layered Gags, prevent gags from being equipped over other gags they are incompatible with
+	if (Prerequisite == "GagUnique" && C.FocusGroup) return InventoryPrerequisiteConflictingGags(C, ["GagFlat", "GagCorset", "GagUnique"]);
+	if (Prerequisite == "GagCorset" && C.FocusGroup) return InventoryPrerequisiteConflictingGags(C, ["GagCorset"]);
 
 	// Returns no message, indicating that all prerequisites are fine
 	return "";
+}
 
+/**
+ * Check if there are any gags with prerequisites that block the new gag from being applied
+ * @param {Character} C - The character on which we check for prerequisites
+ * @param {Array} BlockingPrereqs - The prerequisites we check for on lower gags
+ * @returns {String} - Returns the prerequisite message if the gag is blocked, or an empty string if not
+ */
+function InventoryPrerequisiteConflictingGags(C, BlockingPrereqs) {
+	// Index of the gag we're trying to add (1-indexed)
+	var GagIndex = Number(C.FocusGroup.Name.replace("ItemMouth", "") || 1);
+	var MouthItems = [InventoryGet(C, "ItemMouth"), InventoryGet(C, "ItemMouth2"), InventoryGet(C, "ItemMouth3")];
+	var MinBlockingIndex = 0;
+	for (let i = 0; i < MouthItems.length && !MinBlockingIndex; i++) {
+		// Find the lowest indexed slot in which there is a gag with a prerequisite that blocks the new gag
+		var AssetPrerequisite = MouthItems[i] && MouthItems[i].Asset.Prerequisite;
+		if (BlockingPrereqs.indexOf(AssetPrerequisite) >= 0) MinBlockingIndex = i + 1;
+	}
+	// Not allowed to add the new gag if there is a blocking gag anywhere below it
+	if (MinBlockingIndex && GagIndex > MinBlockingIndex) return "CannotBeUsedOverGag";
+	else return "";
 }
 
 /**

@@ -141,7 +141,7 @@ function LoginRun() {
  * @returns {void} Nothing
  */
 function LoginValidCollar() {
- 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) {
+ 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "" || LogQuery("ReleasedCollar", "OwnerRule"))) {
  		InventoryRemove(Player, "ItemNeck");
 		if (CurrentScreen == "ChatRoom") {
 			ChatRoomCharacterItemUpdate(Player, "ItemNeck");
@@ -317,7 +317,7 @@ function LoginResponse(C) {
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Game = C.Game;
-			Player.Description = C.Description;
+			Player.Description = (C.Description == null) ? "" : C.Description.substr(0, 1000);
 			Player.Creation = C.Creation;
 			Player.Wardrobe = CharacterDecompressWardrobe(C.Wardrobe);
 			WardrobeFixLength();
@@ -474,6 +474,7 @@ function LoginClick() {
 	if ((MouseX >= 1025) && (MouseX <= 1225) && (MouseY >= 500) && (MouseY <= 560)) {
 		TranslationNextLanguage();
 		TextLoad();
+		ActivityDictionaryLoad();
 		AssetLoadDescription("Female3DCG");
 		LoginUpdateMessage();
 	}
