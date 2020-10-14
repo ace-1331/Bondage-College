@@ -10,9 +10,9 @@ This changelog follows the format outlined in [keepachangelog.com](https://keepa
 
 **Note to contributors:** To avoid merge conflicts, please don't update this file yourself in your PRs - one of the developers will update the changelog with your change before your PR is merged.
 
-Changelog last updated: 2020-10-09
+Changelog last updated: 2020-10-14
 
-Last recorded PR: [#1497](https://github.com/Ben987/Bondage-College/pull/1497)
+Last recorded PR: [#1566](https://github.com/Ben987/Bondage-College/pull/1566)
 
 ## [R61]
 
@@ -123,6 +123,10 @@ Last recorded PR: [#1497](https://github.com/Ben987/Bondage-College/pull/1497)
 * Ace - Fixed an issue where HTML form controls for some screens would not be removed when having an orgasm ([#1527](https://github.com/Ben987/Bondage-College/pull/1527))
 * Ace - Added missing assets for Hair Ribbon 2 in the suspension pose ([#1529](https://github.com/Ben987/Bondage-College/pull/1529))
 * Ada - Prevented random kidnappers from removing lover-locked items ([#1531](https://github.com/Ben987/Bondage-College/pull/1531))
+* Ace - Fix for online maid drinks mission softlocked when the dray was lost ([#1568](https://github.com/Ben987/Bondage-College/pull/1568))
+* Ace - Fix for the chatroom search pages not resetting when doing a new search ([#1566](https://github.com/Ben987/Bondage-College/pull/1566))
+* Nina - Fix for the list of friends being drawn in the wrong position for rooms in the last row ([#1558](https://github.com/Ben987/Bondage-College/pull/1558))
+* Wultir - Fix for the afk emote not always being set as expected ([#1557](https://github.com/Ben987/Bondage-College/pull/1557))
 
 ### [Technical]
 * Ace - New dynamic asset framework ([#1324](https://github.com/Ben987/Bondage-College/pull/1324))
