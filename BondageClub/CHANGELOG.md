@@ -12,7 +12,7 @@ This changelog follows the format outlined in [keepachangelog.com](https://keepa
 
 Changelog last updated: 2020-10-14
 
-Last recorded PR: [#1566](https://github.com/Ben987/Bondage-College/pull/1566)
+Last recorded PR: [#1572](https://github.com/Ben987/Bondage-College/pull/1572)
 
 ## [R61]
 
@@ -149,4 +149,4 @@ Last recorded PR: [#1566](https://github.com/Ben987/Bondage-College/pull/1566)
 * Nina - [#1536](https://github.com/Ben987/Bondage-College/pull/1536),  [#1561](https://github.com/Ben987/Bondage-College/pull/1561),  [#1552](https://github.com/Ben987/Bondage-College/pull/1552),  [#1555](https://github.com/Ben987/Bondage-College/pull/1555),  [#1554](https://github.com/Ben987/Bondage-College/pull/1554)
 * Ellie - [#1543](https://github.com/Ben987/Bondage-College/pull/1543),  [#1565](https://github.com/Ben987/Bondage-College/pull/1565),  [#1562](https://github.com/Ben987/Bondage-College/pull/1562),  [#1546](https://github.com/Ben987/Bondage-College/pull/1546)
 * Wultir - [#1551](https://github.com/Ben987/Bondage-College/pull/1551)
-* Ace -  [#1538](https://github.com/Ben987/Bondage-College/pull/1538), [#1539](https://github.com/Ben987/Bondage-College/pull/1539),  [#1540](https://github.com/Ben987/Bondage-College/pull/1540),  [#1541](https://github.com/Ben987/Bondage-College/pull/1541),  [#1542](https://github.com/Ben987/Bondage-College/pull/1542),  [#1544](https://github.com/Ben987/Bondage-College/pull/1544),  [#1545](https://github.com/Ben987/Bondage-College/pull/1545),  [#1548](https://github.com/Ben987/Bondage-College/pull/1548),  [#1563](https://github.com/Ben987/Bondage-College/pull/1563),  [#1567](https://github.com/Ben987/Bondage-College/pull/1567)
+* Ace -  [#1538](https://github.com/Ben987/Bondage-College/pull/1538), [#1539](https://github.com/Ben987/Bondage-College/pull/1539),  [#1540](https://github.com/Ben987/Bondage-College/pull/1540),  [#1541](https://github.com/Ben987/Bondage-College/pull/1541),  [#1542](https://github.com/Ben987/Bondage-College/pull/1542),  [#1544](https://github.com/Ben987/Bondage-College/pull/1544),  [#1545](https://github.com/Ben987/Bondage-College/pull/1545),  [#1548](https://github.com/Ben987/Bondage-College/pull/1548),  [#1563](https://github.com/Ben987/Bondage-College/pull/1563),  [#1567](https://github.com/Ben987/Bondage-College/pull/1567),  [#1572](https://github.com/Ben987/Bondage-College/pull/1572)
