@@ -113,7 +113,7 @@ function ItemColorDraw(c, group, x, y, width, height) {
 	if (ItemColorCurrentMode === ItemColorMode.DEFAULT && ItemColorState.pageCount > 1) {
 		DrawButton(ItemColorState.paginationButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Next.png", ItemColorText.get("Next"));
 	}
-	if (navigator && navigator.clipboard && ItemColorCurrentMode === ItemColorMode.COLOR_PICKER) {
+	if (typeof navigator !== 'undefined' && navigator.clipboard && ItemColorCurrentMode === ItemColorMode.COLOR_PICKER) {
 		DrawButton(
 			ItemColorState.exportButtonX, y, headerButtonSize, headerButtonSize, "", "#fff", "Icons/Export.png",
 		);
@@ -233,7 +233,7 @@ function ItemColorClick(c, group, x, y, width, height) {
 	ItemColorStateBuild(c, item, x, y, width, height);
 
 	const headerButtonSize = ItemColorConfig.headerButtonSize;
-	if (navigator && navigator.clipboard) {
+	if (typeof navigator !== 'undefined' && navigator.clipboard) {
 		if (MouseIn(ItemColorState.exportButtonX, y, headerButtonSize, headerButtonSize)) {
 			navigator.clipboard.writeText(ElementValue("InputColor"));
 			return;
