@@ -177,47 +177,52 @@ function CommonDrawAppearanceBuild(C, {
 		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects. 
 		// Watch out for object references.
 		if (A.DynamicBeforeDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
-			const DrawingData = {
-				C, X, Y, CA, Color, Property, A, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
-			};
-			const OverridenData = window["Assets" + A.Group.Name + A.Name + "BeforeDraw"](DrawingData);
-			if (typeof OverridenData == "object") {
-				for (const key in OverridenData) {
-					switch (key) { 
-						case "Property": { 
-							Property = OverridenData[key];
-							break;
-						}
-						case "CA": { 
-							CA = OverridenData[key];
-							break;
-						}
-						case "Color": {
-							Color = OverridenData[key];
-							break;
-						}
-						case "X": { 
-							X = OverridenData[key];
-							break;
-						}
-						case "Y": { 
-							Y = OverridenData[key];
-							break;
-						}
-						case "LayerType": { 
-							LayerType = OverridenData[key];
-							break;
-						}
-						case "L": { 
-							L = OverridenData[key];
-							break;
-						}
-						case "AlphaMasks": { 
-							AlphaMasks = OverridenData[key];
-							break;
+			const functionName = "Assets" + A.Group.Name + A.Name + "BeforeDraw";
+			if (typeof window[functionName] === "function") {
+				const DrawingData = {
+					C, X, Y, CA, Color, Property, A, AG, G, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
+				};
+				const OverridenData = window[functionName](DrawingData);
+				if (typeof OverridenData == "object") {
+					for (const key in OverridenData) {
+						switch (key) {
+							case "Property": {
+								Property = OverridenData[key];
+								break;
+							}
+							case "CA": {
+								CA = OverridenData[key];
+								break;
+							}
+							case "Color": {
+								Color = OverridenData[key];
+								break;
+							}
+							case "X": {
+								X = OverridenData[key];
+								break;
+							}
+							case "Y": {
+								Y = OverridenData[key];
+								break;
+							}
+							case "LayerType": {
+								LayerType = OverridenData[key];
+								break;
+							}
+							case "L": {
+								L = OverridenData[key];
+								break;
+							}
+							case "AlphaMasks": {
+								AlphaMasks = OverridenData[key];
+								break;
+							}
 						}
 					}
 				}
+			} else { 
+				console.warn("Trying to launch invalid function: ", functionName);
 			}
 		}
 
@@ -260,10 +265,15 @@ function CommonDrawAppearanceBuild(C, {
 		// CAREFUL! The dynamic function should not contain heavy computations, and should not have any side effects. 
 		// Watch out for object references.
 		if (A.DynamicAfterDraw && (!Player.GhostList || Player.GhostList.indexOf(C.MemberNumber) == -1)) {
-			const DrawingData = {
-				C, X, Y, CA, Property, Color, A, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
-			};
-			window["Assets" + A.Group.Name + A.Name + "AfterDraw"](DrawingData);
+			const functionName = "Assets" + A.Group.Name + A.Name + "AfterDraw";
+			if (typeof window[functionName] === "function") {
+				const DrawingData = {
+					C, X, Y, CA, Property, Color, A, G, AG, L, Pose, LayerType, BlinkExpression, drawCanvas, drawCanvasBlink, AlphaMasks, PersistentData: () => AnimationPersistentDataGet(C, A)
+				};
+				window[functionName](DrawingData);
+			} else { 
+				console.warn("Trying to launch invalid function: ", functionName);
+			}
 		}
 	});
 }

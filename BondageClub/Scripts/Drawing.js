@@ -193,11 +193,16 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		// Run any existing asset scripts
 		if (C.RunScripts && C.HasScriptedAssets) {
 			var DynamicAssets = C.Appearance.filter(CA => CA.Asset.DynamicScriptDraw);
-			DynamicAssets.forEach(Item =>
-				window["Assets" + Item.Asset.Group.Name + Item.Asset.Name + "ScriptDraw"]({
-					C, Item, PersistentData: () => AnimationPersistentDataGet(C, Item.Asset)
-				})
-			);
+			DynamicAssets.forEach(Item => {
+				const functionName = "Assets" + Item.Asset.Group.Name + Item.Asset.Name + "ScriptDraw";
+				if (typeof window[functionName] === "function") {
+					window[functionName]({
+						C, Item, PersistentData: () => AnimationPersistentDataGet(C, Item.Asset)
+					});
+				} else { 
+					console.warn("Trying to launch invalid function: ", functionName);
+				}
+			});
 			
 			// If we must rebuild the canvas due to an animation
 			const refreshTimeKey = AnimationGetDynamicDataName(C, AnimationDataTypes.RefreshTime);
