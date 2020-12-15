@@ -26,6 +26,7 @@ var DialogAllowEyebrows = false;
 var DialogAllowFluids = false;
 var DialogFacialExpressions = [];
 var DialogFacialExpressionsSelected = -1;
+var DialogFacialExpressionsSelectedBlindnessLevel = 2;
 var DialogActivePoses = [];
 var DialogItemPermissionMode = false;
 var DialogExtendedMessage = "";
@@ -1727,6 +1728,7 @@ function DialogDrawExpressionMenu() {
 
 	// Draw the expression groups
 	DrawText(DialogFind(Player, "FacialExpression"), 165, 25, "White", "Black");
+	DrawButton(355, 50, 90, 90, "", "White", "Icons/BlindToggle.png", DialogFind(Player, "BlindToggleFacialExpressions"));
 	DrawButton(255, 50, 90, 90, "", "White", "Icons/WinkL.png", DialogFind(Player, "WinkLFacialExpressions"));
 	DrawButton(155, 50, 90, 90, "", "White", "Icons/WinkR.png", DialogFind(Player, "WinkRFacialExpressions"));
 	DrawButton(20, 50, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ClearFacialExpressions"));
@@ -1766,6 +1768,10 @@ function DialogClickExpressionMenu() {
 		const EyesExpression = WardrobeGetExpression(Player);
 		const CurrentExpression = DialogFacialExpressions.find(FE => FE.Group == "Eyes").CurrentExpression;
 		CharacterSetFacialExpression(Player, "Eyes2", (EyesExpression.Eyes2 !== "Closed") ? "Closed" : (CurrentExpression !== "Closed" ? CurrentExpression : null));
+	} else if (MouseIn(355, 50, 90, 90)) {
+		DialogFacialExpressionsSelectedBlindnessLevel += 1;
+		if (DialogFacialExpressionsSelectedBlindnessLevel > 3)
+			DialogFacialExpressionsSelectedBlindnessLevel = 1;
 	} else {
 		// Expression category buttons
 		for (let I = 0; I < DialogFacialExpressions.length; I++) {
