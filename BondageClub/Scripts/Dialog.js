@@ -1819,8 +1819,7 @@ function DialogDrawPoseMenu() {
 			}
 			else if ((PoseGroup[P].Name == "BaseUpper" || PoseGroup[P].Name == "BaseLower") && Player.ActivePose == null)
 				IsActive = true;
-			
-			DrawButton(OffsetX, OffsetY, 90, 90, "", CharacterItemsHavePoseType(Player, PoseGroup[0].Category, true) ? "#888" : IsActive ? "Pink" : "White", "Icons/Poses/" + PoseGroup[P].Name + ".png");
+			DrawButton(OffsetX, OffsetY, 90, 90, "", !CharacterItemsHavePoseAvailable(Player, PoseGroup[P].Category, PoseGroup[P].Name) ? "#888" : IsActive ? "Pink" : "White", "Icons/Poses/" + PoseGroup[P].Name + ".png");
 		}
 	}
 }
@@ -1842,7 +1841,7 @@ function DialogClickPoseMenu() {
 			if (Array.isArray(Player.ActivePose) && Player.ActivePose.includes(PoseGroup[P].Name))
 				IsActive = true;
 			
-			if (MouseIn(OffsetX, OffsetY, 90, 90) && !IsActive && !CharacterItemsHavePoseType(Player, PoseGroup[0].Category, true)) { 
+			if (MouseIn(OffsetX, OffsetY, 90, 90) && !IsActive && CharacterItemsHavePoseAvailable(Player, PoseGroup[P].Category, PoseGroup[P].Name)) { 
 				CharacterSetActivePose(Player, PoseGroup[P].Name);
 				ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
 			}
