@@ -415,8 +415,8 @@ function PrivateRun() {
 	if (Player.CanWalk() && (Player.Cage == null)) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	if (LogQuery("RentRoom", "PrivateRoom")) {
 		if (Player.CanKneel()) DrawButton(1885, 145, 90, 90, "", "White", "Icons/Kneel.png");
-		DrawButton(1885, 745, 90, 90, "", "White", "Icons/College.png", TextGet("MainHallBackground"));
-		DrawButton(1885, 865, 90, 90, "", "White", "Icons/Bedroom.png", TextGet("PrivateRoomBackground"));
+		DrawButton(1885, 745, 90, 90, "", "White", "Icons/CollegeBackground.png", TextGet("MainHallBackground"));
+		DrawButton(1885, 865, 90, 90, "", "White", "Icons/BedroomBackground.png", TextGet("PrivateRoomBackground"));
 	}
 
 	// In orgasm mode, we add a pink filter and different controls depending on the stage
